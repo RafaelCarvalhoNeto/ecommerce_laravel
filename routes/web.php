@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/index', function () {
     return view('index');
 });
-
 Route::get('/institucional', function () {
     return view('institucional');
 });
@@ -41,6 +40,22 @@ Route::get('/admProdutos', function () {
 Route::get('/admCategorias', function () {
     return view('admCategorias');
 });
+
+// USUARIOS
+Route::get('admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
+
+// EDITAR USUÁRIOS
+Route::get('editUsuarios/{id}', 'UsersController@editUser');
+Route::put('editUsuarios/{id}', 'UsersController@updateUser');
+
+// CRIAR USUÁRIO
+Route::get('cadastro', 'UsersController@createPage');
+Route::post('cadastro', 'UsersController@createUser');
+
+// DELETE USUÁRIO
+Route::delete('remove/{id}', 'UsersController@deleteUser');
+
+
 Route::get('/admMensagens', function () {
     return view('admMensagens');
 });

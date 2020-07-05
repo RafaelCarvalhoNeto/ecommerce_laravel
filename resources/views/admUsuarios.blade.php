@@ -39,27 +39,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td scope="row">Antonio</td>
-                                <td scope="row">Pereira</td>
-                                <td scope="row">00000000-000</td>
-                                <td scope="row">antonio@gmail.com</td>
-                                <td scope="row">afdasfasfadfasdfsadf</td>
-                                <td scope="row">05555-555</td>
-                                <td scope="row">Osasco</td>
-                                <td scope="row">SP</td>
-                                <td scope="row">
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td scope="row">
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach ($users as $user)
+                                <tr>
+                                    <th scope="row">{{$user->id}}</th>
+                                    <td scope="row">{{$user->nome}}</td>
+                                    <td scope="row">{{$user->sobrenome}}</td>
+                                    <td scope="row">{{$user->cpf}}</td>
+                                    <td scope="row">{{$user->email}}</td>
+                                    <td scope="row">{{$user->senha}}</td>
+                                    <td scope="row">{{$user->cep}}</td>
+                                    <td scope="row">{{$user->cidade}}</td>
+                                    <td scope="row">{{$user->uf}}</td>
+                                    <td scope="row">
+                                        <a href="/editUsuarios/{{$user->id}}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td scope="row">
+                                        <a href="#" data-toggle="modal" data-target="#modal">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                
+                            @endforeach
                         </tbody>
                     </table>
 
