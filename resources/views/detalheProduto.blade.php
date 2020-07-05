@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div>
-                    <img class="d-block w-100 .produto" src="./assets/img/computador.jpg" alt="">
+                    <img class="d-block w-100 .produto" src="/img/computador.jpg" alt="">
                 </div>
             </div>
             <div class="col-md-7 my-3">
@@ -122,7 +122,7 @@
                 <a href="detalheProduto.php">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-01.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-01.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Samsung S20</h3>
@@ -136,7 +136,7 @@
                 <a href="detalheProduto.php">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-02.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-02.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Computador Zika</h3>
@@ -150,7 +150,7 @@
                 <a href="detalheProduto.php">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-03.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-03.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Controle PS5</h3>
@@ -163,7 +163,7 @@
                 <a href="detalheProduto.php">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-04.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-04.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Controle PS5</h3>
