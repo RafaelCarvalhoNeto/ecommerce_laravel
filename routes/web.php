@@ -36,9 +36,12 @@ Route::get('/admUsuarios', function () {
     return view('admUsuarios');
 });
 Route::get('/admProdutos', function () {
-    return view('admProdutos');
+  return view('admProdutos');
 });
 Route::get('/admCategorias', function () {
     return view('admCategorias');
 });
 
+Route::get('/produtos', 'ProdutosController@index');
+
+Route::post('/produtos', 'ProdutosController@create');
