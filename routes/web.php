@@ -20,4 +20,25 @@ Route::get('/', function () {
 Route::get('/institucional', function () {
     return view('institucional');
 });
+Route::get('/404', function () {
+    return view('404');
+});
+Route::get('/contato', function () {
+    return view('contato');
+});
+Route::get('/politicas', function () {
+    return view('politicas');
+});
+Route::get('/carrinho', function () {
+    return view('carrinho');
+});
+Route::get('/admUsuarios', function () {
+    return view('admUsuarios');
+});
+Route::get('/admProdutos', function () {
+    return view('admProdutos');
+});
+Route::get('/admCategorias', function () {
+    return view('admCategorias');
+});
 

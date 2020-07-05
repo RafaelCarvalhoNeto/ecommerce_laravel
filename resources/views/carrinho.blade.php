@@ -1,6 +1,5 @@
-<?php $tituloDaPagina = "Carrinho" ?>
-<?php require_once("./inc/head.php"); ?>
-<?php require_once("./inc/header.php"); ?>
+@extends('layouts.app')
+@section('content')
 
 <section class="container-fluid m-0 p-0 ajuste">
 
@@ -122,4 +121,4 @@
 </section>
 
 
-<?php require_once("./inc/footer.php"); ?>
+@endsection

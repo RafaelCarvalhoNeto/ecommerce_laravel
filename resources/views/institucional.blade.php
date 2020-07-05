@@ -1,6 +1,5 @@
-<?php $tituloDaPagina = "Institucional" ?>
-<?php require_once("./inc/head.php"); ?>
-<?php require_once("./inc/header.php"); ?>
+@extends('layouts.app')
+@section('content')
 
 <div class="container jumbotron pt-0 mt-3">
     <div class="row">
@@ -89,4 +88,4 @@
         
     </div>
 </div>
-<?php require_once("./inc/footer.php"); ?>
+@endsection
