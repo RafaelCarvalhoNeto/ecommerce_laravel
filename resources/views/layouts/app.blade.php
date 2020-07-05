@@ -27,8 +27,8 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="./assets/img/logo.png" alt="Logo" width=65px height=50px>
+                    <a class="navbar-brand" href="index">
+                        <img src="img/logo.png" alt="Logo" width=65px height=50px>
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -36,18 +36,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sobre nós</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="contato.php">Contato</a>
-                                    <a class="dropdown-item" href="institucional.php">Institucional</a>
-                                    <a class="dropdown-item" href="politicas.php">Termos de uso</a>
-                                    <a class="dropdown-item" href="politicas.php">Politicas de Privacidade</a>
-                                </div>
-                            </li>
-                        </ul>
+
                         <form class="form-inline ml-auto p-2 my-0">
                             <div class="input-group" id="busca">
                                 <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search">
@@ -62,7 +51,7 @@
                         </a>
                         
     
-                        <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="carrinho.php"><i class="fas fa-shopping-cart"></i></a>
+                        <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="carrinho"><i class="fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </nav>
@@ -70,10 +59,10 @@
                 <div class="container">
                     <div class="row">
                         <ul>
-                            <li><a href="./ofertas.php">Ofertas</a></li>
-                            <li><a href="./livros.php">Livros</a></li>
-                            <li><a href="./eletronicos.php">Eletrônicos</a></li>
-                            <li><a href="./bolsas.php">Bolsas</a></li>
+                            <li><a href="./ofertas">Ofertas</a></li>
+                            <li><a href="./livros">Livros</a></li>
+                            <li><a href="./eletronicos">Eletrônicos</a></li>
+                            <li><a href="./bolsas">Bolsas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -90,10 +79,10 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-md-12 d-flex justify-content-between my-0 text-center link-footer">
-                      <a href="./ofertas.php">Ofertas</a>
-                      <a href="./livros.php">Livros</a>
-                      <a href="./eletronicos.php">Eletrônicos</a>
-                      <a href="./bolsas.php">Bolsas</a>
+                      <a href="./ofertas">Ofertas</a>
+                      <a href="./livros">Livros</a>
+                      <a href="./eletronicos">Eletrônicos</a>
+                      <a href="./bolsas">Bolsas</a>
                     </div>
                   </div>
                 </div>
@@ -117,6 +106,9 @@
                       <strong>SAC</strong><br>
                       <a href="mailto:#">ecommerce@exemplo.com</a>
                     </address>
+                    <div class="d-flex flex-row flex-nowrap justify-content-center py-3 text-center">
+                      <a class="px-1" href="contato">Contato </a> | <a class="px-1" href="institucional">Institucional </a> | <a class="px-1" href="politicas">Termos de uso </a> | <a class="px-1" href="politicas"> Politicas de Privacidade</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -152,7 +144,7 @@
                     </div>
                     <div class="form-group form-check">
                       <input type="checkbox" class="form-check-input" id="aceite">
-                      <label class="form-check-label" for="aceite">Concordo com a <a href="politicas.php">Políticas de Privacidade</a> e <a href="politicas.php">Termos de Uso</a></label>
+                      <label class="form-check-label" for="aceite">Concordo com a <a href="politicas">Políticas de Privacidade</a> e <a href="politicas">Termos de Uso</a></label>
                     </div>
                   </form>
                 </div>
@@ -160,7 +152,7 @@
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                   <button type="button" class="btn btn-primary">Logar</button>
                 </div>
-                <label class="container justify-content-right mb-0">Ainda não tem cadastro? <a href="cadastro.php"><small>Cadastre-se Aqui!</small></a></label>
+                <label class="container justify-content-right mb-0">Ainda não tem cadastro? <a href="cadastro"><small>Cadastre-se Aqui!</small></a></label>
                 <label class="container justify-content-right mb-4">Esqueceu sua senha? <a href="#"><small>Clique Aqui!</small></a></label>
               </div>
             </div>

@@ -22,7 +22,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="d-flex">
-                                    <img src="./assets/img/celular.jpg" idth="72" height="72" alt="">
+                                    <img src="/img/celular.jpg" idth="72" height="72" alt="">
                                     <div class="text-left mx-0 mx-md-3">
                                         <h5 class="my-0"> Celular</h5>
                                         <small class="text-muted my-0">Indentificação do produto</small><br>
@@ -45,7 +45,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="d-flex">
-                                    <img src="./assets/img/computador.jpg" idth="72" height="72" alt="">
+                                    <img src="/img/computador.jpg" idth="72" height="72" alt="">
                                     <div class="text-left mx-0 mx-md-3">
                                         <h5 class="my-0">Computador</h5>
                                         <small class="text-muted my-0">Indentificação do produto</small><br>
@@ -68,7 +68,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="d-flex">
-                                    <img src="./assets/img/controle-ps5.jpg" idth="72" height="72" alt="">
+                                    <img src="/img/controle-ps5.jpg" idth="72" height="72" alt="">
                                     <div class="text-left mx-0 mx-md-3">
                                         <h5 class="my-0">Controle PS5</h5>
                                         <small class="text-muted my-0">Indentificação do produto</small><br>
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="form-group col-md-2 offset-4">
-                        <button type="submit" class="btn btn-primary" form="carrinhoForm">Finalizar Compra</button>
+                        <a class="btn btn-primary" href="/finalizarCompra">Finalizar Compra</a>
                     </div>
                 </div>
     
