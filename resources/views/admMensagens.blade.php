@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
 
-    ''<section class="jumbotron jumbotron-fluid py-2">
+    <section class="jumbotron jumbotron-fluid py-2">
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex text-center flex-wrap">
                     <p class="mr-3 my-auto"><strong>Menu Administrativo (Provisório)</strong></p>
-                    <a class="mr-3 my-auto" href="admCategorias.php">Categorias</a>
-                    <a class="mr-3 my-auto" href="admMensagens.php">Mensagens</a>
-                    <a class="mr-3 my-auto" href="admProdutos.php">Produtos</a>
-                    <a class="mr-3 my-auto" href="admUsuarios.php">Usuarios</a>
+                    <a class="mr-3 my-auto" href="admCategorias">Categorias</a>
+                    <a class="mr-3 my-auto" href="admMensagens">Mensagens</a>
+                    <a class="mr-3 my-auto" href="admProdutos">Produtos</a>
+                    <a class="mr-3 my-auto" href="admUsuarios">Usuarios</a>
                 </div>
             </div>
         </div>

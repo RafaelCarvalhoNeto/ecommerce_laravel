@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/index', function () {
     return view('index');
 });
 
@@ -41,4 +41,33 @@ Route::get('/admProdutos', function () {
 Route::get('/admCategorias', function () {
     return view('admCategorias');
 });
-
+Route::get('/admMensagens', function () {
+    return view('admMensagens');
+});
+Route::get('/cadastro', function () {
+    return view('cadastro');
+});
+Route::get('/detalheProduto', function () {
+    return view('detalheProduto');
+});
+Route::get('/ofertas', function () {
+    return view('ofertas');
+});
+Route::get('/livros', function () {
+    return view('livros');
+});
+Route::get('/eletronicos', function () {
+    return view('eletronicos');
+});
+Route::get('/bolsas', function () {
+    return view('bolsas');
+});
+Route::get('/busca', function () {
+    return view('busca');
+});
+Route::get('/finalizarCompra', function () {
+    return view('finalizarCompra');
+});
+Route::get('/historicoPedidos', function () {
+    return view('historicoPedidos');
+});
