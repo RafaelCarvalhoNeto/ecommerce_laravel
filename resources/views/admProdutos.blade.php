@@ -7,10 +7,10 @@
             <div class="row">
                 <div class="col-12 d-flex text-center flex-wrap">
                     <p class="mr-3 my-auto"><strong>Menu Administrativo (Provisório)</strong></p>
-                    <a class="mr-3 my-auto" href="admCategorias.php">Categorias</a>
-                    <a class="mr-3 my-auto" href="admMensagens.php">Mensagens</a>
-                    <a class="mr-3 my-auto" href="admProdutos.php">Produtos</a>
-                    <a class="mr-3 my-auto" href="admUsuarios.php">Usuarios</a>
+                    <a class="mr-3 my-auto" href="admCategorias">Categorias</a>
+                    <a class="mr-3 my-auto" href="admMensagens">Mensagens</a>
+                    <a class="mr-3 my-auto" href="admProdutos">Produtos</a>
+                    <a class="mr-3 my-auto" href="admUsuarios">Usuarios</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
                         <tbody>
                             <tr>
                                 <td scope="row">000</td>
-                                <td scope="row"><img src="assets\img\computador.jpg" alt="" id="thumbProduto"
+                                <td scope="row"><img src="img\computador.jpg" alt="" id="thumbProduto"
                                         style="max-height: 50px;"></td>
                                 <td scope="row">Computador</td>
                                 <td scope="row">900</td>
@@ -58,7 +58,7 @@
                             </tr>
                             <tr>
                                 <td scope="row">001</td>
-                                <td scope="row"><img src="assets\img\computador.jpg" alt="" id="thumbProduto"
+                                <td scope="row"><img src="img\computador.jpg" alt="" id="thumbProduto"
                                         style="max-height: 50px;"></td>
                                 <td scope="row">Harry Potter</td>
                                 <td scope="row">900</td>
@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td scope="row">002</td>
-                                <td scope="row"><img src="assets\img\celular.jpg" alt="" id="thumbProduto"
+                                <td scope="row"><img src="img\celular.jpg" alt="" id="thumbProduto"
                                         style="max-height: 50px;"></td>
                                 <td scope="row">Samsung S20</td>
                                 <td scope="row">900</td>
@@ -94,7 +94,7 @@
                             </tr>
                             <tr>
                                 <td scope="row">003</td>
-                                <td scope="row"><img src="assets\img\computador.jpg" alt="" id="thumbProduto"
+                                <td scope="row"><img src="img\computador.jpg" alt="" id="thumbProduto"
                                         style="max-height: 50px;"></td>
                                 <td scope="row">Bolsa Gucci</td>
                                 <td scope="row">900</td>

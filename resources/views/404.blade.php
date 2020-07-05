@@ -18,7 +18,7 @@
                 </p>
             </div>
             <div class="col-md-4">
-                <img src="./assets/img/404.png" width="250" alt="">
+                <img src="img/404.png" width="250" alt="Oops! Erro 404">
             </div>
 
             
