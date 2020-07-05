@@ -21,8 +21,3 @@ Route::get('/institucional', function () {
     return view('institucional');
 });
 
-Route::get('/', function () {
-    return view('index');
-});
-
-
