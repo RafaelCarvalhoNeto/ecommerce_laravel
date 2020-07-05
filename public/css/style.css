@@ -1,0 +1,293 @@
+/*RESETS*/
+:root{
+    --primary-color: #273273;
+    --secondary-color: #6777d1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-style: normal;
+}
+a,
+a:active,
+a:hover,
+a:visited {
+    text-decoration: none;
+}
+/*O ajuste regula o tamanho da página para que seja o total da página - o tamanho do header*/
+.ajuste{
+    min-height: calc(100vh - 128px);
+}
+.bg-dark {
+    background-color: var(--primary-color) !important;
+}
+h2, h1{
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    color: var(--primary-color) !important;
+}
+
+
+/* HEADER */
+header {
+    background-color: var(--primary-color);
+}
+
+#login {
+    float: right !important;
+}
+.subnav{
+    background-color: #313f8f;
+}
+.subnav ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+.subnav li {
+    float: left;
+}
+
+.subnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.subnav li a:hover {
+    background-color: #75B8BF;
+}
+.navbar-brand {
+    color: white !important;
+}
+.search{
+    background-image: url(../img/lupa.png);
+    background-color: #f0f0f5;
+    background-repeat: no-repeat;
+    background-size:  20px;
+    background-position: right;
+    background-position-x: 2px;
+    width: 30px;
+    border-radius: 8px ;
+}
+/* INDEX */
+body {
+    background-color: #ffffff;
+}
+
+#carrosel {
+    display: none;
+}
+
+#maisvendidos {
+    padding-top: 20px;
+}
+.card {
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.15);
+    font-family: 'Roboto';
+}
+.produto {
+    text-align: left;
+    font-size: 1em;
+    color: rgb(39, 39, 39);
+    
+}
+.preco{
+    text-align: left;
+    font-size: 1.5em;
+    color: #000;
+    font-weight: bold;
+}
+.avancar{
+    transition: all 0.3s ease-in-out
+}
+
+.avancar:hover{
+    transform: scale(1.05);
+    box-shadow: #000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.faixa-promo{
+    margin: 0;
+    font-size: bold;
+}
+
+.icones{
+    border-radius: 100px;
+    width: 215px;
+    transition: all 0.5s ease-in-out;
+}
+
+.icones:hover{
+    transform: rotate(360deg) scale(1.05);
+}
+
+aside {
+    height: 60vh;
+    width: 100vh;
+}
+aside h1{
+    color: rgba(138, 136, 136, 0.973) !important;
+    
+}
+section {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* FOOTER */
+
+footer {
+    width: 100vw;
+    background-color: var(--primary-color) !important;
+}
+#footer {
+    background-color: var(--primary-color) !important;
+    color: white;
+    width: 100%;
+    margin: auto;
+    filter: drop-shadow(-10px 0 5px grey);
+}
+.link-footer a{
+    list-style: none;
+    flex: 1;
+    padding: 20px 0;
+}
+
+.link-footer a:hover {
+    background-color: var(--primary-color);
+}
+.link-footer a{
+    color: grey !important;
+}
+.link-footer a:hover{
+    color: #fff !important;
+}
+
+#footer a {
+    color: white;
+}
+.redes-sociais{
+    font-size: 1.5em;
+}
+.redes-sociais .fa-instagram:hover{
+    color: rgb(255, 94, 0);
+}
+.redes-sociais .fa-facebook:hover{
+    color: rgb(0, 102, 255);
+}
+.redes-sociais .fa-twitter:hover{
+    color: rgb(0, 204, 255);
+}
+.redes-sociais .fa-pinterest:hover{
+    color: red;
+}
+address{
+    font-size: 0.9em;
+}
+
+/* TABELAS */
+
+.tableAdm {
+    overflow-x:auto !important;
+
+}
+
+.arrendonar{
+    border-radius: 100px;
+}
+/* Por alguma razao as paginas Adm nao estao puxando este codigo entao inclui style individual em cada imagem*/
+img#thumbProduto{
+    max-width: 50px !important;
+}
+
+.tableAdm td:nth-last-child(1){
+    padding-left: 0 !important;
+
+}
+.tableAdm td:nth-last-child(2){
+    padding-right: 0 !important;
+
+}
+.tableAdm thead th:last-child{
+    width: 10%;
+}
+.tableAdm thead th:first-child{
+    width: 10%;
+}
+
+
+
+/* BOTÕES */
+
+.btn-outline-warning{
+    color: #fff;
+    border-color: #fff;
+}
+.btn-outline-warning:hover{
+    background-color: #fff;
+    border-color: #fff;
+}
+.btn-primary{
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.btn-secondary{
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+.btn-primary:hover, .btn-secondary:hover{
+    filter: saturate(2);
+}
+
+
+/* CONTATO */
+
+.fundo{
+   background-image: url(../img/fundo.png);
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+/* FORMS */
+
+form input.form-control, form textarea.form-control{
+    background-color: #f0f0f5;
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+@media only screen and (min-width: 425px) {
+
+    #carrosel {
+        display: inherit;
+    }
+    #institucional {
+        max-width: 1140px;
+        margin: auto;
+    }
+    #error {
+        max-width: 1140px;
+        margin: auto;
+    }
+    #busca{
+        width: 400px
+    }
+    .seta{
+    height: 100px;
+    margin: auto 25px;
+    width: 30px;
+    }
+    .carousel-control-next-icon, .carousel-control-prev-icon{
+        color: black
+    }
+}
