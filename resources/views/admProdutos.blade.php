@@ -16,13 +16,13 @@
         </div>
     </section>
 
-    <main class="container ajuste" id="barraPedidos">
+    <main class="container pt-3 ajuste" id="barraPedidos">
         <div class="row">
             
-            <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Produtos</h2>
+            <h2 class="col-12 p-3 mb-3 border-bottom">Produtos</h2>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise por uma Produto:</p>
-                <form action="{{ url('/admUsuarios/search') }}" method="GET">
+                <form action="#" method="GET">
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
                         <div class="input-group-append">

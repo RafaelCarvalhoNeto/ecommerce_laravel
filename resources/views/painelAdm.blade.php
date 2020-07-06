@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
  
-<div class="container ajuste">
-    <h2 class="col-12 p-3 mt-4 mb-3 border-bottom font-weight-bold">Painel Administrativo</h2>
+<div class="container pt-3 ajuste">
+    <h2 class="col-12 p-3 mb-3 border-bottom font-weight-bold">Painel Administrativo</h2>
     <div class="row">
         <div class="col-md-6 col-sm-12">
             <a href="admUsuarios">

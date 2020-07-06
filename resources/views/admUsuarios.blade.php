@@ -15,7 +15,7 @@
         </div>
     </section>
 
-    <main class="container ajuste" id="barraPedidos">
+    <main class="container pt-3 ajuste" id="barraPedidos">
         @if(isset($success) && $success != "")
             <section class="row">
                 <div class="col-12">
@@ -26,7 +26,7 @@
             </section>
         @endif
         <div class="row">
-            <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Tabela de Usuários</h1>
+            <h2 class="col-12 p-3 mb-3 border-bottom">Tabela de Usuários</h1>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise por uma Usuário:</p>
                 <form action="{{ url('/admUsuarios/search') }}" method="GET">
@@ -92,7 +92,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                        <form action="remove/{{ $user->id }}" method="POST">
+                                                        <form action="/remove/{{ $user->id }}" method="POST">
                                                             @csrf
                                                             {{ method_field('DELETE') }}
                                                             <button id="delete-contact" type="submit" class="btn btn-primary">Excluir</a>

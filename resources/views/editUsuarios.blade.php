@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <main class="container ajuste">
+    <main class="container pt-3 ajuste">
         @if(isset($success) && $success != "")
             <section class="row">
                 <div class="col-12">
@@ -11,7 +11,7 @@
                 </div>
             </section>
         @endif
-        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Editar Usuário</h1>
+        <h2 class="col-12 p-3 mb-3 border-bottom">Editar Usuário</h1>
         <form action="/editUsuarios/{{$user->id}}" method="post" id="formCadastro">     
             @csrf
             {{ method_field('PUT')}}                         

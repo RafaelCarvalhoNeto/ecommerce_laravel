@@ -4,7 +4,7 @@
 
     <div class="container jumbotron pt-0 mt-3">
         <div class="row">
-            <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Política de Privacidade</h2>
+            <h2 class="col-12 pt-3 mb-3 border-bottom">Política de Privacidade</h2>
             <div class="col-12 mt-3 mb-3">
                 <p>A <strong>Ecommerce</strong> tem o compromisso com a privacidade e a segurança de seus clientes durante todo o processo de navegação e compra pelo site. Os dados cadastrais dos clientes não são vendidos, trocados ou divulgados para terceiros, exceto quando essas informações são necessárias para o processo de entrega, para cobrança, ou para participação em promoções solicitadas pelos clientes. Seus dados pessoais são peça fundamental para que seu pedido chegue em segurança, na sua casa, de acordo com nosso prazo de entrega.
                 A <strong>Ecommerce</strong> utiliza cookies e informações de sua navegação (sessão do browser) com o objetivo de traçar um perfil do público que visita o site e aperfeiçoar sempre nossos serviços, produtos, conteúdos e garantir as melhores ofertas e promoções para você. Durante todo este processo mantemos suas informações em sigilo absoluto. Vale lembrar que seus dados são registrados pela <strong>Ecommerce</strong> de forma automatizada, dispensando manipulação humana.

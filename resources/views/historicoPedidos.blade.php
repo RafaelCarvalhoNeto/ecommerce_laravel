@@ -3,9 +3,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<div class="container ajuste">
+<div class="container pt-3 ajuste">
   <div class="row">
-    <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Informações Pessoais</h2>
+    <h2 class="col-12 p-3 mb-3 border-bottom">Informações Pessoais</h2>
     <div class="col-md-8">
       <h3>Fulano da Silva</h3>
       <p>fulano@gmail.com</p>

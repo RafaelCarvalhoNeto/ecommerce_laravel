@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container jumbotron pt-0 mt-3">
+<div class="container jumbotron pt-3 mt-3">
     <div class="row">
-        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom"><strong>Institucional</strong></h2><br>
+        <h2 class="col-12 mt-3 mb-3 border-bottom"><strong>Institucional</strong></h2><br>
         <div class="col-12 mt-3 mb-3">
             <h3>História</h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium fugiat exercitationem earum totam ex quam? Autem, quod error doloremque magni fugiat totam enim quidem aut quaerat nostrum nemo dolores consectetur?</p>

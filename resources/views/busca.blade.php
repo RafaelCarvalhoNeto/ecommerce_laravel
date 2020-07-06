@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Ofertas</h2>
+    <div class="container pt-3">
+        <h2 class="col-12 p-3 mb-3 border-bottom">Ofertas</h2>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
             <label class="form-check-label" for="inlineCheckbox1">Promoção</label>
