@@ -13,35 +13,88 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/index', function () {
     return view('index');
 });
-
 Route::get('/institucional', function () {
     return view('institucional');
 });
 Route::get('/404', function () {
     return view('404');
 });
-Route::get('/contato', function () {
-    return view('contato');
-});
+
 Route::get('/politicas', function () {
     return view('politicas');
 });
 Route::get('/carrinho', function () {
     return view('carrinho');
 });
-Route::get('/admUsuarios', function () {
-    return view('admUsuarios');
+
+
+// PAINEL DE ADMINISTRAÇÃO
+
+Route::get('painelAdm', function(){
+    return view('painelAdm');
 });
-Route::get('/admProdutos', function () {
-  return view('admProdutos');
-});
-Route::get('/admCategorias', function () {
+
+Route::get('admCategorias', function () {
     return view('admCategorias');
 });
 
 Route::get('/admProdutos', 'ProdutosController@index');
 
 Route::post('/admProdutos', 'ProdutosController@create');
+
+// USUARIOS
+Route::get('/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
+
+// EDITAR USUÁRIOS
+Route::get('/editUsuarios/{id}', 'UsersController@editUser');
+Route::put('/editUsuarios/{id}', 'UsersController@updateUser');
+
+// CRIAR USUÁRIO
+Route::get('/cadastro', 'UsersController@createPage');
+Route::post('/cadastro', 'UsersController@createUser');
+
+// DELETE USUÁRIO
+Route::delete('/remove/{id}', 'UsersController@deleteUser');
+
+// SEARCH USUÁRIO
+Route::get('/admUsuarios/search', 'UsersController@searchUser');
+
+// LISTAR MENSAGENS
+Route::get('/admMensagens', 'MessageController@listMessage');
+
+// ENVIAR DE MENSAGEM
+Route::get('/contato', 'MessageController@pagContato');
+Route::post('/contato', 'MessageController@sendMessage');
+
+// DELETE MENSAGEM
+Route::delete('/removeMessage/{id}', 'MessageController@deleteMessage');
+
+
+Route::get('/detalheProduto', function () {
+    return view('detalheProduto');
+});
+Route::get('/ofertas', function () {
+    return view('ofertas');
+});
+Route::get('/livros', function () {
+    return view('livros');
+});
+Route::get('/eletronicos', function () {
+    return view('eletronicos');
+});
+Route::get('/bolsas', function () {
+    return view('bolsas');
+});
+Route::get('/busca', function () {
+    return view('busca');
+});
+Route::get('/finalizarCompra', function () {
+    return view('finalizarCompra');
+});
+Route::get('/historicoPedidos', function () {
+    return view('historicoPedidos');
+});
+

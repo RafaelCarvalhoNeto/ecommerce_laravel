@@ -5,23 +5,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex text-center flex-wrap">
-                    <p class="mr-3 my-auto"><strong>Menu Administrativo (Provisório)</strong></p>
-                    <a class="mr-3 my-auto" href="admCategorias.php">Categorias</a>
-                    <a class="mr-3 my-auto" href="admMensagens.php">Mensagens</a>
-                    <a class="mr-3 my-auto" href="admProdutos.php">Produtos</a>
-                    <a class="mr-3 my-auto" href="admUsuarios.php">Usuarios</a>
+                    <p class="mr-3 my-auto"><strong>Menu Administrativo</strong></p>
+                    <a class="mr-3 my-auto" href="/admCategorias">Categorias</a>
+                    <a class="mr-3 my-auto" href="/admMensagens">Mensagens</a>
+                    <a class="mr-3 my-auto" href="/admProdutos">Produtos</a>
+                    <a class="mr-3 my-auto" href="/admUsuarios">Usuarios</a>
                 </div>
             </div>
         </div>
     </section>
-    <main class="container ajuste" id="barraPedidos">
+    <main class="container pt-3 ajuste" id="barraPedidos">
 
         <div class="row">
             
-            <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Categorias</h2>
+            <h2 class="col-12 p-3 mb-3 border-bottom">Categorias</h2>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise por uma Categoria:</p>
-                <input class="form-control" id="myInput" type="text" placeholder="Pesquisar...">
+                <form action="#" method="GET">
+                    <div class="input-group col-12 px-0">
+                        <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Pesquisar</button>
+                        </div>
+
+                    </div>
+                </form>
                 <div id="table" class="tableAdm">
                     <table class="table table-striped text-center mt-3">
                         <thead class="thead-dark">

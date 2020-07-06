@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-5">
                 <div>
-                    <img class="d-block w-100 .produto" src="./assets/img/computador.jpg" alt="">
+                    <img class="d-block w-100 .produto" src="/img/computador.jpg" alt="">
                 </div>
             </div>
             <div class="col-md-7 my-3">
@@ -12,7 +12,7 @@
                 <small>Indentificação do Produto</small>
                 <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati in odit ratione recusandae excepturi voluptates blanditiis ex, iusto veniam voluptas asperiores, assumenda eos. Voluptate omnis deleniti repellendus velit necessitatibus qui!
                 </p>
-                <form action="./carrinho.php" method="GET" id="formComprar">
+                <form action="./carrinho" method="GET" id="formComprar">
                     <div class="row">
                         <div class="col-md-6">
                             
@@ -63,9 +63,9 @@
 
                     <div>
                         
-                        <buttom class="btn btn-outline-secondary btn-lg btn-block my-2" type="buttom" data-toggle="collapse" data-target="#titulo1" aria-expanded="false" aria-controls="titulo1">
+                        <button class="btn btn-outline-secondary btn-lg btn-block my-2" type="button" data-toggle="collapse" data-target="#titulo1" aria-expanded="false" aria-controls="titulo1">
                         Ficha Técnica <i class="fas fa-chevron-down ml-3 font-weight-light"></i>
-                        </buttom>
+                        </button>
 
                         <div id="titulo1" class="collapse" aria-labelledby="aba01" data-parent="#accordionTabsProduto">
                             <div class="card-body">
@@ -98,9 +98,9 @@
                     </div>
 
                     <div>
-                        <buttom class="btn btn-outline-secondary btn-lg btn-block my-2" type="buttom" data-toggle="collapse" data-target="#titulo2" aria-expanded="false" aria-controls="titulo2">
+                        <button class="btn btn-outline-secondary btn-lg btn-block my-2" type="button" data-toggle="collapse" data-target="#titulo2" aria-expanded="false" aria-controls="titulo2">
                         Avaliações <i class="fas fa-chevron-down ml-3 font-weight-light"></i>
-                        </buttom>
+                        </button>
 
                         <div id="titulo2" class="collapse" aria-labelledby="aba02" data-parent="#accordionTabsProduto">
                             <div class="card-body">
@@ -119,10 +119,10 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                <a href="detalheProduto.php">
+                <a href="detalheProduto">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-01.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-01.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Samsung S20</h3>
@@ -133,10 +133,10 @@
             </div>
 
             <div class="col-md-3 pb-1 pb-md-0  mb-3">
-                <a href="detalheProduto.php">
+                <a href="detalheProduto">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-02.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-02.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Computador Zika</h3>
@@ -147,10 +147,10 @@
             </div>
 
             <div class="col-md-3 pb-1 pb-md-0">
-                <a href="detalheProduto.php">
+                <a href="detalheProduto">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-03.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-03.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Controle PS5</h3>
@@ -160,10 +160,10 @@
                 </a>
             </div>   
             <div class="col-md-3 pb-1 pb-md-0">
-                <a href="detalheProduto.php">
+                <a href="detalheProduto">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="assets\img\livro-04.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="img\livro-04.png" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">Controle PS5</h3>
