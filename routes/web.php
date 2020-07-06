@@ -58,6 +58,12 @@ Route::delete('remove/{id}', 'UsersController@deleteUser');
 // SEARCH USUÁRIO
 Route::get('admUsuarios/search', 'UsersController@searchUser');
 
+Route::get('painelAdm', function(){
+    return view('painelAdm');
+});
+
+
+
 Route::get('admMensagens', function () {
     return view('admMensagens');
 });

@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex text-center flex-wrap">
-                    <p class="mr-3 my-auto"><strong>Menu Administrativo</strong></p>
+                    <a href="painelAdm" class="mr-3 my-auto text-dark"><strong>Menu Administrativo</strong></a>
                     <a class="mr-3 my-auto" href="admCategorias">Categorias</a>
                     <a class="mr-3 my-auto" href="admMensagens">Mensagens</a>
                     <a class="mr-3 my-auto" href="admProdutos">Produtos</a>
@@ -33,7 +33,7 @@
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
                         <div class="input-group-append">
-                            <button class="btn btn-dark" type="submit">Pesquisar</button>
+                            <button class="btn btn-primary" type="submit">Pesquisar</button>
                         </div>
 
                     </div>

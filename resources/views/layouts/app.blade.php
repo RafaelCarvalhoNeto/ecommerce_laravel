@@ -69,7 +69,7 @@
             </div>
         </header>
 
-        <main class="container py-4">
+        <main>
             @yield('content')
         </main>
 
@@ -98,24 +98,17 @@
                       <a href="#" target="_blank" title="Acesse nosso Pinterest"><i class="fab fa-pinterest mr-2"></i></a>
                     </div>
                     <address>
-                      <strong>Ecommerce, Inc.</strong><br>
-                      Rua Alameda Santos 110, Sao Paulo, SP, 9110-999<br>
-                      <abbr title="Telefone">Tel:</abbr> (123) 456-7890
-                    </address>
-                    <address>
                       <strong>SAC</strong><br>
                       <a href="mailto:#">ecommerce@exemplo.com</a>
                     </address>
-                    <div class="d-flex flex-row flex-nowrap justify-content-center py-3 text-center">
+                    <address>
+                      <strong>Nossa Loja &copy; | CNPJ 01.012.012/0001-99 | </strong>Rua Alameda Santos 110, Sao Paulo, SP, 9110-999 | <abbr title="Telefone">Tel:</abbr> (123) 456-7890
+                    </address>
+                    <div class="d-flex flex-row flex-nowrap justify-content-center pb-3 text-center">
                       <a class="px-1" href="contato">Contato </a> | <a class="px-1" href="institucional">Institucional </a> | <a class="px-1" href="politicas">Termos de uso </a> | <a class="px-1" href="politicas"> Politicas de Privacidade</a>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="d-flex flex-row flex-nowrap justify-content-center py-3 text-center">
-                <small>xxxx &copy; | CNPJ 01.012.012/0001-99 | <a href="#" title="Políticas e Termos" data-toggle="modal"
-                    data-target="#modalPoliticas">Políticas de Privacidade</a> | <a href="#" title="Trocas e Devoluções"
-                    data-toggle="modal" data-target="#modalTrocas">Trocas e Devoluções</a></small>
               </div>
             </div>
           </footer>

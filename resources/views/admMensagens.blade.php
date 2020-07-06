@@ -23,7 +23,7 @@
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
                         <div class="input-group-append">
-                            <button class="btn btn-dark" type="submit">Pesquisar</button>
+                            <button class="btn btn-primary" type="submit">Pesquisar</button>
                         </div>
 
                     </div>
