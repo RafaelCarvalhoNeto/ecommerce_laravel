@@ -46,13 +46,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($produtos as $produto)
                             <tr>
-                                <td scope="row">000</td>
-                                <td scope="row"><img src="img\computador.jpg" alt="" id="thumbProduto"
+                                <td scope="row">{{ $produto->id }}</td>
+                                <td scope="row"><img src="{{ $produto->imagem }}" alt="" id="thumbProduto"
                                         style="max-height: 50px;"></td>
-                                <td scope="row">Computador</td>
-                                <td scope="row">900</td>
-                                <td scope="row">Eletrônicos</td>
+                                <td scope="row">{{ $produto->nome }}</td>
+                                <td scope="row">{{ $produto->preco }}</td>
+                                <td scope="row">{{ $produto->categoria }}</td>                   
                                 <td>
                                     <a href="#">
                                         <i class="fas fa-edit"></i>
@@ -64,60 +65,9 @@
                                     </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td scope="row">001</td>
-                                <td scope="row"><img src="img\computador.jpg" alt="" id="thumbProduto"
-                                        style="max-height: 50px;"></td>
-                                <td scope="row">Harry Potter</td>
-                                <td scope="row">900</td>
-                                <td scope="row">Livros</td>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">002</td>
-                                <td scope="row"><img src="img\celular.jpg" alt="" id="thumbProduto"
-                                        style="max-height: 50px;"></td>
-                                <td scope="row">Samsung S20</td>
-                                <td scope="row">900</td>
-                                <td scope="row">Eletrônicos</td>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">003</td>
-                                <td scope="row"><img src="img\computador.jpg" alt="" id="thumbProduto"
-                                        style="max-height: 50px;"></td>
-                                <td scope="row">Bolsa Gucci</td>
-                                <td scope="row">900</td>
-                                <td scope="row">Bolsas</td>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
@@ -178,15 +128,15 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputSobrenome">Produto</label>
+                                <label for="inputProduto">Produto</label>
                                 <input type="text" class="form-control" placeholder="Insira o nome do produto"
-                                    aria-describedby="adicionarProdutoHelp" id="inputSobrenome" name="inputSobrenome"
+                                    aria-describedby="adicionarProdutoHelp" id="inputProduto" name="inputProduto"
                                     required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputEmail">Categoria</label>
+                                <label for="inputCategoria">Categoria</label>
                                 <select class="custom-select">
                                     <option value="1">Bolsas</option>
                                     <option value="2">Livros</option>
@@ -197,7 +147,7 @@
                             <div class="form-group col-md-6">
                                 <label for="inputSobrenome">Preço</label>
                                 <input type="number" class="form-control" placeholder="Insira o preço do produto"
-                                    aria-describedby="adicionarProdutoHelp" id="inputSobrenome" name="inputSobrenome"
+                                    aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"
                                     required>
                             </div>
                             <div class="form-group col-md-6">

@@ -37,12 +37,13 @@ Route::get('painelAdm', function(){
     return view('painelAdm');
 });
 
-Route::get('admProdutos', function () {
-    return view('admProdutos');
-});
 Route::get('admCategorias', function () {
     return view('admCategorias');
 });
+
+Route::get('/admProdutos', 'ProdutosController@index');
+
+Route::post('/admProdutos', 'ProdutosController@create');
 
 // USUARIOS
 Route::get('/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
@@ -96,3 +97,4 @@ Route::get('/finalizarCompra', function () {
 Route::get('/historicoPedidos', function () {
     return view('historicoPedidos');
 });
+
