@@ -23,6 +23,12 @@ class UsersController extends Controller
 
     public function updateUser(Request $request, $id){
 
+        $request->validate([
+
+            'inputSenha'=> 'required|min:6',
+            'inputConfirma'=> 'required|same:inputSenha|min:6',
+        ]);
+
         $user = User::find($id);
 
         $user->nome = $request->inputNome;
@@ -54,6 +60,12 @@ class UsersController extends Controller
         return view('cadastro');
     }
     public function createUser(Request $request){
+
+        $request->validate([
+
+            'inputSenha'=> 'required|min:6',
+            'inputConfirma'=> 'required|same:inputSenha|min:6',
+        ]);
 
         $user = new User;
 

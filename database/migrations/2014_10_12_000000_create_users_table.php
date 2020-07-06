@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('sobrenome');
-            $table->integer('cpf')->unique();
+            $table->string('cpf')->unique();
             $table->string('rg')->unique();
             $table->string('email')->unique();
             $table->string('endereco');

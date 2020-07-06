@@ -18,41 +18,41 @@
             <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputNome">Nome</label>
-                <input type="text" class="form-control" placeholder="Insira seu nome" aria-describedby="nomeCadastroHelp" id="inputNome" name="inputNome" required>
+                <input type="text" class="form-control{{$errors->has('inputNome') ? ' is-invalid':''}}" placeholder="Insira seu nome" aria-describedby="nomeCadastroHelp" id="inputNome" name="inputNome" value="{{ old('inputNome') }}" required>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputSobrenome">Sobrenome</label>
-                <input type="text" class="form-control" placeholder="Insira seu sobrenome" aria-describedby="sobrenomeCadastroHelp" id="inputSobrenome" name="inputSobrenome" required>
+                <input type="text" class="form-control{{$errors->has('inputSobrenome') ? ' is-invalid':''}}" placeholder="Insira seu sobrenome" aria-describedby="sobrenomeCadastroHelp" id="inputSobrenome" name="inputSobrenome" value="{{ old('inputSobrenome') }}" required>
             </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCPF">CPF</label>
-                    <input type="number" class="form-control" placeholder="Insira seu CPF" aria-describedby="CPFCadastroHelp" id="inputCPF" name="inputCPF" required>
+                    <input type="number" class="form-control{{$errors->has('inputCPF') ? ' is-invalid':''}}" placeholder="Insira seu CPF" aria-describedby="CPFCadastroHelp" id="inputCPF" name="inputCPF" value="{{ old('inputCPF') }}" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputRG">RG</label>
-                    <input type="number" class="form-control" placeholder="Insira seu RG" aria-describedby="RGCadastroHelp" id="inputRG" name="inputRG" required>
+                    <input type="number" class="form-control{{$errors->has('inputRG') ? ' is-invalid':''}}" placeholder="Insira seu RG" aria-describedby="RGCadastroHelp" id="inputRG" name="inputRG" value="{{ old('inputRG') }}" required>
                 </div>
                 </div>
             <div class="form-group">
             <label for="inputEndereco">Endereço</label>
-            <input type="text" class="form-control" placeholder="Insira seu endereço" aria-describedby="enderecoHelp" id="inputEndereco" name="inputEndereco" required>
+            <input type="text" class="form-control{{$errors->has('inputEndereco') ? ' is-invalid':''}}" placeholder="Insira seu endereço" aria-describedby="enderecoHelp" id="inputEndereco" name="inputEndereco" value="{{ old('inputEndereco') }}" required>
             </div>
             
             <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="inputCep">CEP</label>
-                <input type="text" class="form-control" placeholder="01234-567" name="inputCep" required>
+                <input type="text" class="form-control{{$errors->has('inputCep') ? ' is-invalid':''}}" placeholder="01234-567" name="inputCep" value="{{ old('inputCep') }}" required>
             </div>
             <div class="form-group col-md-7">
                 <label for="inputCidade">Cidade</label>
-                <input type="text" class="form-control" placeholder="São Paulo" name="inputCidade" required>
+                <input type="text" class="form-control{{$errors->has('inputCidade') ? ' is-invalid':''}}" placeholder="São Paulo" name="inputCidade" value="{{ old('inputCidade') }}" required>
             </div>
             <div class="form-group col-md-2">
                 <label for="inputUF">UF</label>
                 <select class="form-control" name="inputUF" id="inputUF" required>
-                <option disabled="" selected="">UF</option>
+                <option disabled selected>UF</option>
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
                 <option value="AM">AM</option>
@@ -86,17 +86,19 @@
 
             <div class="form-group">
             <label for="inputEmail">Email</label>
-            <input type="email" class="form-control" placeholder="Insira seu email" aria-describedby="emailHelp" id="inputEmail" name="inputEmail" required>
+            <input type="email" class="form-control{{$errors->has('inputEmail') ? ' is-invalid':''}}" placeholder="Insira seu email" aria-describedby="emailHelp" id="inputEmail" name="inputEmail" value="{{ old('inputEmail') }}" required>
             </div>
 
             <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputSenha">Senha</label>
-                <input type="password" name="inputSenha" class="form-control" placeholder="Senha" aria-describedby="senhaHelp" id="inputSenha" required> 
+                <input type="password" name="inputSenha" class="form-control{{$errors->has('inputSenha') ? ' is-invalid':''}}" placeholder="Senha" aria-describedby="senhaHelp" id="inputSenha" required> 
+                <div class="invalid-feedback">{{ $errors->first('inputSenha') }}</div>
             </div>
             <div class="form-group col-md-6">
                 <label for="inputConfirma">Confirma Senha</label>
-                <input type="password" class="form-control" placeholder="Confirma senha" aria-describedby="ConfirmaHelp" id="inputConfirma" name="inputConfirma" required>
+                <input type="password" class="form-control{{$errors->has('inputConfirma') ? ' is-invalid':''}}" placeholder="Confirma senha" aria-describedby="ConfirmaHelp" id="inputConfirma" name="inputConfirma" required>
+                <div class="invalid-feedback">{{ $errors->first('inputConfirma') }}</div>
             </div>
             </div>
 

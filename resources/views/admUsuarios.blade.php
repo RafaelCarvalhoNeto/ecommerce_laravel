@@ -47,7 +47,7 @@
                             <th scope="col">Sobrenome</th>
                             <th scope="col"> CPF</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Senha</th>
+                            <th scope="col">Endereço</th>
                             <th scope="col">CEP</th>
                             <th scope="col">Cidade</th>
                             <th scope="col">UF</th>
@@ -62,7 +62,7 @@
                                     <td scope="row">{{$user->sobrenome}}</td>
                                     <td scope="row">{{$user->cpf}}</td>
                                     <td scope="row">{{$user->email}}</td>
-                                    <td scope="row">{{$user->senha}}</td>
+                                    <td scope="row">{{$user->endereco}}</td>
                                     <td scope="row">{{$user->cep}}</td>
                                     <td scope="row">{{$user->cidade}}</td>
                                     <td scope="row">{{$user->uf}}</td>
