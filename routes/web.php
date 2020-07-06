@@ -31,13 +31,13 @@ Route::get('/politicas', function () {
 Route::get('/carrinho', function () {
     return view('carrinho');
 });
-Route::get('/admUsuarios', function () {
+Route::get('admUsuarios', function () {
     return view('admUsuarios');
 });
-Route::get('/admProdutos', function () {
+Route::get('admProdutos', function () {
     return view('admProdutos');
 });
-Route::get('/admCategorias', function () {
+Route::get('admCategorias', function () {
     return view('admCategorias');
 });
 
@@ -55,13 +55,13 @@ Route::post('cadastro', 'UsersController@createUser');
 // DELETE USUÁRIO
 Route::delete('remove/{id}', 'UsersController@deleteUser');
 
+// SEARCH USUÁRIO
+Route::get('admUsuarios/search', 'UsersController@searchUser');
 
-Route::get('/admMensagens', function () {
+Route::get('admMensagens', function () {
     return view('admMensagens');
 });
-Route::get('/cadastro', function () {
-    return view('cadastro');
-});
+
 Route::get('/detalheProduto', function () {
     return view('detalheProduto');
 });

@@ -5,23 +5,39 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex text-center flex-wrap">
-                    <p class="mr-3 my-auto"><strong>Menu Administrativo (Provisório)</strong></p>
-                    <a class="mr-3 my-auto" href="admCategorias.php">Categorias</a>
-                    <a class="mr-3 my-auto" href="admMensagens.php">Mensagens</a>
-                    <a class="mr-3 my-auto" href="admProdutos.php">Produtos</a>
-                    <a class="mr-3 my-auto" href="admUsuarios.php">Usuarios</a>
+                    <p class="mr-3 my-auto"><strong>Menu Administrativo</strong></p>
+                    <a class="mr-3 my-auto" href="admCategorias">Categorias</a>
+                    <a class="mr-3 my-auto" href="admMensagens">Mensagens</a>
+                    <a class="mr-3 my-auto" href="admProdutos">Produtos</a>
+                    <a class="mr-3 my-auto" href="admUsuarios">Usuarios</a>
                 </div>
             </div>
         </div>
     </section>
 
     <main class="container ajuste" id="barraPedidos">
-        
+        @if(isset($success) && $success != "")
+            <section class="row">
+                <div class="col-12">
+                    <div class="message alert alert-success text-center">
+                        {{ $success }}
+                    </div>
+                </div>
+            </section>
+        @endif
         <div class="row">
             <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Tabela de Usuários</h1>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise por uma Usuário:</p>
-                <input class="form-control" id="myInput" type="text" placeholder="Pesquisar...">
+                <form action="{{ url('/admUsuarios/search') }}" method="GET">
+                    <div class="input-group col-12 px-0">
+                        <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
+                        <div class="input-group-append">
+                            <button class="btn btn-dark" type="submit">Pesquisar</button>
+                        </div>
+
+                    </div>
+                </form>
                 <div class="tableAdm">
                     <table class="table table-striped text-center mt-3 tableAdm">
                         <thead class="thead-dark">
@@ -56,16 +72,44 @@
                                         </a>
                                     </td>
                                     <td scope="row">
-                                        <a href="#" data-toggle="modal" data-target="#modal">
+                                        <a href="#" data-toggle="modal" data-target="#modal{{ $user->id }}">
                                             <i class="fas fa-trash"></i>
                                         </a>
+                                        <div class="modal fade" id="modal{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Deseja excluir o usuario?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body text-left">
+                                                        <p>ID: {{ $user->id }}</p>
+                                                        <p>Nome: {{ $user->nome }}</p>
+                                                        <p>Sobrenome: {{ $user->sobrenome }}</p>
+                                                        <p>Email: {{ $user->email }}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                        <form action="remove/{{ $user->id }}" method="POST">
+                                                            @csrf
+                                                            {{ method_field('DELETE') }}
+                                                            <button id="delete-contact" type="submit" class="btn btn-primary">Excluir</a>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                                 
                             @endforeach
                         </tbody>
                     </table>
-
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $users->appends(['search' => isset($search) ? $search : ''])->links() }}
+                    </div>
                 </div>
 
 

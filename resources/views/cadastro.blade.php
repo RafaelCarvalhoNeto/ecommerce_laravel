@@ -2,8 +2,19 @@
 @section('content')
 
     <main class="container ajuste">
+        @if(isset($success) && $success != "")
+            <section class="row">
+                <div class="col-12">
+                    <div class="message alert alert-success text-center">
+                        {{ $success }}
+                    </div>
+                </div>
+            </section> 
+        @endif
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Cadastro</h1>
-        <form action="cadastro.php" method="post" id="formCadastro">                          
+        <form action="cadastro" method="post" id="formCadastro">
+            @csrf
+            {{ method_field('POST') }}                        
             <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputNome">Nome</label>
@@ -90,28 +101,16 @@
             </div>
 
             <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="aceiteCadastro" name="aceita" checked>
-            <label class="form-check-label" for="aceiteCadastro">Estou de acordo com os termos, pode vender meus dados!</label>
+                <input type="checkbox" class="form-check-input" id="aceite" required>
+                <label class="form-check-label" for="aceite">Concordo com a <a href="politicas">Políticas de Privacidade</a> e <a href="politicas">Termos de Uso</a></label>
             </div>
 
             <div class="form-group col-auto clearfix px-0">
-            <button type="submit" class="btn btn-primary float-right ml-2" data-toggle="modal" data-target="#modalTeste">Cadastrar</button>
-            <button type="reset" class="btn btn-secondary float-right">Limpar</button>
+                <button type="submit" class="btn btn-primary float-right ml-2" data-toggle="modal" data-target="#modalTeste">Cadastrar</button>
+                <button type="reset" class="btn btn-secondary float-right">Limpar</button>
             </div>
 
-            <div class="form-group">
-                <?php
-                    if(isset($_POST) && $_POST){
-                        if($cadastrou){
-                            echo '<div class="col-md-6 mt-2 alert alert-success">Usuário cadastrado com sucesso</div>';
-                        } else {
-                            echo '<div class="col-md-6 mt-2 alert alert-danger">Falha ao processar requisição</div>';
-                        }
-                    }
-                ?>
-            </div>
-        </form> 
-
+        </form>
 
 
     </main>

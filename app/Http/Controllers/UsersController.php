@@ -25,28 +25,28 @@ class UsersController extends Controller
 
         $user = User::find($id);
 
-        $user->nome = $request->nome;
-        $user->sobrenome = $request->sobrenome;
-        $user->cpf = $request->cpf;
-        $user->rg = $request->rg;
-        $user->endereco = $request->endereco;
-        $user->cep = $request->cep;
-        $user->senha = $request->senha;
-        $user->uf = $request->cidade;
-        $user->cidade = $request->cidade;
+        $user->nome = $request->inputNome;
+        $user->sobrenome = $request->inputSobrenome;
+        $user->cpf = $request->inputCPF;
+        $user->rg = $request->inputRG;
+        $user->endereco = $request->inputEndereco;
+        $user->cep = $request->inputCep;
+        $user->password = $request->inputSenha;
+        $user->uf = $request->inputUF;
+        $user->cidade = $request->inputCidade;
 
         if(filter_var($request->email, FILTER_VALIDATE_EMAIL)){
-            $user->email = $request->email;
+            $user->email = $request->inputEmail;
         }
 
-        if(!empty($request->senha)){
-            $user->senha = Hash::make($request->senha);
+        if(!empty($request->inputSenha)){
+            $user->password = Hash::make($request->inputSenha);
         }
-        $user->save();
+        $user->update();
 
         return view('editUsuarios')->with([
             'user'=> $user,
-            'success'=>'Cartão alterado com sucesso'
+            'success'=>'Usuário alterado com sucesso'
         ]);
     }
 
@@ -57,22 +57,22 @@ class UsersController extends Controller
 
         $user = new User;
 
-        $user->nome = $request->nome;
-        $user->sobrenome = $request->sobrenome;
-        $user->cpf = $request->cpf;
-        $user->rg = $request->rg;
-        $user->endereco = $request->endereco;
-        $user->cep = $request->cep;
-        $user->password = $request->password;
-        $user->uf = $request->cidade;
-        $user->cidade = $request->cidade;
-        $user->email = $request->email;
-        $user->senha = Hash::make($request->senha);
+        $user->nome = $request->inputNome;
+        $user->sobrenome = $request->inputSobrenome;
+        $user->cpf = $request->inputCPF;
+        $user->rg = $request->inputRG;
+        $user->endereco = $request->inputEndereco;
+        $user->cep = $request->inputCep;
+        $user->password = $request->inputSenha;
+        $user->uf = $request->inputUF;
+        $user->cidade = $request->inputCidade;
+        $user->email = $request->inputEmail;
+        $user->password = Hash::make($request->inputSenha);
 
         $user->save();
 
         if($user){
-            return view('cadastro')->with('success', 'Cartão inserido com sucesso');
+            return view('cadastro')->with('success', 'Usuário inserido com sucesso');
         }
     }
 
@@ -80,13 +80,22 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if($user->delete()){
-            $user = User::paginate(10);
+            $users = User::paginate(10);
 
             return view('admUsuarios')->with([
-                'user'=>$user,
-                'success'=> 'Registro excluído com sucesso'
+                'users'=>$users,
+                'success'=> 'Usuário excluído com sucesso'
             ]);
         }
+    }
+    public function searchUser(Request $request){
+        $search = $request->input('search');
+        $users = User::where('nome', 'like', '%'.$search.'%')->orWhere('sobrenome', 'like','%'.$search.'%')->paginate(10);
+
+        return view('admUsuarios')->with([
+            'search'=>$search,
+            'users'=>$users
+        ]);
     }
 
 }
