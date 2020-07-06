@@ -13,42 +13,42 @@ class ProdutosController extends Controller
 
         if($produtos){
             return view('admProdutos')->with('produtos', $produtos);
-    }
+        }
+    
 }
 
     public function create(Request $request) {
-        $request->validate([
-            'title' => 'required|min:5',
-            'content' => 'required|min:50'
-        ]);
-        $image = $request->file('image');
+         
+        $imagem = $request->file('imagem');
         
-        if(empty($image)){
+        if(empty($imagem)){
             $pathRelative = null;
         } else{
-            $image->storePublicly('img');
+            $imagem->storePublicly('uploads');
             
-            $absolutepath = public_path()."/public/img";
+            $absolutePath = public_path()."/storage/uploads";
 
-            $name = $image->getClientOriginalName();
+            $name = $imagem->getClientOriginalName();
 
-            $image->move($absolutePath, $name);
+            $imagem->move($absolutePath, $name);
 
-            $pathRelative = "public/img/$name";
+            $pathRelative = "storage/uploads/$name";
         }
 
-        $produtos = new Produto;
+        $produto = new Produto;
 
-        $produtos->title = $request->title;
-        $produtos->image = $pathRelative;
-        $produtos->content = $request->content;
+        $produto->nome = $request->inputProduto;
+        $produto->imagem = $pathRelative;
+        $produto->categoria = $request->inputCategoria;
+        $produto->preco  = $request->inputPreco;
+        
 
-        $produtos->save();
+        $produto->save();
 
-        if($produtos){
+        if($produto){
             return view('admProdutos')->with('success', 'Produto inserido com sucesso');
         }
-    }
+    } 
     
 
 }
