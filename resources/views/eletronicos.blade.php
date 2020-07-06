@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="container">
-    <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Eletrônicos</h2>
+<div class="container pt-3">
+    <h2 class="col-12 p-3 mb-3 border-bottom">Eletrônicos</h2>
 
     <div class="mb-3 col-lg-12 px-0">
         <img class="d-block w-100" src= "/img/banner-06.png" >

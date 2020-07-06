@@ -3,7 +3,7 @@
 
     <aside id="error" class="container jumbotron pt-0 mt-3 ajuste">
         <div class="row">
-            <h1 class="col-12 p-3 mt-3 mb-3 border-bottom text-center"><strong>Error 404</strong></h1><br>
+            <h1 class="col-12 p-3 mb-3 border-bottom text-center"><strong>Error 404</strong></h1><br>
             <div class="col-md-8">
                 <h5 class="col-md-12">As principais causas podem ser:</h5>
                 <div class="col-md-12 ml-4 mt-3">

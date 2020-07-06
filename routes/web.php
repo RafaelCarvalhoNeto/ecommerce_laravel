@@ -22,18 +22,21 @@ Route::get('/institucional', function () {
 Route::get('/404', function () {
     return view('404');
 });
-Route::get('/contato', function () {
-    return view('contato');
-});
+
 Route::get('/politicas', function () {
     return view('politicas');
 });
 Route::get('/carrinho', function () {
     return view('carrinho');
 });
-Route::get('admUsuarios', function () {
-    return view('admUsuarios');
+
+
+// PAINEL DE ADMINISTRAÇÃO
+
+Route::get('painelAdm', function(){
+    return view('painelAdm');
 });
+
 Route::get('admProdutos', function () {
     return view('admProdutos');
 });
@@ -42,31 +45,32 @@ Route::get('admCategorias', function () {
 });
 
 // USUARIOS
-Route::get('admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
+Route::get('/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
 
 // EDITAR USUÁRIOS
-Route::get('editUsuarios/{id}', 'UsersController@editUser');
-Route::put('editUsuarios/{id}', 'UsersController@updateUser');
+Route::get('/editUsuarios/{id}', 'UsersController@editUser');
+Route::put('/editUsuarios/{id}', 'UsersController@updateUser');
 
 // CRIAR USUÁRIO
-Route::get('cadastro', 'UsersController@createPage');
-Route::post('cadastro', 'UsersController@createUser');
+Route::get('/cadastro', 'UsersController@createPage');
+Route::post('/cadastro', 'UsersController@createUser');
 
 // DELETE USUÁRIO
-Route::delete('remove/{id}', 'UsersController@deleteUser');
+Route::delete('/remove/{id}', 'UsersController@deleteUser');
 
 // SEARCH USUÁRIO
-Route::get('admUsuarios/search', 'UsersController@searchUser');
+Route::get('/admUsuarios/search', 'UsersController@searchUser');
 
-Route::get('painelAdm', function(){
-    return view('painelAdm');
-});
+// LISTAR MENSAGENS
+Route::get('/admMensagens', 'MessageController@listMessage');
 
+// ENVIAR DE MENSAGEM
+Route::get('/contato', 'MessageController@pagContato');
+Route::post('/contato', 'MessageController@sendMessage');
 
+// DELETE MENSAGEM
+Route::delete('/removeMessage/{id}', 'MessageController@deleteMessage');
 
-Route::get('admMensagens', function () {
-    return view('admMensagens');
-});
 
 Route::get('/detalheProduto', function () {
     return view('detalheProduto');
