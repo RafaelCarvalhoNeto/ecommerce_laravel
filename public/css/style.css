@@ -105,6 +105,7 @@ body {
     color: #000;
     font-weight: bold;
 }
+
 .avancar{
     transition: all 0.3s ease-in-out
 }
@@ -246,7 +247,43 @@ img#thumbProduto{
 .btn-primary:hover, .btn-secondary:hover{
     filter: saturate(2);
 }
+/* DETALHE DO PRODUTO */
 
+#precoDetalhe{
+    font-size: 1.7em;
+    font-weight: 700;
+}
+.comprar{
+    width: 60%;
+}
+.acordeao{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #f0f0f5;
+    background: white;
+    font-size: 1.1em;
+}
+.acordeao p:hover{
+    animation: bounce 1s;
+}
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+        -webkit-transform: translateY(0);
+        transform:translateY(0);
+    }
+
+    40%{
+        -webkit-transform: translateY(-20px);
+        transform:translateY(-20px);
+    }
+
+    80%{
+        -webkit-transform: translateY(-10px);
+        transform:translateY(-10px);
+    }
+
+}
 
 /* CONTATO */
 
