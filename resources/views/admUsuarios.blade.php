@@ -107,9 +107,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $users->appends(['search' => isset($search) ? $search : ''])->links() }}
-                    </div>
+                    
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $users->appends(['search' => isset($search) ? $search : ''])->links() }}
                 </div>
 
 

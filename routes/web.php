@@ -33,11 +33,11 @@ Route::get('/carrinho', function () {
 
 // PAINEL DE ADMINISTRAÇÃO
 
-Route::get('painelAdm', function(){
+Route::get('/painelAdm', function(){
     return view('painelAdm');
 });
 
-Route::get('admCategorias', function () {
+Route::get('/admCategorias', function () {
     return view('admCategorias');
 });
 
