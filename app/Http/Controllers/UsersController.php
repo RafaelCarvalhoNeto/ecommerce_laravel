@@ -23,12 +23,6 @@ class UsersController extends Controller
 
     public function updateUser(Request $request, $id){
 
-        $request->validate([
-
-            'inputSenha'=> 'required|min:6',
-            'inputConfirma'=> 'required|same:inputSenha|min:6',
-        ]);
-
         $user = User::find($id);
 
         $user->nome = $request->inputNome;
@@ -37,7 +31,6 @@ class UsersController extends Controller
         $user->rg = $request->inputRG;
         $user->endereco = $request->inputEndereco;
         $user->cep = $request->inputCep;
-        $user->password = $request->inputSenha;
         $user->uf = $request->inputUF;
         $user->cidade = $request->inputCidade;
 
@@ -46,6 +39,12 @@ class UsersController extends Controller
         }
 
         if(!empty($request->inputSenha)){
+            $request->validate([
+
+                'inputSenha'=> 'min:6',
+                'inputConfirma'=> 'same:inputSenha|min:6',
+            ]);
+
             $user->password = Hash::make($request->inputSenha);
         }
         $user->update();
