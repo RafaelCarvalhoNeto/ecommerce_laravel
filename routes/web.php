@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return view('index');
 });
 Route::get('/institucional', function () {
@@ -102,3 +102,4 @@ Route::get('/historicoPedidos', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
