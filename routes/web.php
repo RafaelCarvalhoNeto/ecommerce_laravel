@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return view('index');
 });
 Route::get('/institucional', function () {
@@ -33,7 +33,7 @@ Route::get('/carrinho', function () {
 
 // PAINEL DE ADMINISTRAÇÃO
 
-Route::get('/painelAdm', function(){
+Route::get('/admin', function(){
     return view('painelAdm');
 });
 
@@ -102,3 +102,4 @@ Route::get('/historicoPedidos', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
