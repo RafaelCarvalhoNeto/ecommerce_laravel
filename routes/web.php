@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,12 +34,8 @@ Route::get('/carrinho', function () {
 
 // PAINEL DE ADMINISTRAÇÃO
 
-Route::get('/admin', function(){
-    return view('painelAdm');
-});
-
-Route::get('/admCategorias', function () {
-    return view('admCategorias');
+Route::get('/admin/admCategorias', function () {
+    return view('admin.admCategorias');
 });
 
 Route::get('/admProdutos', 'ProdutosController@index');
@@ -46,32 +43,34 @@ Route::get('/admProdutos', 'ProdutosController@index');
 Route::post('/admProdutos', 'ProdutosController@create');
 
 // USUARIOS
-Route::get('/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
+Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
 
 // EDITAR USUÁRIOS
-Route::get('/editUsuarios/{id}', 'UsersController@editUser');
-Route::put('/editUsuarios/{id}', 'UsersController@updateUser');
+Route::get('/admin/editUsuarios/{id}', 'UsersController@editUser');
+Route::put('/admin/editUsuarios/{id}', 'UsersController@updateUser');
 
 // CRIAR USUÁRIO
 Route::get('/cadastro', 'UsersController@createPage');
 Route::post('/cadastro', 'UsersController@createUser');
 
 // DELETE USUÁRIO
-Route::delete('/remove/{id}', 'UsersController@deleteUser');
+Route::delete('/admin/remove/{id}', 'UsersController@deleteUser');
 
 // SEARCH USUÁRIO
-Route::get('/admUsuarios/search', 'UsersController@searchUser');
+Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
 
 // LISTAR MENSAGENS
-Route::get('/admMensagens', 'MessageController@listMessage');
+Route::get('/admin/admMensagens', 'MessageController@listMessage');
 
 // ENVIAR DE MENSAGEM
 Route::get('/contato', 'MessageController@pagContato');
 Route::post('/contato', 'MessageController@sendMessage');
 
 // DELETE MENSAGEM
-Route::delete('/removeMessage/{id}', 'MessageController@deleteMessage');
+Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
 
+// SEARCH MENSAGENS
+Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
 Route::get('/detalheProduto', function () {
     return view('detalheProduto');
@@ -103,3 +102,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/admin', 'AuthController@dashboard')->name('admin');
+
+Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
+Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+
+Route::post('/admin/logout','AuthController@logout')->name('admin.logout');

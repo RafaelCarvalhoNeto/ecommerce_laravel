@@ -46,16 +46,16 @@
                       </div>
                   </form>
                   @guest
-                  <a class="d-flex flex-column text-white m-2" href="#" data-toggle="modal" data-target="#modalLogin">
+                  <a class="d-flex flex-column text-white ola-nav p-2" href="#" data-toggle="modal" data-target="#modalLogin">
                       <small class="login m-0">Olá, faça seu login</small>
                       <small class="login m-0">ou cadastre-se</small>
                   </a>
                   @else
                   <a class='d-flex flex-column text-white' href="historicoPedidos">
 
-                    <div class="d-flex flex-column dropdown acesso text-white m-2">
+                    <div id="acesso"class="d-flex flex-column dropdown ola-nav text-white p-2">
                       <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
-                      <small class="login m-0 font-weight-bold" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil <i class="fas fa-chevron-down"></i></small>
+                      <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
                       <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">Sair</a>
@@ -156,8 +156,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="submit" class="btn btn-primary">Logar</button>
+              {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> --}}
+              <button type="submit" class="btn btn-primary btn-block">Logar</button>
             </div>
           </form>
           <label class="container justify-content-right mb-0">Ainda não tem cadastro? <a href="cadastro"><small>Cadastre-se Aqui!</small></a></label>
@@ -182,13 +182,19 @@
     </script> --}}
 
     <script>
-      let drop = document.getElementsByClassName('acesso')[0];
+      let drop = document.getElementById('acesso');
       let dmenu = document.querySelector('#acessoOptions');
       let itens = document.querySelector('.dropdown-item')
+      let nav = document.querySelector('.row')
       drop.addEventListener('mouseenter',function(){
         drop.classList.add('show')
         dmenu.classList.add('show')
       })
+      nav.addEventListener('mouseenter',function(){
+        drop.classList.remove('show')
+        dmenu.classList.remove('show')
+      })
+      console.log(nav)
       itens.addEventListener('mouseout',function(){
         drop.classList.remove('show')
         dmenu.classList.remove('show')

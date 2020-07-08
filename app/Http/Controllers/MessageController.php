@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
     public function listMessage(){
-        $messages = Message::paginate(10);
 
-        return view('admMensagens')->with('messages',$messages);
+        if(Auth::check()===true){
+            $messages = Message::paginate(10);
+    
+            return view('admin.admMensagens')->with('messages',$messages);
+            
+        }
+        return redirect()->route('admin.login');
     }
 
     public function pagContato(){
@@ -44,11 +50,21 @@ class MessageController extends Controller
         if($message->delete()){
             $messages = Message::paginate(10);
 
-            return view('admMensagens')->with([
+            return view('admin.admMensagens')->with([
                 'messages'=> $messages,
                 'success'=> 'Usuário excluído com sucesso'
             ]);
         }
+    }
+    public function searchMessage(Request $request){
+        $search = $request->input('search');
+        $messages = Message::where('assunto', 'like', '%'.$search.'%')->orWhere('nome', 'like','%'.$search.'%')->paginate(10);
+
+        return view('/admin/admMensagens')->with([
+            'search'=>$search,
+            'messages'=>$messages
+        ]);
+
     }
 
     

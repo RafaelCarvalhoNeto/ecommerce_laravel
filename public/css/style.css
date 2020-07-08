@@ -77,6 +77,20 @@ header {
     width: 30px;
     border-radius: 8px ;
 }
+.ola-nav{
+   transition: all 0.1s linear;
+   border: 2px solid var(--primary-color);
+    
+}
+.ola-nav:hover{
+    border: 2px solid #fff;
+    border-radius: 5px;
+    padding: 0 -2px 0 -2px;
+
+    
+}
+
+
 /* INDEX */
 body {
     background-color: #ffffff;
@@ -301,6 +315,11 @@ form input.form-control, form textarea.form-control, form select.form-control{
     /* padding: 16px 24px; */
     font-size: 16px;
     border-radius: 8px;
+}
+
+/* ADMIN */
+.admin{
+    font-size: 2em;
 }
 
 @media only screen and (min-width: 425px) {

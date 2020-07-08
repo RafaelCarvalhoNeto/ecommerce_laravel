@@ -102,14 +102,14 @@
                 </div>
             </div>
 
-            <div class="form-group form-check">
+            <div class="form-group form-check pb-3">
                 <input type="checkbox" class="form-check-input" id="aceite" required>
                 <label class="form-check-label" for="aceite">Concordo com a <a href="politicas">Políticas de Privacidade</a> e <a href="politicas">Termos de Uso</a></label>
             </div>
 
-            <div class="form-group col-auto clearfix px-0">
-                <button type="submit" class="btn btn-primary float-right ml-2" data-toggle="modal" data-target="#modalTeste">Cadastrar</button>
-                <button type="reset" class="btn btn-secondary float-right">Limpar</button>
+            <div class="form-group col-auto px-0">
+                <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalTeste">Cadastrar</button>
+                {{-- <button type="reset" class="btn btn-secondary float-right">Limpar</button> --}}
             </div>
 
         </form>
