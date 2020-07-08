@@ -45,7 +45,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="inputMensagem">Mensagem</label>
-                            <textarea class="form-control{{$errors->has('inputMensagem') ? ' is-invalid':''}}" placeholder="Escreva seu Assunto" aria-describedby="mensagemHelp" id="inputMensagem" rows="4" name="inputMensagem"></textarea>
+                            <textarea class="form-control {{$errors->has('inputMensagem') ? ' is-invalid':''}}" placeholder="Escreva seu Assunto" aria-describedby="mensagemHelp" id="inputMensagem" rows="4" name="inputMensagem"></textarea>
                             <div class="invalid-feedback">{{ $errors->first('inputMensagem') }}</div>
                         </div>
                     </div>

@@ -4,20 +4,25 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
     public function listAllUsers(){
-        $users = User::paginate(10);
 
-        return view('admUsuarios')->with('users', $users);
+        if(Auth::check()===true){
+            $users = User::paginate(10);
+            return view('admin.admUsuarios')->with('users', $users);
+
+        }
+        return redirect()->route('admin.login');
     }
     public function editUser($id){
         $user = User::find($id);
 
         if($user){
-            return view('editUsuarios')->with('user',$user);
+            return view('admin.editUsuarios')->with('user',$user);
         }
     }
 
@@ -49,7 +54,7 @@ class UsersController extends Controller
         }
         $user->update();
 
-        return view('editUsuarios')->with([
+        return view('admin.editUsuarios')->with([
             'user'=> $user,
             'success'=>'Usuário alterado com sucesso'
         ]);
@@ -65,6 +70,8 @@ class UsersController extends Controller
             'inputSenha'=> 'required|min:6',
             'inputConfirma'=> 'required|same:inputSenha|min:6',
         ]);
+
+        $password = $request->inputSenha;
 
         $user = new User;
 
@@ -83,7 +90,15 @@ class UsersController extends Controller
         $user->save();
 
         if($user){
-            return view('cadastro')->with('success', 'Usuário inserido com sucesso');
+            $credentials = [
+                'email'=> $user->email,
+                'password'=> $password
+            ];
+
+            if (Auth::attempt($credentials)){
+                return redirect()->route('home');
+            }
+            return view('cadastro');
         }
     }
 
@@ -93,7 +108,7 @@ class UsersController extends Controller
         if($user->delete()){
             $users = User::paginate(10);
 
-            return view('admUsuarios')->with([
+            return view('admin.admUsuarios')->with([
                 'users'=>$users,
                 'success'=> 'Usuário excluído com sucesso'
             ]);
@@ -103,7 +118,7 @@ class UsersController extends Controller
         $search = $request->input('search');
         $users = User::where('nome', 'like', '%'.$search.'%')->orWhere('sobrenome', 'like','%'.$search.'%')->paginate(10);
 
-        return view('admUsuarios')->with([
+        return view('admin.admUsuarios')->with([
             'search'=>$search,
             'users'=>$users
         ]);
