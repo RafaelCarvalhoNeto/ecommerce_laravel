@@ -11,7 +11,7 @@
       <p class="m-0">{{ Auth::user()->email }}</p>
       <p class="m-0">{{ Auth::user()->endereco }}, {{ Auth::user()->cidade }}, {{ Auth::user()->uf}} | {{ Auth::user()->cep }}</p>
       <p>CPF: {{ Auth::user()->cpf }}</p>
-      <a href='/editUsuarios/{{ Auth::user()->id }}''>Editar perfil</a>
+      <a href='/editUsuarios/{{ Auth::user()->id }}'>Editar perfil</a>
     </div>
 
     <div class="col-md-4">
