@@ -41,6 +41,7 @@ Route::get('/admCategorias', function () {
     return view('admCategorias');
 });
 
+// PRODUTOS
 Route::get('/admProdutos', 'ProdutosController@index');
 
 Route::post('/admProdutos', 'ProdutosController@create');

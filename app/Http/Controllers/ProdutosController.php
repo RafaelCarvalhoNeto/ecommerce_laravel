@@ -16,39 +16,91 @@ class ProdutosController extends Controller
         }
     
 }
-
-    public function create(Request $request) {
+    // public function create(Request $request) {
          
-        $imagem = $request->file('imagem');
+    //     $imagem = $request->file('imagem');
         
-        if(empty($imagem)){
-            $pathRelative = null;
-        } else{
-            $imagem->storePublicly('uploads');
+    //     if(empty($imagem)){
+    //         $pathRelative = null;
+    //     } else{
+    //         $imagem->storePublicly('uploads');
             
-            $absolutePath = public_path()."/storage/uploads";
+    //         $absolutePath = public_path()."/storage/uploads";
 
-            $name = $imagem->getClientOriginalName();
+    //         $name = $imagem->getClientOriginalName();
 
-            $imagem->move($absolutePath, $name);
+    //         $imagem->move($absolutePath, $name);
 
-            $pathRelative = "storage/uploads/$name";
-        }
+    //         $pathRelative = "storage/uploads/$name";
+    //     }
 
-        $produto = new Produto;
+    //     $produto = new Produto;
 
-        $produto->nome = $request->inputProduto;
-        $produto->imagem = $pathRelative;
-        $produto->categoria = $request->inputCategoria;
-        $produto->preco  = $request->inputPreco;
+    //     $produto->nome = $request->inputProduto;
+    //     $produto->imagem = $pathRelative;
+    //     $produto->categoria = $request->inputCategoria;
+    //     $produto->preco  = $request->inputPreco;
         
 
-        $produto->save();
+    //     $produto->save();
+
+    //     if($produto){
+    //         return view('admProdutos')->with('success', 'Produto inserido com sucesso');
+    //     }
+    // } 
+    
+    public function edit($id){
+        $produto = Produto::find();
+        if($produto){
+            return view('admProdutos')->with('produto', $produto);
+        }
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'title' => 'required|min:5',
+            'content' => 'required|min:30'
+        ]);
+
+        $produto = Produto::find($id);
+        $produto->title = $request->title;
+        $produto->content = $request->content;
+
+        $produto->update();
 
         if($produto){
-            return view('admProdutos')->with('success', 'Produto inserido com sucesso');
+            return view('produtos.edit')->with([
+                'produto' => $produto,
+                'success' => 'Cartão atualizado com sucesso'
+            ]);
         }
-    } 
-    
+    }
+    public function delete($id){
+        
+        $produto = Produto::find($id);
 
+        if($produto->delete()){
+
+            $produtos = Produto::all();
+
+            return view('produtos.index')->with([
+                'produtos' => $produtos,
+                'success' => 'Registro excluído com sucesso'
+            ]);
+        }
+    }
+
+    public function search(Request $request){
+
+        $search = $request->input('search');
+
+        $produtos = Produto::where('title', 'like', '%' . $search . '%')
+            ->orWhere('content', 'like', '%' . $search . '%')
+            ->paginate(10);
+
+        return view('produtos.index')->with([
+            'search' => $search,
+            'produtos' => $produtos
+        ]);
+    }
 }

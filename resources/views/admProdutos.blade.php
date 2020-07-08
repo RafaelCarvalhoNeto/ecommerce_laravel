@@ -49,8 +49,7 @@
                             @foreach ($produtos as $produto)
                             <tr>
                                 <td scope="row">{{ $produto->id }}</td>
-                                <td scope="row"><img src="{{ $produto->imagem }}" alt="" id="thumbProduto"
-                                        style="max-height: 50px;"></td>
+                                <td scope="row"><img src="{{ $produto->imagem }}" alt="" id="thumbProduto"style="max-height: 50px;"></td>
                                 <td scope="row">{{ $produto->nome }}</td>
                                 <td scope="row">{{ $produto->preco }}</td>
                                 <td scope="row">{{ $produto->categoria }}</td>                   
@@ -121,7 +120,7 @@
                     <form class="container">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="uploadImg">Imagem</label>
+                                <label for="inputImagem">Imagem</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="customFileLang" lang="pt">
                                     <label class="custom-file-label" for="customFileLang">Esolha o arquivo</label>
@@ -145,7 +144,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="inputSobrenome">Preço</label>
+                                <label for="inputPreco">Preço</label>
                                 <input type="number" class="form-control" placeholder="Insira o preço do produto"
                                     aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"
                                     required>
