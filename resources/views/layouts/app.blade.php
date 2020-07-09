@@ -37,7 +37,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                  <form class="form-inline ml-auto p-2 my-0">
+                  <form action="/busca" method="get" class="form-inline ml-auto p-2 my-0">
                       <div class="input-group" id="busca">
                           <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search">
                           <div class="input-group-append">
@@ -180,28 +180,29 @@
           });
       });
     </script> --}}
-
-    <script>
-      let drop = document.getElementById('acesso');
-      let dmenu = document.querySelector('#acessoOptions');
-      let itens = document.querySelector('.dropdown-item')
-      let nav = document.querySelector('.row')
-      drop.addEventListener('mouseenter',function(){
-        drop.classList.add('show')
-        dmenu.classList.add('show')
-      })
-      nav.addEventListener('mouseenter',function(){
-        drop.classList.remove('show')
-        dmenu.classList.remove('show')
-      })
-      console.log(nav)
-      itens.addEventListener('mouseout',function(){
-        drop.classList.remove('show')
-        dmenu.classList.remove('show')
-      })
-
-
-    </script>
+    
+  @guest
+  @else
+  <script>
+    let drop = document.getElementById('acesso');
+    let dmenu = document.querySelector('#acessoOptions');
+    let itens = document.querySelector('.dropdown-item')
+    let nav = document.querySelector('.row')
+    drop.addEventListener('mouseenter',function(){
+      drop.classList.add('show')
+      dmenu.classList.add('show')
+    })
+    nav.addEventListener('mouseenter',function(){
+      drop.classList.remove('show')
+      dmenu.classList.remove('show')
+    })
+    console.log(nav)
+    itens.addEventListener('mouseout',function(){
+      drop.classList.remove('show')
+      dmenu.classList.remove('show')
+    })
+  </script>
+  @endguest
 
 </body>
 </html>
