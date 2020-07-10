@@ -160,7 +160,7 @@
               <button type="submit" class="btn btn-primary btn-block">Logar</button>
             </div>
           </form>
-          <label class="container justify-content-right mb-0">Ainda não tem cadastro? <a href="cadastro"><small>Cadastre-se Aqui!</small></a></label>
+          <label class="container justify-content-right mb-0">Ainda não tem cadastro? <a href="/cadastro"><small>Cadastre-se Aqui!</small></a></label>
           <label class="container justify-content-right mb-4">Esqueceu sua senha? <a href="#"><small>Clique Aqui!</small></a></label>
         </div>
       </div>

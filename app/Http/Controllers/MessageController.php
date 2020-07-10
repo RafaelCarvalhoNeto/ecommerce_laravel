@@ -10,7 +10,7 @@ class MessageController extends Controller
 {
     public function listMessage(){
 
-        if(Auth::check()===true){
+        if(auth()->guard('admin')->check()===true){
             $messages = Message::paginate(10);
     
             return view('admin.admMensagens')->with('messages',$messages);

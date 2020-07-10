@@ -13,6 +13,59 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/admin', 'AuthController@dashboard')->name('admin');
+
+Route::group(['middleware'=> 'admin'], function(){
+
+    Route::group(['middleware'=>'auth:admin'], function(){
+        
+        Route::get('/admin/home', 'AuthController@showHome')->name('admin.home');
+                // PAINEL DE ADMINISTRAÇÃO
+
+        Route::get('/admin/admCategorias', function () {
+            return view('admin.admCategorias');
+        });
+
+        Route::get('/admProdutos', 'ProdutosController@index');
+
+        Route::post('/admProdutos', 'ProdutosController@create');
+
+        // USUARIOS
+        Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
+
+        // EDITAR USUÁRIOS
+        
+        
+        // DELETE USUÁRIO
+        Route::delete('/admin/remove/{id}', 'UsersController@deleteUser');
+        
+        // SEARCH USUÁRIO
+        Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
+        
+        // LISTAR MENSAGENS
+        Route::get('/admin/admMensagens', 'MessageController@listMessage');
+        
+        
+        // DELETE MENSAGEM
+        Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
+        
+        // SEARCH MENSAGENS
+        Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
+        
+        
+    });
+    Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
+    
+    Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
+    Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+    
+});
+
+
+Route::get('/admin/cadastroAdms', 'AuthController@createPager');
+Route::post('/admin/cadastroAdms', 'AuthController@createUser');
+
+
 
 Route::get('/', function () {
     return view('index');
@@ -32,45 +85,6 @@ Route::get('/carrinho', function () {
 });
 
 
-// PAINEL DE ADMINISTRAÇÃO
-
-Route::get('/admin/admCategorias', function () {
-    return view('admin.admCategorias');
-});
-
-Route::get('/admProdutos', 'ProdutosController@index');
-
-Route::post('/admProdutos', 'ProdutosController@create');
-
-// USUARIOS
-Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
-
-// EDITAR USUÁRIOS
-Route::get('/admin/editUsuarios/{id}', 'UsersController@editUser');
-Route::put('/admin/editUsuarios/{id}', 'UsersController@updateUser');
-
-// CRIAR USUÁRIO
-Route::get('/cadastro', 'UsersController@createPage');
-Route::post('/cadastro', 'UsersController@createUser');
-
-// DELETE USUÁRIO
-Route::delete('/admin/remove/{id}', 'UsersController@deleteUser');
-
-// SEARCH USUÁRIO
-Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
-
-// LISTAR MENSAGENS
-Route::get('/admin/admMensagens', 'MessageController@listMessage');
-
-// ENVIAR DE MENSAGEM
-Route::get('/contato', 'MessageController@pagContato');
-Route::post('/contato', 'MessageController@sendMessage');
-
-// DELETE MENSAGEM
-Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
-
-// SEARCH MENSAGENS
-Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
 Route::get('/detalheProduto', function () {
     return view('detalheProduto');
@@ -98,13 +112,24 @@ Route::get('/historicoPedidos', function () {
 });
 
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'AuthController@dashboard')->name('admin');
+// CRIAR USUÁRIO
+Route::get('/cadastro', 'UsersController@createPage');
+Route::post('/cadastro', 'UsersController@createUser');
+// ENVIAR DE MENSAGEM
+Route::get('/contato', 'MessageController@pagContato');
+Route::post('/contato', 'MessageController@sendMessage');
 
-Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
-Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+Route::group(['middleware'=> 'auth:web'], function(){
 
-Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
+
+    Route::get('/admin/editUsuarios/{id}', 'UsersController@editUser');
+    Route::put('/admin/editUsuarios/{id}', 'UsersController@updateUser');
+});
+
+
+

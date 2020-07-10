@@ -33,11 +33,12 @@
             <div class="d-flex flex-column text-right dropdown">
               @guest
               <p class="m-0 text-white admin">Painel Administrativo</p>
+              <a href="/admin/cadastroAdms">Registre-se</a>
               @else
               <p class="m-0 text-white admin">Painel Administrativo</p>
               <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Olá, {{ Auth::user()->nome }}
+                  Olá, {{ auth()->guard('admin')->user()->nome }}
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
@@ -54,11 +55,14 @@
       <div class="subnav">
           <div class="container">
               <div class="row">
-                  <ul>
+                <ul>
+                  @guest
+                  @else
                       <li><a href="/admin/admUsuarios">Usuários</a></li>
                       <li><a href="/admin/admProdutos">Produtos</a></li>
                       <li><a href="/admin/admCategorias">Categorias</a></li>
                       <li><a href="/admin/admMensagens">Mensagens</a></li>
+                  @endguest
                   </ul>
               </div>
           </div>

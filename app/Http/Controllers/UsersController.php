@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function listAllUsers(){
 
-        if(Auth::check()===true){
+        if(auth()->guard('admin')->check()===true){
             $users = User::paginate(10);
             return view('admin.admUsuarios')->with('users', $users);
 
