@@ -52,7 +52,7 @@ class MessageController extends Controller
 
             return view('admin.admMensagens')->with([
                 'messages'=> $messages,
-                'success'=> 'Usuário excluído com sucesso'
+                'success'=> 'Mensagem excluída com sucesso'
             ]);
         }
     }
