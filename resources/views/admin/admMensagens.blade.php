@@ -1,19 +1,7 @@
-@extends('layouts.app')
+
+@extends('layouts.appAdmin')
 @section('content')
 
-    <section class="jumbotron jumbotron-fluid py-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 d-flex text-center flex-wrap">
-                    <p class="mr-3 my-auto"><strong>Menu Administrativo</strong></p>
-                    <a class="mr-3 my-auto" href="admCategorias">Categorias</a>
-                    <a class="mr-3 my-auto" href="admMensagens">Mensagens</a>
-                    <a class="mr-3 my-auto" href="admProdutos">Produtos</a>
-                    <a class="mr-3 my-auto" href="admUsuarios">Usuarios</a>
-                </div>
-            </div>
-        </div>
-    </section>
     <main class="container pt-3 ajuste" id="barraPedidos">
         @if(isset($success) && $success != "")
             <section class="row">
@@ -28,11 +16,13 @@
             <h2 class="col-12 p-3 mb-3 border-bottom">Mensagens</h2>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise por uma Mensagem:</p>
-                <form action="#" method="GET">
+
+                <form action="{{ url('/admin/admMensagens/search') }}" method="GET">
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Pesquisar</button>
+                            <button class="btn btn-primary px-5" type="submit">Pesquisar</button>
+
                         </div>
 
                     </div>
@@ -66,7 +56,9 @@
                                     <div class="modal fade text-left" id="modalAbrir{{ $message->id }}" role="dialog" tabindex="-1"  aria-labelledby="modalMessageLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
 
-                                            <div id="carouselModal" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+
+                                            <div id="carouselModal{{$message->id}}" class="carousel slide carousel-fade" data-ride="carousel" data-interval="false">
+
 
                                                 <div class="carousel-inner">
 
@@ -103,9 +95,9 @@
                                                                 </div>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <div class="form-group col-auto clearfix px-0">
-                                                                    <a href="#carouselModal" role="button" class="btn btn-dark float-right ml-2" data-slide="next">Responder</a>
-                                                                </div>
+
+                                                                <a href="#carouselModal{{$message->id}}" role="button" class="btn btn-dark btn-block" data-slide="next">Responder</a>
+
                                                             </div>
                                         
                                                         </div>
@@ -122,18 +114,25 @@
                                                             <div class="modal-body">
                                                                 <form>
                                                                     <div class="form-group">
-                                                                        <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                                        <input type="text" class="form-control" id="recipient-name">
+
+                                                                        <label for="recipient-name" class="col-form-label">Destinatário:</label>
+                                                                        <input type="text" readonly class="form-control" id="inputNome" value="{{ $message->nome }} {{ $message->sobrenome }}">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="message-text" class="col-form-label">Message:</label>
-                                                                        <textarea class="form-control" id="message-text"></textarea>
+                                                                        <label for="recipient-name" class="col-form-label">Email:</label>
+                                                                        <input type="email" readonly class="form-control" id="inputEmail" value="{{ $message->email }}">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="message-text" class="col-form-label">Mensagem:</label>
+                                                                        <textarea class="form-control" id="message-text" rows="4"></textarea>
+
                                                                     </div>
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Send message</button>
+
+                                                                <button type="button" class="btn btn-primary btn-block">Enviar</button>
+
                                                             </div>
                                         
                                                         </div>
@@ -165,14 +164,17 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h5 class="font-weight-bold">Messagem #ID{{ $message->id }} | {{$message->assunto}}</h5>
+
+                                                    <h5 class="font-weight-bold">Messagem #ID{{ $message->id }}</h5>
+                                                    <p>Assunto: {{$message->assunto}}</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                    <form action="/removeMessage/{{ $message->id }}" method="POST">
+                                                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> --}}
+                                                    <form class='btn-block'action="/admin/removeMessage/{{ $message->id }}" method="POST">
                                                         @csrf
                                                         {{ method_field('DELETE') }}
-                                                        <button id="delete-contact" type="submit" class="btn btn-primary">Excluir</a>
+                                                        <button id="delete-contact" type="submit" class="btn btn-danger btn-block">Excluir</a>
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -185,6 +187,11 @@
 
                     </table>
                 </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $messages->appends(['search'=>isset($search) ? $search:''])->links() }}
+                </div>
+
             </div>
         </div>
 

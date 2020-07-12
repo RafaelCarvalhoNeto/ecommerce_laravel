@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return view('index');
 });
 Route::get('/institucional', function () {
@@ -33,12 +34,12 @@ Route::get('/carrinho', function () {
 
 // PAINEL DE ADMINISTRAÇÃO
 
-Route::get('/painelAdm', function(){
-    return view('painelAdm');
+Route::get('/admin/admCategorias', function () {
+    return view('admin.admCategorias');
 });
 
-Route::get('/admCategorias', function () {
-    return view('admCategorias');
+Route::get('/admin/admProdutos', function () {
+    return view('admin.admProdutos');
 });
 
 // PRODUTOS
@@ -53,32 +54,46 @@ Route::delete('/admin/admProdutos/{id}', 'CardsController@delete');
 Route::post('/admin/admProdutos/novo', 'CardsController@search');
 
 // USUARIOS
-Route::get('/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
+Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
 
 // EDITAR USUÁRIOS
-Route::get('/editUsuarios/{id}', 'UsersController@editUser');
-Route::put('/editUsuarios/{id}', 'UsersController@updateUser');
+Route::get('/admin/editUsuarios/{id}', 'UsersController@editUser');
+Route::put('/admin/editUsuarios/{id}', 'UsersController@updateUser');
 
 // CRIAR USUÁRIO
 Route::get('/cadastro', 'UsersController@createPage');
 Route::post('/cadastro', 'UsersController@createUser');
 
 // DELETE USUÁRIO
-Route::delete('/remove/{id}', 'UsersController@deleteUser');
+Route::delete('/admin/remove/{id}', 'UsersController@deleteUser');
 
 // SEARCH USUÁRIO
-Route::get('/admUsuarios/search', 'UsersController@searchUser');
+Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
+
+// LISTAR CATEGORIAS
+Route::get('/admin/admCategorias', 'CategoriasController@listAllCategorias')->name('categorias.listAll');
+
+// ADICIONAR CATEGORIAS
+Route::post('/admin/admCategorias/novo', 'CategoriasController@createCategoria');
+
+// SEARCH CATEGORIAS
+Route::get('/admin/admCategorias/search', 'CategoriasController@searchCategoria');
+
+// DELETE CATEGORIA
+Route::delete('/admin/removeCategoria/{id}', 'CategoriasController@deleteCategoria');
 
 // LISTAR MENSAGENS
-Route::get('/admMensagens', 'MessageController@listMessage');
+Route::get('/admin/admMensagens', 'MessageController@listMessage');
 
 // ENVIAR DE MENSAGEM
 Route::get('/contato', 'MessageController@pagContato');
 Route::post('/contato', 'MessageController@sendMessage');
 
 // DELETE MENSAGEM
-Route::delete('/removeMessage/{id}', 'MessageController@deleteMessage');
+Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
 
+// SEARCH MENSAGENS
+Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
 Route::get('/detalheProduto', function () {
     return view('detalheProduto');
@@ -109,3 +124,10 @@ Route::get('/historicoPedidos', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', 'AuthController@dashboard')->name('admin');
+
+Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
+Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+
+Route::post('/admin/logout','AuthController@logout')->name('admin.logout');

@@ -7,14 +7,16 @@
   <div class="row">
     <h2 class="col-12 p-3 mb-3 border-bottom">Informações Pessoais</h2>
     <div class="col-md-8">
-      <h3>Fulano da Silva</h3>
-      <p>fulano@gmail.com</p>
-      <a href="#">Editar perfil</a>
+      <h3>{{ Auth::user()->nome }} {{ Auth::user()->sobrenome }}</h3>
+      <p class="m-0">{{ Auth::user()->email }}</p>
+      <p class="m-0">{{ Auth::user()->endereco }}, {{ Auth::user()->cidade }}, {{ Auth::user()->uf}} | {{ Auth::user()->cep }}</p>
+      <p>CPF: {{ Auth::user()->cpf }}</p>
+      <a href='/editUsuarios/{{ Auth::user()->id }}'>Editar perfil</a>
     </div>
 
     <div class="col-md-4">
-      <div class="rounded-circle">
-        <img src="https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg" alt="Imagem de Perfil">
+      <div class="rounded-circle text-center">
+        <img src="https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg" width="150" alt="Imagem de Perfil">
       </div>
     </div>
 

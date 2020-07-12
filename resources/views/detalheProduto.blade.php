@@ -47,7 +47,7 @@
                                     <small>12x de R$ 116,58 s/ juros</small>
                                 </div>
                                 <div class="form-group m-0">
-                                    <button type="submit" class="mx-auto my-2 btn btn-primary comprar"><i class="fas fa-shopping-cart"></i> comprar</button>
+                                    <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
                                 </div>
     
                             </div>
@@ -179,26 +179,6 @@
                 </a>
             </div>     
         </div>
-    </div>
-    <div class="row">
-    <br>
-    </div>
-    <div class="container">
-    <nav aria-label="...">
-                    <ul class="pagination">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">&laquo;</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">&raquo;</a>
-                        </li>
-                    </ul>
-                </nav>
     </div>
 
 

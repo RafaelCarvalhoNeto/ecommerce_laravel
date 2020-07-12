@@ -27,7 +27,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <div class="container">
-              <a class="navbar-brand" href="index">
+              <a class="navbar-brand" href="/">
                   <img src={{asset('img/logo.png')}} alt="Logo" width=65px height=50px>
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -37,7 +37,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                  <form class="form-inline ml-auto p-2 my-0">
+                  <form action="/busca" method="get" class="form-inline ml-auto p-2 my-0">
                       <div class="input-group" id="busca">
                           <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search">
                           <div class="input-group-append">
@@ -45,10 +45,28 @@
                           </div>
                       </div>
                   </form>
-                  <a class="d-flex flex-column text-white m-2" href="#" data-toggle="modal" data-target="#modalLogin">
+                  @guest
+                  <a class="d-flex flex-column text-white ola-nav p-2" href="#" data-toggle="modal" data-target="#modalLogin">
                       <small class="login m-0">Olá, faça seu login</small>
                       <small class="login m-0">ou cadastre-se</small>
                   </a>
+                  @else
+                  <a class='d-flex flex-column text-white' href="historicoPedidos">
+
+                    <div id="acesso"class="d-flex flex-column dropdown ola-nav text-white p-2">
+                      <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
+                      <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
+                      <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Sair</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                        </form>
+                      </div>
+                    </div>
+
+                  </a>
+                  @endguest
                   
 
                   <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="carrinho"><i class="fas fa-shopping-cart"></i></a>
@@ -123,28 +141,25 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form action="" method="post">
+          <form action="{{ route('login') }}" method="POST">
+            <div class="modal-body">
+              @csrf
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="meuemail@meuprovedor.com" aria-describedby="emailHelp">
+                <input type="email" class="form-control" id="email" placeholder="meuemail@meuprovedor.com" aria-describedby="emailHelp" name="email">
                 <small id="emailHelp" class="form-text text-muted">Nunca salve seu email em computadores públicos.</small>
               </div>
               <div class="form-group">
-                <label for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" placeholder="insira sua senha" aria-describedby="passwordHelp">
+                <label for="password">Senha</label>
+                <input type="password" class="form-control" id="password" placeholder="insira sua senha" aria-describedby="passwordHelp" name="password">
                 <small id="passwordHelp" class="form-text text-muted">Nunca salve sua senha em computadores públicos.</small>
               </div>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="aceite">
-                <label class="form-check-label" for="aceite">Concordo com a <a href="politicas">Políticas de Privacidade</a> e <a href="politicas">Termos de Uso</a></label>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            <button type="button" class="btn btn-primary">Logar</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> --}}
+              <button type="submit" class="btn btn-primary btn-block">Logar</button>
+            </div>
+          </form>
           <label class="container justify-content-right mb-0">Ainda não tem cadastro? <a href="cadastro"><small>Cadastre-se Aqui!</small></a></label>
           <label class="container justify-content-right mb-4">Esqueceu sua senha? <a href="#"><small>Clique Aqui!</small></a></label>
         </div>
@@ -165,6 +180,29 @@
           });
       });
     </script> --}}
+    
+  @guest
+  @else
+  <script>
+    let drop = document.getElementById('acesso');
+    let dmenu = document.querySelector('#acessoOptions');
+    let itens = document.querySelector('.dropdown-item')
+    let nav = document.querySelector('.row')
+    drop.addEventListener('mouseenter',function(){
+      drop.classList.add('show')
+      dmenu.classList.add('show')
+    })
+    nav.addEventListener('mouseenter',function(){
+      drop.classList.remove('show')
+      dmenu.classList.remove('show')
+    })
+    console.log(nav)
+    itens.addEventListener('mouseout',function(){
+      drop.classList.remove('show')
+      dmenu.classList.remove('show')
+    })
+  </script>
+  @endguest
 
 </body>
 </html>
