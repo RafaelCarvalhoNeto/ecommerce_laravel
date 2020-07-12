@@ -42,9 +42,15 @@ Route::get('/admCategorias', function () {
 });
 
 // PRODUTOS
-Route::get('/admProdutos', 'ProdutosController@index');
+Route::get('/admin/admProdutos/novo', 'ProdutosController@index');
 
-Route::post('/admProdutos', 'ProdutosController@create');
+Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
+
+Route::post('/admin/update/{id}', 'ProdutosController@edit');
+
+Route::delete('/admin/admProdutos/{id}', 'CardsController@delete');
+
+Route::post('/admin/admProdutos/novo', 'CardsController@search');
 
 // USUARIOS
 Route::get('/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');

@@ -9,50 +9,54 @@ class ProdutosController extends Controller
 {
     public function index() {
 
-        $produtos = Produto::paginate(10);
+        $produtos = Produto::paginate(100);
 
         if($produtos){
-            return view('admProdutos')->with('produtos', $produtos);
+            return view('admin.admProdutos')->with('produtos', $produtos);
         }
     
 }
-    // public function create(Request $request) {
+    public function create(Request $request) {
          
-    //     $imagem = $request->file('imagem');
+        $imagem = $request->file('imagem');
         
-    //     if(empty($imagem)){
-    //         $pathRelative = null;
-    //     } else{
-    //         $imagem->storePublicly('uploads');
+        if(empty($imagem)){
+            $pathRelative = null;
+        } else{
+            $imagem->storePublicly('uploads');
             
-    //         $absolutePath = public_path()."/storage/uploads";
+            $absolutePath = public_path()."/storage/uploads";
 
-    //         $name = $imagem->getClientOriginalName();
+            $name = $imagem->getClientOriginalName();
 
-    //         $imagem->move($absolutePath, $name);
+            $imagem->move($absolutePath, $name);
 
-    //         $pathRelative = "storage/uploads/$name";
-    //     }
+            $pathRelative = "storage/uploads/$name";
+        }
 
-    //     $produto = new Produto;
+        $produto = new Produto;
 
-    //     $produto->nome = $request->inputProduto;
-    //     $produto->imagem = $pathRelative;
-    //     $produto->categoria = $request->inputCategoria;
-    //     $produto->preco  = $request->inputPreco;
+        $produto->nome = $request->inputProduto;
+        $produto->imagem = $pathRelative;
+        $produto->categoria = $request->inputCategoria;
+        $produto->preco  = $request->inputPreco;
+        $produto->descricao = $request->inputDescricao;
         
 
-    //     $produto->save();
+        $produto->save();
 
-    //     if($produto){
-    //         return view('admProdutos')->with('success', 'Produto inserido com sucesso');
-    //     }
-    // } 
+        if($produto){
+            $produtos = Produto::paginate(10);
+            return view('admin.admProdutos')->with([
+                'produtos'=> $produtos,'success'=>'Usuário alterado com sucesso'
+                ]);
+        }
+    } 
     
     public function edit($id){
-        $produto = Produto::find();
+        $produto = Produto::find($id);
         if($produto){
-            return view('admProdutos')->with('produto', $produto);
+            return view('admin.admProdutos')->with('produto', $produto);
         }
     }
 
@@ -83,7 +87,7 @@ class ProdutosController extends Controller
 
             $produtos = Produto::all();
 
-            return view('produtos.index')->with([
+            return view('admin.admProdutos')->with([
                 'produtos' => $produtos,
                 'success' => 'Registro excluído com sucesso'
             ]);
@@ -98,7 +102,7 @@ class ProdutosController extends Controller
             ->orWhere('content', 'like', '%' . $search . '%')
             ->paginate(10);
 
-        return view('produtos.index')->with([
+        return view('admin.admProdutos')->with([
             'search' => $search,
             'produtos' => $produtos
         ]);
