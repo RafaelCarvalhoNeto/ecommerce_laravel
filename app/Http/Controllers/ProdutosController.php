@@ -9,7 +9,7 @@ class ProdutosController extends Controller
 {
     public function index() {
 
-        $produtos = Produto::paginate(100);
+        $produtos = Produto::paginate(10);
 
         if($produtos){
             return view('admin.admProdutos')->with('produtos', $produtos);
@@ -85,7 +85,7 @@ class ProdutosController extends Controller
 
         if($produto->delete()){
 
-            $produtos = Produto::all();
+            $produtos = Produto::paginate(10);
 
             return view('admin.admProdutos')->with([
                 'produtos' => $produtos,

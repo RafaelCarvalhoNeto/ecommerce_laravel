@@ -60,6 +60,7 @@
                         </tbody>
                     </table>
                 </div>
+                
 
             </div>
         </div>
@@ -99,6 +100,9 @@
                 <i class="far fa-plus-square"></i>
             </a>
         </p>
+        <div class="d-flex justify-content-center mt-4">
+            {{ $produtos->appends(['search'=>isset($search) ? $search:''])->links() }}
+        </div>
 
 
         <!-- Modal Adicionar -->
