@@ -1,3 +1,4 @@
+
 @extends('layouts.appAdmin')
 @section('content')
 
@@ -110,6 +111,5 @@
         </div>
     </div>
 </main>
-
 
 @endsection

@@ -53,7 +53,9 @@
                                     <td scope="row">{{$user->cidade}}</td>
                                     <td scope="row">{{$user->uf}}</td>
                                     <td scope="row">
+
                                         <a href="/admin/editUsuarios/{{$user->id}}">
+
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
@@ -77,11 +79,13 @@
                                                         <p>Email: {{ $user->email }}</p>
                                                     </div>
                                                     <div class="modal-footer">
+
                                                         {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> --}}
                                                         <form class="btn-block"action="/admin/remove/{{ $user->id }}" method="POST">
                                                             @csrf
                                                             {{ method_field('DELETE') }}
                                                             <button id="delete-contact" type="submit" class="btn btn-danger btn-block">Excluir</a>
+
                                                         </form>
                                                     </div>
                                                 </div>
