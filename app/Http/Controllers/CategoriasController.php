@@ -26,6 +26,15 @@ class CategoriasController extends Controller
 
         $categoria->save();
 
+        if($categoria){             
+            $categorias = Categoria::paginate(10);             
+            
+            return view('admin.admCategorias')->with([
+                'categorias'=> $categorias,
+                'success'=>'Usuário alterado com sucesso'
+                ]);
+        }
+
     }
 
     public function deleteCategoria($id){

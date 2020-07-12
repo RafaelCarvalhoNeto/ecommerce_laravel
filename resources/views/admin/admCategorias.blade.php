@@ -92,18 +92,13 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div><br>
-                            <form class="container" action="createCategoria" method="post" id="formCategoria">
+                            <form class="container" action="/admin/admCategorias/novo" method="post" id="formCategoria">
                                 @csrf
                                     {{ method_field('POST') }}
                                 <div class="form-group">                 
-                                    <input type="text" class="form-control" id="inputCategoria"
-                                        aria-describedby="categoriaNova" placeholder="Insira uma nova categoria">
+                                    <input type="text" class="form-control" id="inputCategoria" name="inputCategoria" aria-describedby="categoriaNova" placeholder="Insira uma nova categoria">
                                 </div>
                                 <div class="modal-footer">
-                                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> --}}
-                                <form class='btn-block'action="/admin/createCategoria" method="POST" id=inputCategoria>
-                                    @csrf
-                                    {{ method_field('POST') }}
                                     <button id="create-categoria" type="submit" class="btn btn-primary btn-block">Adicionar</a>
                                 </form>
                                 </div>

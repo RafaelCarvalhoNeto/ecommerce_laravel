@@ -67,9 +67,7 @@ Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
 Route::get('/admin/admCategorias', 'CategoriasController@listAllCategorias')->name('categorias.listAll');
 
 // ADICIONAR CATEGORIAS
-Route::get('/admin/createCategoria', 'CategoriasController@createPage');
-Route::post('/admin/createCategoria', 'CategoriasController@createCategoria');
-// Route::put('/admin/admCategorias/{id}', 'CategoriasController@createCategoria');
+Route::post('/admin/admCategorias/novo', 'CategoriasController@createCategoria');
 
 // SEARCH CATEGORIAS
 Route::get('/admin/admCategorias/search', 'CategoriasController@searchCategoria');
