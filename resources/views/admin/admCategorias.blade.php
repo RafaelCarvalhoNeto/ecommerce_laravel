@@ -1,148 +1,115 @@
 @extends('layouts.appAdmin')
 @section('content')
 
-    <main class="container pt-3 ajuste" id="barraPedidos">
-
-        <div class="row">
-            
-            <h2 class="col-12 p-3 mb-3 border-bottom">Categorias</h2>
-            <div class="col-12 mt-3 mb-3">
-                <p>Pesquise por uma Categoria:</p>
-                <form action="#" method="GET">
-                    <div class="input-group col-12 px-0">
-                        <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-5" type="submit">Pesquisar</button>
-                        </div>
-
-                    </div>
-                </form>
-                <div id="table" class="tableAdm">
-                    <table class="table table-striped text-center mt-3">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="row">ID</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col" colspan="2">Acoes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</td>
-                                <th scope="row">Bolsas</th>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</td>
-                                <th scope="row">Livros</th>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</td>
-                                <th scope="row">Eletrônicos</th>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">4</td>
-                                <th scope="row">Outros</th>
-                                <td>
-                                    <a href="#">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+<main class="container pt-3 ajuste" id="barraPedidos">
+    @if(isset($success) && $success != "")
+    <section class="row">
+        <div class="col-12">
+            <div class="message alert alert-success text-center">
+                {{ $success }}
             </div>
         </div>
+    </section>
+    @endif
+    <div class="row">
 
-        <!-- Modal Excluir -->
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Deseja realmente excluir?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+        <h2 class="col-12 p-3 mb-3 border-bottom">Categorias</h2>
+        <div class="col-12 mt-3 mb-3">
+            <p>Pesquise por uma Categoria:</p>
+            <form action="{{ url('/admin/admCategorias/search') }}" method="GET">
+                <div class="input-group col-12 px-0">
+                    <input class="form-control border-0" id="myInput" type="search" arial-label="search"
+                        placeholder="Pesquisar..." name='search'>
+                    <div class="input-group-append">
+                        <button class="btn btn-primary px-5" type="submit">Pesquisar</button>
                     </div>
-                    <div class="modal-body">
-                        <h4>Bolsas</h4>
+
+                </div>
+            </form>
+            <div id="table" class="tableAdm">
+                <table class="table table-striped text-center mt-3">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="row">ID</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col" colspan="2">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($categorias as $categoria)
+                        <tr>
+                            <td scope="row">{{ $categoria->id }}</td>
+                            <td scope="row">{{ $categoria->categoria }}</td>
+                            <td scope="row">
+                                <a href="#" data-toggle="modal" data-target="#modalExcluir{{ $categoria->id }}">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <p class="font-weight-bold">Adicionar Categoria
+                    <a href="#" data-toggle="modal" data-target="#modalAdd">
+                        <i class="far fa-plus-square"></i>
+                    </a></p>
+                
+                <!-- Modal Excluir -->
+                @foreach ($categorias as $categoria)
+                <div class="modal fade" id="modalExcluir{{ $categoria->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Deseja realmente excluir?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            <h4>{{ $categoria->categoria }}</h4>
+                            </div>
+                            <div class="modal-footer">
+                                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> --}}
+                                <form class='btn-block'action="/admin/removeCategoria/{{ $categoria->id }}" method="POST">
+                                    @csrf
+                                    {{ method_field('DELETE') }}
+                                    <button id="delete-categoria" type="submit" class="btn btn-danger btn-block">Excluir</a>
+                                </form>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <a href="Bolsas">
-                            <button type="button" class="btn btn-danger">Excluir</button>
-                        </a>
+                </div>
+                @endforeach
+                <!-- Modal Adicionar -->
+                <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Adicione uma categoria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div><br>
+                            <form class="container" action="/admin/admCategorias/novo" method="post" id="formCategoria">
+                                @csrf
+                                    {{ method_field('POST') }}
+                                <div class="form-group">                 
+                                    <input type="text" class="form-control" id="inputCategoria" name="inputCategoria" aria-describedby="categoriaNova" placeholder="Insira uma nova categoria">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="create-categoria" type="submit" class="btn btn-primary btn-block">Adicionar</a>
+                                </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <p class="font-weight-bold">Adicionar Categoria
-            <a href="#" data-toggle="modal" data-target="#modalAdd">
-                <i class="far fa-plus-square"></i>
-            </a></p>
-
-        <!-- Modal Adicionar -->
-        <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Adicione uma categoria</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form class="container">
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="categoriasInput"
-                                aria-describedby="categoriaNova" placeholder="Insira uma nova categoria">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Adicionar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 
 
 @endsection

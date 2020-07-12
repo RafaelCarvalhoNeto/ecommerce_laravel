@@ -38,6 +38,10 @@ Route::get('/admin/admCategorias', function () {
     return view('admin.admCategorias');
 });
 
+Route::get('/admin/admProdutos', function () {
+    return view('admin.admProdutos');
+});
+
 Route::get('/admProdutos', 'ProdutosController@index');
 
 Route::post('/admProdutos', 'ProdutosController@create');
@@ -58,6 +62,18 @@ Route::delete('/admin/remove/{id}', 'UsersController@deleteUser');
 
 // SEARCH USUÁRIO
 Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
+
+// LISTAR CATEGORIAS
+Route::get('/admin/admCategorias', 'CategoriasController@listAllCategorias')->name('categorias.listAll');
+
+// ADICIONAR CATEGORIAS
+Route::post('/admin/admCategorias/novo', 'CategoriasController@createCategoria');
+
+// SEARCH CATEGORIAS
+Route::get('/admin/admCategorias/search', 'CategoriasController@searchCategoria');
+
+// DELETE CATEGORIA
+Route::delete('/admin/removeCategoria/{id}', 'CategoriasController@deleteCategoria');
 
 // LISTAR MENSAGENS
 Route::get('/admin/admMensagens', 'MessageController@listMessage');

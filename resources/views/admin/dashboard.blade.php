@@ -23,7 +23,7 @@
                         <p class=" display-4 m-0"><i class="fas fa-network-wired"></i></p>
                     </div>
                     <div class="p-3 col-lg-8 col-md-12">
-                        <h4>Administração de Catergorias</h4>
+                        <h4>Administração de Categorias</h4>
                     </div>
                 </div>
             </div>
