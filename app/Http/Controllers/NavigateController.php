@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NavigateController extends Controller
 {
@@ -32,6 +33,21 @@ class NavigateController extends Controller
                 'produto' => $produto,
                 'informacoes' => $informacoes,
                 'recomendacoes' => $recomendacoes,
+            ]);
+        }
+    }
+
+    public function pagCategorias($url){
+         $produtos = DB::table('produtos')
+        ->join('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->where('categorias.slug', $url)
+        ->paginate(16);
+        
+
+        if($produtos){
+            return view('categoria')->with([
+                'produtos'=> $produtos,
+                'categoria'=> $url,
             ]);
         }
     }

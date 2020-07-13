@@ -43,8 +43,8 @@
                                 
                             <div class="col-md-8 d-flex flex-column justify-content-center text-center bg-light ">
                                 <div class="form-group">
-                                    <p class="m-0"  id="precoDetalhe">{{$produto->preco}}</p>
-                                    <small>12x de R$ 116,58 s/ juros</small>
+                                    <p class="m-0"  id="precoDetalhe">{{number_format(($produto->preco),2)}}</p>
+                                    <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
                                 </div>
                                 <div class="form-group m-0">
                                     <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
@@ -79,14 +79,14 @@
 
                                 <table class="table table-striped text-center">
                                     <tbody>
-                                        {{-- @foreach($informacoes as $tecnicas => $info)
+                                        @foreach($informacoes as $tecnicas => $info)
                                             <tr>
                                                 <th scope="col">{{ $tecnicas}}</th>
                                                 <td>{{$info}}</td>
                                             </tr>
                                                 
                                             
-                                        @endforeach --}}
+                                        @endforeach
 
 
                                     </tbody>

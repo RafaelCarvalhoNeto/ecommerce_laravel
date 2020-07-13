@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use Illuminate\Http\Request;
 use App\Produto;
 
@@ -10,9 +11,10 @@ class ProdutosController extends Controller
     public function index() {
 
         $produtos = Produto::paginate(10);
+        $categorias = Categoria::all();
 
         if($produtos){
-            return view('admin.admProdutos')->with('produtos', $produtos);
+            return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias]);
         }
     
 }
@@ -40,7 +42,19 @@ class ProdutosController extends Controller
         $produto->imagem = $pathRelative;
         $produto->categoria = $request->inputCategoria;
         $produto->preco  = $request->inputPreco;
+        $produto->preco  = $request->inputPreco;
         $produto->descricao = $request->inputDescricao;
+        $produto->parcelamento = $request->inputParcelamento;
+
+        $informacoes  = [
+            $request->titulo1 => $request->inputTecnica1,
+            $request->titulo2 => $request->inputTecnica2,
+            $request->titulo3 => $request->inputTecnica3,
+        ];
+
+        $arrayinfos = json_encode($informacoes);
+
+        $produto->informacoes = $arrayinfos;
         
 
         $produto->save();

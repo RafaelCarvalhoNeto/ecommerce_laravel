@@ -49,7 +49,7 @@
     <section class="container">
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Mais Vendidos</h2>
 
-        <div class="row text-center mt-4">
+        <div class="row mt-4">
             @foreach ($produtos as $produto)
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
                 <a href="/detalheProduto/{{$produto->id}}">
@@ -59,7 +59,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $produto->nome }}</h3>
-                            <p class="card-text preco">R$ {{ $produto->preco }}</p>
+                            <p class="card-text preco m-0">R$ {{number_format(($produto->preco),2)}}</p>
+                            <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
                         </div>
                     </div>
                 </a>
@@ -164,7 +165,7 @@
             </div>     
         </div>
 
-        <div class="row text-center mt-4">
+        <div class="row mt-4">
             @foreach ($produtosBottom as $produtoBottom)
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
                 <a href="/detalheProduto/{{$produtoBottom->id}}">
@@ -174,7 +175,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $produtoBottom->nome }}</h3>
-                            <p class="card-text preco">R$ {{ $produtoBottom->preco }}</p>
+                            <p class="card-text preco m-0">R$ {{number_format(($produto->preco),2)}}</p>
+                            <small class="text-left">{{$produtoBottom->parcelamento}}x de R$ {{number_format(($produtoBottom->preco)/($produtoBottom->parcelamento),2)}} s/ juros</small>
                         </div>
                     </div>
                 </a>

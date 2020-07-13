@@ -56,6 +56,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/detalheProduto/{id}', 'NavigateController@showDetails');
 
+Route::get('/categoria/{categoria}', 'NavigateController@pagCategorias');
+
 Auth::routes();
 
 // ACESSO ADMIN
