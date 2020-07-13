@@ -31,7 +31,7 @@ class CategoriasController extends Controller
             
             return view('admin.admCategorias')->with([
                 'categorias'=> $categorias,
-                'success'=>'Usuário alterado com sucesso'
+                'success'=>'Categoria adicionada com sucesso'
                 ]);
         }
 

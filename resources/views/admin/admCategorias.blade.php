@@ -101,12 +101,14 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button id="create-categoria" type="submit" class="btn btn-primary btn-block">Adicionar</a>
-                                </form>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center mt-4">
+                {{ $categorias->appends(['search' => isset($search) ? $search : ''])->links() }}
             </div>
         </div>
     </div>

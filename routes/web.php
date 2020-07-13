@@ -31,34 +31,52 @@ Route::get('/carrinho', function () {
     return view('carrinho');
 });
 
-
-// PAINEL DE ADMINISTRAÇÃO
-
-Route::get('/admin/admCategorias', function () {
-    return view('admin.admCategorias');
+Route::get('/detalheProduto', function () {
+    return view('detalheProduto');
+});
+Route::get('/ofertas', function () {
+    return view('ofertas');
+});
+Route::get('/livros', function () {
+    return view('livros');
+});
+Route::get('/eletronicos', function () {
+    return view('eletronicos');
+});
+Route::get('/bolsas', function () {
+    return view('bolsas');
+});
+Route::get('/busca', function () {
+    return view('busca');
+});
+Route::get('/finalizarCompra', function () {
+    return view('finalizarCompra');
 });
 
-Route::get('/admin/admProdutos', function () {
-    return view('admin.admProdutos');
-});
+Auth::routes();
+
+// ACESSO ADMIN
+
+Route::get('/admin', 'AuthController@dashboard')->name('admin');
+
+Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
+Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
+
+Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
 
 // PRODUTOS
 Route::get('/admin/admProdutos', 'ProdutosController@index');
-
 Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
-
 Route::post('/admin/update/{id}', 'ProdutosController@edit');
-
 Route::delete('/admin/admProdutos/{id}', 'CardsController@delete');
-
 Route::post('/admin/admProdutos/search', 'CardsController@search');
 
 // USUARIOS
 Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
 
 // EDITAR USUÁRIOS
-Route::get('/admin/editUsuarios/{id}', 'UsersController@editUser');
-Route::put('/admin/editUsuarios/{id}', 'UsersController@updateUser');
+Route::get('/usuarios/editUsuarios/{id}', 'UsersController@editUser');
+Route::put('/usuarios/editUsuarios/{id}', 'UsersController@updateUser');
 
 // CRIAR USUÁRIO
 Route::get('/cadastro', 'UsersController@createPage');
@@ -95,39 +113,13 @@ Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
 // SEARCH MENSAGENS
 Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
-Route::get('/detalheProduto', function () {
-    return view('detalheProduto');
-});
-Route::get('/ofertas', function () {
-    return view('ofertas');
-});
-Route::get('/livros', function () {
-    return view('livros');
-});
-Route::get('/eletronicos', function () {
-    return view('eletronicos');
-});
-Route::get('/bolsas', function () {
-    return view('bolsas');
-});
-Route::get('/busca', function () {
-    return view('busca');
-});
-Route::get('/finalizarCompra', function () {
-    return view('finalizarCompra');
-});
-Route::get('/historicoPedidos', function () {
-    return view('historicoPedidos');
-});
 
 
-Auth::routes();
+// ACESSO USUÁRIO
+
+Route::get('/usuarios/historicoPedidos', function () {
+    return view('usuarios.historicoPedidos');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', 'AuthController@dashboard')->name('admin');
-
-Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
-Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
-
-Route::post('/admin/logout','AuthController@logout')->name('admin.logout');

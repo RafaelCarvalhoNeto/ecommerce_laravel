@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+    // LISTAR USUÁRIOS
     public function listAllUsers(){
 
         if(Auth::check()===true){
@@ -18,14 +19,15 @@ class UsersController extends Controller
         }
         return redirect()->route('admin.login');
     }
+    // GERAR A PÁGINA DE EDITAR USUÁRIOS - DIRETORIO USUÁRIOS
     public function editUser($id){
         $user = User::find($id);
 
         if($user){
-            return view('admin.editUsuarios')->with('user',$user);
+            return view('usuarios.editUsuarios')->with('user',$user);
         }
     }
-
+    // EDITAR USUÁRIOS
     public function updateUser(Request $request, $id){
 
         $user = User::find($id);
@@ -54,12 +56,13 @@ class UsersController extends Controller
         }
         $user->update();
 
-        return view('admin.editUsuarios')->with([
+        return view('usuarios.editUsuarios')->with([
             'user'=> $user,
             'success'=>'Usuário alterado com sucesso'
         ]);
     }
 
+    // GERAR PÁGINA DE CADASTRO DE USUÁRIOS
     public function createPage(){
         return view('cadastro');
     }
@@ -102,6 +105,7 @@ class UsersController extends Controller
         }
     }
 
+    // DELETAR USUÁRIOS
     public function deleteUser($id){
         $user = User::find($id);
 
@@ -114,6 +118,8 @@ class UsersController extends Controller
             ]);
         }
     }
+
+    // PROCUAR USUÁRIOS
     public function searchUser(Request $request){
         $search = $request->input('search');
         $users = User::where('nome', 'like', '%'.$search.'%')->orWhere('sobrenome', 'like','%'.$search.'%')->paginate(10);

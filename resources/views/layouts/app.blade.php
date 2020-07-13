@@ -51,7 +51,7 @@
                       <small class="login m-0">ou cadastre-se</small>
                   </a>
                   @else
-                  <a class='d-flex flex-column text-white' href="historicoPedidos">
+                  <a class='d-flex flex-column text-white' href="/usuarios/historicoPedidos">
 
                     <div id="acesso"class="d-flex flex-column dropdown ola-nav text-white p-2">
                       <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
