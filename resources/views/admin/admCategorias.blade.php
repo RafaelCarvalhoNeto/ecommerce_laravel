@@ -68,7 +68,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                            <h4>{{ $categoria->categoria }}</h4>
+                            <h4>{{ $categoria->tipo }}</h4>
                             </div>
                             <div class="modal-footer">
                                 {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> --}}

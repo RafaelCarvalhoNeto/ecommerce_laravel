@@ -22,7 +22,7 @@ class CategoriasController extends Controller
 
         $categoria = new Categoria;
 
-        $categoria->categoria = $request->inputCategoria;
+        $categoria->tipo = $request->inputCategoria;
 
         $categoria->save();
 

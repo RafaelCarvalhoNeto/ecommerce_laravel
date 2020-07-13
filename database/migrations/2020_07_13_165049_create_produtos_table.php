@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -16,11 +17,16 @@ class CreateProdutosTable extends Migration
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->foreignId("categoria");
+            $table->string('slug');
             $table->string('imagem');
             $table->string('descricao');
             $table->string('preco');
-            $table->string("categoria");
+            $table->text("informacoes")->nullable();
+            $table->string("parcelamento")->nullable();
             $table->timestamps();
+
+            $table->foreign('categoria')->references('id')->on('categorias');
         });
     }
 

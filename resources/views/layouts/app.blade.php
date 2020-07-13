@@ -77,10 +77,10 @@
           <div class="container">
               <div class="row">
                   <ul>
-                      <li><a href="./ofertas">Ofertas</a></li>
-                      <li><a href="./livros">Livros</a></li>
-                      <li><a href="./eletronicos">Eletrônicos</a></li>
-                      <li><a href="./bolsas">Bolsas</a></li>
+                      <li><a href="/categoria/ofertas">Ofertas</a></li>
+                      <li><a href="/categoria/livros">Livros</a></li>
+                      <li><a href="/categoria/eletronicos">Eletrônicos</a></li>
+                      <li><a href="/categoria/bolsas">Bolsas</a></li>
                   </ul>
               </div>
           </div>
