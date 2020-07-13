@@ -40,7 +40,7 @@
                         @foreach ($categorias as $categoria)
                         <tr>
                             <td scope="row">{{ $categoria->id }}</td>
-                            <td scope="row">{{ $categoria->categoria }}</td>
+                            <td scope="row">{{ $categoria->tipo }}</td>
                             <td scope="row">
                                 <a href="#" data-toggle="modal" data-target="#modalExcluir{{ $categoria->id }}">
                                     <i class="fas fa-trash"></i>
@@ -93,11 +93,14 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div><br>
-                            <form class="container" action="/admin/admCategorias/novo" method="post" id="formCategoria">
+                            <form class="container" action="/admin/admCategorias/novo" method="post" id="formCategoria" enctype="multipart/form-data">
                                 @csrf
                                     {{ method_field('POST') }}
                                 <div class="form-group">                 
                                     <input type="text" class="form-control" id="inputCategoria" name="inputCategoria" aria-describedby="categoriaNova" placeholder="Insira uma nova categoria">
+                                </div>
+                                <div class="form-group">                 
+                                    <input type="file" class="form-control" id="imagem" name="imagem" aria-describedby="categoriaNova" placeholder="Insira uma nova categoria">
                                 </div>
                                 <div class="modal-footer">
                                     <button id="create-categoria" type="submit" class="btn btn-primary btn-block">Adicionar</a>

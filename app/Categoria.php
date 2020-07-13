@@ -11,8 +11,8 @@ class Categoria extends Model
 
     protected $fillable = ['tipo, imagem'];
 
-    public function setCategoriaAttribute($value){
-        $this->attributes['categoria'] = $value;
+    public function setTipoAttribute($value){
+        $this->attributes['tipo'] = $value;
         $this->attributes['slug'] = Str::slug($value);
 
     }

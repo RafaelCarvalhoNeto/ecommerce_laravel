@@ -38,6 +38,7 @@ class NavigateController extends Controller
     }
 
     public function pagCategorias($url){
+        
          $produtos = DB::table('produtos')
         ->join('categorias', 'produtos.categoria','=', 'categorias.id')
         ->where('categorias.slug', $url)
