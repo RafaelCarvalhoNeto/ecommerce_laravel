@@ -3,17 +3,17 @@
     <section class="container mt-3">
         <div class="row">
             <div class="col-12">
-                <p><small><a href="index">Página inicial</a> > <a href="eletronicos">Eletrônicos</a> > Computador</small></p>
+                <p><small><a href="index">Página inicial</a> > <a href="eletronicos">{{$produto->categoria}}</a> > {{$produto->nome}}</small></p>
             </div>
             <div class="col-md-5">
                 <div>
-                    <img class="d-block w-100 .produto" src={{asset('img/eletronico-03.png')}} alt="">
+                    <img class="d-block w-100 .produto" src=" {{asset($produto->imagem)}} " alt="" >
                 </div>
             </div>
             <div class="col-md-7 my-3">
-                <h2>Playstation 3</h2>
-                <small>Indentificação do Produto</small>
-                <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati in odit ratione recusandae excepturi voluptates blanditiis ex, iusto veniam voluptas asperiores, assumenda eos. Voluptate omnis deleniti repellendus velit necessitatibus qui!
+                <h2>{{$produto->nome}}</h2>
+                <small>{{$produto->id}}</small>
+                <p class="my-3">{{$produto->descricao}}
                 </p>
                 <form action="./carrinho" method="GET" id="formComprar">
                     <div class="container">
@@ -43,7 +43,7 @@
                                 
                             <div class="col-md-8 d-flex flex-column justify-content-center text-center bg-light ">
                                 <div class="form-group">
-                                    <p class="m-0"  id="precoDetalhe">R$ 1.399,00</p>
+                                    <p class="m-0"  id="precoDetalhe">{{$produto->preco}}</p>
                                     <small>12x de R$ 116,58 s/ juros</small>
                                 </div>
                                 <div class="form-group m-0">
@@ -79,19 +79,14 @@
 
                                 <table class="table table-striped text-center">
                                     <tbody>
-                                        <tr>
-                                            <th scope="col">Codigo</th>
-                                            <td>XXXXXX</td>
-                                        </tr>
-                                        <tr>
-                                            <th>SSD</th>
-                                            <td>Não possui</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Teclado</th>
-                                            <td>Comum</td>
-                                        </tr>
-
+                                        {{-- @foreach($informacoes as $tecnicas => $info)
+                                            <tr>
+                                                <th scope="col">{{ $tecnicas}}</th>
+                                                <td>{{$info}}</td>
+                                            </tr>
+                                                
+                                            
+                                        @endforeach --}}
 
 
                                     </tbody>
@@ -123,62 +118,22 @@
 
 
     <div class="container">
-        <div class="row text-center">
+        <div class="row text-center mt-4">
+            @foreach ($recomendacoes as $recomendacao)
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                <a href="detalheProduto">
+                <a href="/detalheProduto/{{$recomendacao->id}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-01.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="{{ $recomendacao->imagem != null ? asset($recomendacao->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title produto">Samsung S20</h3>
-                            <p class="card-text preco">R$ 900,00</p>
+                            <h3 class="card-title produto">{{ $recomendacao->nome }}</h3>
+                            <p class="card-text preco">R$ {{ $recomendacao->preco }}</p>
                         </div>
                     </div>
                 </a>
             </div>
-
-            <div class="col-md-3 pb-1 pb-md-0  mb-3">
-                <a href="detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-02.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Computador Zika</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-03.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Controle PS5</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>   
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-04.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Controle PS5</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>     
-        </div>
+            @endforeach
     </div>
 
 

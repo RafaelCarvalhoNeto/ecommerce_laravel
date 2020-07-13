@@ -50,117 +50,21 @@
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Mais Vendidos</h2>
 
         <div class="row text-center mt-4">
+            @foreach ($produtos as $produto)
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                <a href="/detalheProduto">
+                <a href="/detalheProduto/{{$produto->id}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-01.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title produto">Playstation 4 com 20Gb de memoria</h3>
-                            <p class="card-text preco">R$ 900,00</p>
+                            <h3 class="card-title produto">{{ $produto->nome }}</h3>
+                            <p class="card-text preco">R$ {{ $produto->preco }}</p>
                         </div>
                     </div>
                 </a>
             </div>
-
-            <div class="col-md-3 pb-1 pb-md-0  mb-3">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-02.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Atari - Um dos primeiros do mundo</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-03.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Console PS3 com 10 jogos exlusivos</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>   
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-04.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Nintendo 64 e 4 controles e 200 jogos</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>     
-        </div>
-
-        <div class="row text-center">
-            <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-05.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Sega com dois controles e mais de mil jogos</h3>
-                            <p class="card-text preco">R$ 900,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 pb-1 pb-md-0  mb-3">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-02.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro the Five disfunction of a team</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-03.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro O Foco Tripo - Daniel Goleman</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>   
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-04.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro A Culpa é das estrelas - John Green</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>     
+            @endforeach
         </div>
 
     </section>
@@ -260,61 +164,22 @@
             </div>     
         </div>
 
-        <div class="row text-center">
+        <div class="row text-center mt-4">
+            @foreach ($produtosBottom as $produtoBottom)
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                <a href="/detalheProduto">
+                <a href="/detalheProduto/{{$produtoBottom->id}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-07.png" alt="Card image cap" width="140px" height="140px">
+                            <img src="{{ $produtoBottom->imagem != null ? asset($produtoBottom->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
                         </div>
                         <div class="card-body">
-                            <h3 class="card-title produto">Notebook Samsung New Generation i9 10TB</h3>
-                            <p class="card-text preco">R$ 2.000,00</p>
+                            <h3 class="card-title produto">{{ $produtoBottom->nome }}</h3>
+                            <p class="card-text preco">R$ {{ $produtoBottom->preco }}</p>
                         </div>
                     </div>
                 </a>
             </div>
-
-            <div class="col-md-3 pb-1 pb-md-0  mb-3">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-09.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Notebook HP Pavillon X200, 250TB RAM</h3>
-                            <p class="card-text preco">R$ 2.000,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-07.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro Queremos nos Calar - Mel Duarte</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>   
-            <div class="col-md-3 pb-1 pb-md-0">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-08.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro 1984 - George Orwel</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>     
+            @endforeach    
         </div>
     </section>
 

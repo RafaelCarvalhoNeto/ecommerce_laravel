@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 Route::get('/institucional', function () {
     return view('institucional');
 });
@@ -31,9 +29,7 @@ Route::get('/carrinho', function () {
     return view('carrinho');
 });
 
-Route::get('/detalheProduto', function () {
-    return view('detalheProduto');
-});
+
 Route::get('/ofertas', function () {
     return view('ofertas');
 });
@@ -52,6 +48,13 @@ Route::get('/busca', function () {
 Route::get('/finalizarCompra', function () {
     return view('finalizarCompra');
 });
+
+// NAVEGAÇÃO SITE
+
+Route::get('/', 'NavigateController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/detalheProduto/{id}', 'NavigateController@showDetails');
 
 Auth::routes();
 
@@ -121,5 +124,5 @@ Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
