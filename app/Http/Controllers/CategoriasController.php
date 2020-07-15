@@ -68,7 +68,7 @@ class CategoriasController extends Controller
     }
     public function searchCategoria(Request $request){
         $search = $request->input('search');
-        $categorias = Categoria::where('categoria', 'like', '%'.$search.'%')->paginate(10);
+        $categorias = Categoria::where('tipo', 'like', '%'.$search.'%')->paginate(10);
 
         return view('admin.admCategorias')->with([
             'search'=>$search,

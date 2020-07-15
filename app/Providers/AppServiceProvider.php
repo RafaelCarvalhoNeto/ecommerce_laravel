@@ -27,10 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('*', function ($view) {
-            $categorias = Categoria::paginate(5);
+            $categoriasNav = Categoria::paginate(5);
             $todasAsCategorias = Categoria::all();
             $view->with([
-                'categorias' => $categorias,
+                'categoriasNav' => $categoriasNav,
                 'todasAsCategorias' => $todasAsCategorias
             ]);
         });

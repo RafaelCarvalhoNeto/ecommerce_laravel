@@ -54,7 +54,7 @@
       <div class="subnav">
           <div class="container">
               <div class="row">
-                  <ul>
+                  <ul class="d-flex flex-row">
                       <li><a href="/admin/admUsuarios">Usuários</a></li>
                       <li><a href="/admin/admProdutos">Produtos</a></li>
                       <li><a href="/admin/admCategorias">Categorias</a></li>

@@ -89,8 +89,8 @@
             </div>
             <ul class='d-flex flex-row'>
              
-              @foreach ($categorias as $categoria)
-              <li><a href="/categoria/{{$categoria->slug}}">{{$categoria->tipo}}</a></li>
+              @foreach ($categoriasNav as $categoriaNav)
+              <li><a href="/categoria/{{$categoriaNav->slug}}">{{$categoriaNav->tipo}}</a></li>
                   
               @endforeach
             </ul>
