@@ -5255,7 +5255,7 @@ input[type=button].btn-block {
   line-height: 1.25;
   color: #000;
   background-color: #fff;
-  border: 1px solid #dee2e6;
+  /* border: 1px solid #dee2e6; */
 }
 
 .page-link:hover {
@@ -5263,7 +5263,7 @@ input[type=button].btn-block {
   color: #1d68a7;
   text-decoration: none;
   background-color: #e9ecef;
-  border-color: #dee2e6;
+  /* border-color: #dee2e6; */
 }
 
 .page-link:focus {
@@ -5288,6 +5288,7 @@ input[type=button].btn-block {
   color: #fff;
   background-color: #273273;
   border-color: #273273;
+  border-radius: 5px;
 }
 
 .page-item.disabled .page-link {
