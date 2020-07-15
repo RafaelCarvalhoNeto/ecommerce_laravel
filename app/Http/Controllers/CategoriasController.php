@@ -20,25 +20,25 @@ class CategoriasController extends Controller
 
     public function createCategoria(Request $request){
 
-        $imagem = $request->file('imagem');
+        $banner = $request->file('banner');
 
-        if(empty($imagem)){
+        if(empty($banner)){
             $pathRelative = null;
         } else{
-            $imagem->storePublicly('uploads');
+            $banner->storePublicly('uploads');
             
             $absolutePath = public_path()."/storage/uploads";
 
-            $name = $imagem->getClientOriginalName();
+            $name = $banner->getClientOriginalName();
 
-            $imagem->move($absolutePath, $name);
+            $banner->move($absolutePath, $name);
 
             $pathRelative = "storage/uploads/$name";
         }
 
         $categoria = new Categoria;
 
-        $categoria->imagem = $pathRelative;
+        $categoria->banner = $pathRelative;
         $categoria->tipo = $request->inputCategoria;
 
         $categoria->save();

@@ -1,5 +1,6 @@
 <?php
 
+use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +52,7 @@ Route::get('/finalizarCompra', function () {
 
 // NAVEGAÇÃO SITE
 
-Route::get('/', 'NavigateController@index');
+Route::get('/', 'NavigateController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/detalheProduto/{id}', 'NavigateController@showDetails');
@@ -70,7 +71,7 @@ Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
 Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
 
 // PRODUTOS
-Route::get('/admin/admProdutos', 'ProdutosController@index');
+Route::get('/admin/admProdutos', 'ProdutosController@index')->name('adm.produtos');
 Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
 Route::post('/admin/update/{id}', 'ProdutosController@edit');
 Route::delete('/admin/admProdutos/{id}', 'CardsController@delete');
@@ -97,7 +98,7 @@ Route::get('/admin/admUsuarios/search', 'UsersController@searchUser');
 Route::get('/admin/admCategorias', 'CategoriasController@listAllCategorias')->name('categorias.listAll');
 
 // ADICIONAR CATEGORIAS
-Route::post('/admin/admCategorias/novo', 'CategoriasController@createCategoria');
+Route::post('/admin/admCategorias', 'CategoriasController@createCategoria');
 
 // SEARCH CATEGORIAS
 Route::get('/admin/admCategorias/search', 'CategoriasController@searchCategoria');
@@ -126,5 +127,10 @@ Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
 
+
+// View::composer(['*'], function($view){
+
+//     $view->with
+// });
 
 

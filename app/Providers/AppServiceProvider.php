@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Categoria;
+use Illuminate\Support\Facades\View;
+
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 
     /**
@@ -23,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('*', function ($view) {
+            $categorias = Categoria::paginate(5);
+            $todasAsCategorias = Categoria::all();
+            $view->with([
+                'categorias' => $categorias,
+                'todasAsCategorias' => $todasAsCategorias
+            ]);
+        });
+
     }
 }

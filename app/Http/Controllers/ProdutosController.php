@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Http\Request;
 use App\Produto;
+use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
 {
     public function index() {
 
-        $produtos = Produto::paginate(10);
+        // $produtos = Produto::paginate(10);
+        $produtos = DB::table('produtos')
+        ->join('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->paginate(10);
         $categorias = Categoria::all();
 
         if($produtos){
@@ -60,10 +64,7 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            $produtos = Produto::paginate(10);
-            return view('admin.admProdutos')->with([
-                'produtos'=> $produtos,'success'=>'Usuário alterado com sucesso'
-                ]);
+            return redirect()->route('adm.produtos')->with('success','Usuário alterado com sucesso');
         }
     } 
     

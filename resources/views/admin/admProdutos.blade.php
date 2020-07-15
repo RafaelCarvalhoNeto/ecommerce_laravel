@@ -41,8 +41,8 @@
                                 <td scope="row"><img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="" width="50" height="50"></td>
 
                                 <td scope="row">{{ $produto->nome }}</td>
-                                <td scope="row">{{ $produto->preco }}</td>
-                                <td scope="row">{{ $produto->categoria }}</td>                   
+                                <td scope="row">R$ {{ number_format($produto->preco,2) }}</td>
+                                <td scope="row">{{ $produto->tipo }}</td>                   
                                 <td>
                                     <a href="#">
                                         <i class="fas fa-edit"></i>

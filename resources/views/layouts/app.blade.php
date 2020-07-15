@@ -74,16 +74,28 @@
           </div>
       </nav>
       <div class="subnav">
-          <div class="container">
-              <div class="row">
-                  <ul>
-                      <li><a href="/categoria/ofertas">Ofertas</a></li>
-                      <li><a href="/categoria/livros">Livros</a></li>
-                      <li><a href="/categoria/eletronicos">Eletrônicos</a></li>
-                      <li><a href="/categoria/bolsas">Bolsas</a></li>
-                  </ul>
+        <div class="container">
+          <div class="row d-flex px-3">
+            <div class="btn-group">
+              <button type="button" class="btn btn-secondary dropdown-toggle btn-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bars mr-2"></i>Todas as Categorias
+              </button>
+              <div class="dropdown-menu">
+                @foreach ($todasAsCategorias as $tCategoria)
+                <a class="dropdown-item" href="/categoria/{{$tCategoria->slug}}">{{$tCategoria->tipo}}</a>
+                    
+                @endforeach
               </div>
+            </div>
+            <ul class='d-flex flex-row'>
+             
+              @foreach ($categorias as $categoria)
+              <li><a href="/categoria/{{$categoria->slug}}">{{$categoria->tipo}}</a></li>
+                  
+              @endforeach
+            </ul>
           </div>
+        </div>
       </div>
     </header>
 
