@@ -3,7 +3,7 @@
     <section class="container mt-3">
         <div class="row">
             <div class="col-12">
-                <p><small><a href="index">Página inicial</a> > <a href='/categoria/{{$categoria[0]->slug}}'>{{$categoria[0]->tipo}}</a> > {{$produto->nome}}</small></p>
+                <p><small><a href="/">Página inicial</a> > <a href='/categoria/{{$categoria[0]->slug}}'>{{$categoria[0]->tipo}}</a> > {{$produto->nome}}</small></p>
             </div>
             <div class="col-md-6 my-3">
                 <div>
