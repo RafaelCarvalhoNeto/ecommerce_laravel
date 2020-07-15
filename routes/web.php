@@ -127,3 +127,5 @@ Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
 
+
+

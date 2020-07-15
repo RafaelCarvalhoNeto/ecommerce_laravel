@@ -60,7 +60,7 @@ class MessageController extends Controller
         $search = $request->input('search');
         $messages = Message::where('assunto', 'like', '%'.$search.'%')->orWhere('nome', 'like','%'.$search.'%')->paginate(10);
 
-        return view('/admin/admMensagens')->with([
+        return view('.admin.admMensagens')->with([
             'search'=>$search,
             'messages'=>$messages
         ]);
