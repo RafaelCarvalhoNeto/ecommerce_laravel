@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categoria;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,14 @@ class NavigateController extends Controller
 
     public function showDetails($id){
         $produto = Produto::find($id);
-        $recomendacoes = Produto::paginate(4);
+        $recomendacoes = DB::table('produtos')
+        ->join('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->where('categorias.id', $produto->categoria)
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','produtos.parcelamento')
+        ->paginate(4);
+
+        $categoria = Categoria::where('id', '=', $produto->categoria)
+        ->get();
 
         if($produto){
             $arrayinfos = $produto->informacoes;
@@ -33,22 +41,29 @@ class NavigateController extends Controller
                 'produto' => $produto,
                 'informacoes' => $informacoes,
                 'recomendacoes' => $recomendacoes,
+                'categoria' => $categoria
             ]);
         }
     }
 
     public function pagCategorias($url){
         
-         $produtos = DB::table('produtos')
+        $produtos = DB::table('produtos')
         ->join('categorias', 'produtos.categoria','=', 'categorias.id')
         ->where('categorias.slug', $url)
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','produtos.parcelamento')
         ->paginate(16);
+
+        $categoria = Categoria::where('slug', '=', $url)
+        ->get();
+
+        // print_r($categoria);
         
 
         if($produtos){
             return view('categoria')->with([
                 'produtos'=> $produtos,
-                'categoria'=> $url,
+                'categoria'=> $categoria,
             ]);
         }
     }

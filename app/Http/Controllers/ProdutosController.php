@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Http\Request;
 use App\Produto;
+use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
 {
     public function index() {
 
-        $produtos = Produto::paginate(10);
+        // $produtos = Produto::paginate(10);
+        $produtos = DB::table('produtos')
+        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo')
+        ->paginate(10);
         $categorias = Categoria::all();
 
         if($produtos){
             return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias]);
         }
     
-}
+    
+    }
     public function create(Request $request) {
          
         $imagem = $request->file('imagem');
@@ -60,10 +66,7 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            $produtos = Produto::paginate(10);
-            return view('admin.admProdutos')->with([
-                'produtos'=> $produtos,'success'=>'Usuário alterado com sucesso'
-                ]);
+            return redirect()->route('adm.produtos')->with('success','Usuário alterado com sucesso');
         }
     } 
     

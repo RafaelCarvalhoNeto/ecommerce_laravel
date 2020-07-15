@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Categoria::class, function (Faker $faker) {
     return [
         'tipo' =>$faker->name,
-        'imagem' =>$faker->imageUrl($width = 640, $height = 480),
+        'imagem' =>$faker->imageUrl($width = 960, $height = 250),
     ];
 });

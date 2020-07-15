@@ -49,10 +49,6 @@ header {
     overflow: hidden;
 
 }
-.subnav li {
-    float: left;
-}
-
 .subnav li a {
     display: block;
     color: white;
@@ -63,6 +59,11 @@ header {
 
 .subnav li a:hover {
     background-color: #75B8BF;
+    
+}
+
+.subnav ul li, .subnav ul{
+    flex: 1;
 }
 .navbar-brand {
     color: white !important;
@@ -85,9 +86,10 @@ header {
 .ola-nav:hover{
     border: 2px solid #fff;
     border-radius: 5px;
-    padding: 0 -2px 0 -2px;
-
-    
+    padding: 0 -2px 0 -2px;    
+}
+.btn-categorias{
+    border-radius: 0;
 }
 
 
