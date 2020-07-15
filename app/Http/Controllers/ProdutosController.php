@@ -13,7 +13,8 @@ class ProdutosController extends Controller
 
         // $produtos = Produto::paginate(10);
         $produtos = DB::table('produtos')
-        ->join('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo')
         ->paginate(10);
         $categorias = Categoria::all();
 
@@ -21,7 +22,8 @@ class ProdutosController extends Controller
             return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias]);
         }
     
-}
+    
+    }
     public function create(Request $request) {
          
         $imagem = $request->file('imagem');
