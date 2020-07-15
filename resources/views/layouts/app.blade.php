@@ -23,6 +23,7 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
+  <div class='noir'></div>
   <div id="app">
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -76,11 +77,11 @@
       <div class="subnav">
         <div class="container">
           <div class="row d-flex px-3">
-            <div class="btn-group">
-              <button type="button" class="btn btn-secondary dropdown-toggle btn-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="btn-group" >
+              <button type="button" id="btn-fade" class="btn btn-secondary dropdown-toggle btn-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bars mr-2"></i>Todas as Categorias
               </button>
-              <div class="dropdown-menu">
+              <div class="dropdown-menu d-categorias">
                 @foreach ($todasAsCategorias as $tCategoria)
                 <a class="dropdown-item" href="/categoria/{{$tCategoria->slug}}">{{$tCategoria->tipo}}</a>
                     
@@ -180,19 +181,20 @@
 
   </div>
 
-    <!-- SCRIPTS -->
-    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function () {
-          $("#myInput").on("keyup", function () {
-              var value = $(this).val().toLowerCase();
-              $("#myTable tr").filter(function () {
-                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-              });
-          });
-      });
-    </script> --}}
+  <script>
+    let btn = document.getElementById('btn-fade');
+    let noir = document.querySelector('.noir');
+    btn.addEventListener('click', function(event){
+      noir.classList.toggle('active-noir')
+      btn.style.zIndex = 100
+    })
+    document.addEventListener('click', function(){
+      noir.classList.remove('active-noir')
+    })
     
+  </script>
+
+
   @guest
   @else
   <script>
@@ -208,7 +210,7 @@
       drop.classList.remove('show')
       dmenu.classList.remove('show')
     })
-    console.log(nav)
+
     itens.addEventListener('mouseout',function(){
       drop.classList.remove('show')
       dmenu.classList.remove('show')

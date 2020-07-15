@@ -91,6 +91,33 @@ header {
 .btn-categorias{
     border-radius: 0;
 }
+.d-categorias{
+    width: 100%;
+    border-radius: 0px;
+    margin: 0;
+}
+.btn-active{
+    z-index: 100;
+}
+.noir{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    background: #333;
+    transition: all .5s,z-index 0ms;
+    visibility: hidden;
+    z-index: 99;
+    
+}
+.active-noir{
+    opacity: .5;
+    visibility: visible;
+}
 
 
 /* INDEX */
