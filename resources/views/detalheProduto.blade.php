@@ -33,12 +33,17 @@
                                     <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->preco),2)}}</p>
                                     <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
                                 </div>
-                                <div class="form-group m-0 mb-4">
-                                    <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
-                                </div>
+                                <form action="{{ route('carrinho.store') }}" method="POST" class="form-group m-0 mb-4">
+                                @csrf
+                                <input type="hidden" name="id" value="{{ $produto->id }}">
+                                <input type="hidden" name="id" value="{{ $produto->nome }}">
+                                <input type="hidden" name="id" value="{{ $produto->imagem }}">
+                                <input type="hidden" name="id" value="{{ $produto->preco }}">
+                                <input type="hidden" name="id" value="{{ $produto->parcelamento }}">
+                                <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
+                                </form>
                             </div>
                         </div>
-
                     </div>
                 </form>
 

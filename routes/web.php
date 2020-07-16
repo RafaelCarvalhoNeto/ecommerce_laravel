@@ -127,6 +127,11 @@ Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
 
+// CARRINHO
+Route::post('/carrinho', 'CarrinhoController@store')->name('carrinho.store');
+//Route::patch('/cart/{product}', 'CartController@update')->name('carrinho.update');
+//Route::delete('/cart/{product}', 'CartController@destroy')->name('carrinho.destroy');
+//Route::post('/cart/switchToSaveForLater/{product}', 'CartController@switchToSaveForLater')->name('carrinho.switchToSaveForLater');
 
 // View::composer(['*'], function($view){
 

@@ -22,7 +22,7 @@
                         <tr>
                             <td colspan="2">
                                 <div class="d-flex">
-                                    <img src="/img/celular.jpg" idth="72" height="72" alt="">
+                                    <img src="/img/celular.jpg" height="72" alt="">
                                     <div class="text-left mx-0 mx-md-3">
                                         <h5 class="my-0"> Celular</h5>
                                         <small class="text-muted my-0">Indentificação do produto</small><br>
@@ -42,58 +42,7 @@
                             <td class="align-middle">R$ 900,00</td>
                             <td class="align-middle font-weight-bold">R$ 900,00</td>
                         </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="d-flex">
-                                    <img src="/img/computador.jpg" idth="72" height="72" alt="">
-                                    <div class="text-left mx-0 mx-md-3">
-                                        <h5 class="my-0">Computador</h5>
-                                        <small class="text-muted my-0">Indentificação do produto</small><br>
-                                        <label class="mr-1" name="qtd"><small>Qtd</small></label>
-                                        <select name="qtd">
-                                            <option selected value=1>1</option>
-                                            <option value=2>2</option>
-                                            <option value=3>3</option>
-                                            <option value=4>4</option>
-                                            <option value=5>5</option>
-                                        </select>
-                                        <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
-                                        <a href="#" class="ml-3 text-dark"><small>Excluir</small></a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">R$ 900,00</td>
-                            <td class="align-middle font-weight-bold">R$ 1800,00</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <div class="d-flex">
-                                    <img src="/img/controle-ps5.jpg" idth="72" height="72" alt="">
-                                    <div class="text-left mx-0 mx-md-3">
-                                        <h5 class="my-0">Controle PS5</h5>
-                                        <small class="text-muted my-0">Indentificação do produto</small><br>
-                                        <label class="mr-1" name="qtd"><small>Qtd</small></label>
-                                        <select name="qtd">
-                                            <option selected value=1>1</option>
-                                            <option value=2>2</option>
-                                            <option value=3>3</option>
-                                            <option value=4>4</option>
-                                            <option value=5>5</option>
-                                        </select>
-                                        <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
-                                        <a href="#" class="ml-3 text-dark"><small>Excluir</small></a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">R$ 900,00</td>
-                            <td class="align-middle font-weight-bold">R$ 3600,00</td>
-                        </tr>
-    
-                        <tr>
-                            <td colspan="2"></td>
-                            <td class="align-middle font-weight-bold">Total</td>
-                            <td class="align-middle font-weight-bold">R$ 3600,00</td>
-                        </tr>
+
                         
                     </tbody>
                 </table>
