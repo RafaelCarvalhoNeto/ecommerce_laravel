@@ -9,7 +9,7 @@ class Categoria extends Model
 {
     protected $table = 'categorias';
 
-    protected $fillable = ['tipo, imagem'];
+    protected $fillable = ['tipo, banner'];
 
     public function setTipoAttribute($value){
         $this->attributes['tipo'] = $value;

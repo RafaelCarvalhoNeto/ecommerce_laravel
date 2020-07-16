@@ -32,7 +32,7 @@
     <div class="col-12 mt-3 mb-3">
       <p>Pesquise por um pedido:</p>  
       <input class="form-control" id="myInput" type="text" placeholder="Pesquisar...">
-      <div id="table">
+      <div id="table" class="tableCarrinho">
         <table class="table table-striped text-center mt-3">
           <thead class="thead-dark">
             <tr>

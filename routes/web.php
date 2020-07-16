@@ -128,9 +128,4 @@ Route::get('/usuarios/historicoPedidos', function () {
 });
 
 
-// View::composer(['*'], function($view){
-
-//     $view->with
-// });
-
 
