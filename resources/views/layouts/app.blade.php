@@ -69,7 +69,7 @@
                   @endguest
                   
 
-                  <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="carrinho"><i class="fas fa-shopping-cart"></i></a>
+                  <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="/carrinho"><i class="fas fa-shopping-cart"></i></a>
               </div>
           </div>
       </nav>
