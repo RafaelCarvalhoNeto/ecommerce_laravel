@@ -26,7 +26,7 @@ class CreateProdutosTable extends Migration
             $table->string("parcelamento")->nullable();
             $table->timestamps();
 
-            $table->foreign('categoria')->references('id')->on('categorias');
+            $table->foreign('categoria')->references('id')->on('categorias')->onDelete('CASCADE');
         });
     }
 
