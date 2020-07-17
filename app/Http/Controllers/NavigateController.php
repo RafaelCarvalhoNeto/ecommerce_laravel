@@ -81,20 +81,20 @@ class NavigateController extends Controller
         $maxPrice = $produtos->get()->max('preco');
         
         if($precoBuscado){
-            $produtos = $produtos->where('preco', '<', $precoBuscado)
-            ->paginate(16);
+            $produtos = $produtos->where('preco', '<', $precoBuscado);
 
         } else{
-            $produtos = Produto::where('nome', 'like', '%'.$search.'%')
-            ->paginate(16);
-            $maxPrice = $produtos->max('preco');
+            $produtos = Produto::where('nome', 'like', '%'.$search.'%');
         }
+        $found = $produtos->count();
+        $produtos = $produtos->paginate(16);
 
         return view('busca')->with([
             'search'=>$search,
             'produtos'=>$produtos,
             'maxPrice'=>$maxPrice,
             'precoBuscado'=> $precoBuscado,
+            'found'=>$found,
         ]);
     }
 

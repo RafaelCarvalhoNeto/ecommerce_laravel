@@ -3,7 +3,7 @@
     <div class="container pt-3 ajuste">
 
         <div class="row">
-            <div class="col-2">
+            <div class="col-md-2 col-sm-12">
                 <form action="{{ url('/search') }}" method="GET">
                     <input type="hidden" value='{{$search}}' name='search'>
                     {{-- <h2 class="col-12 p-3 mb-3 border-bottom">Ofertas</h2>
@@ -45,9 +45,10 @@
                 </form>
 
             </div>
-            <div class="col-10">
+            <div class="col-md-10 col-sm-12">
                 <div class="row">
-                    <h2 class="col-12 p-3 mb-3 border-bottom">Busca por: {{$search}}</h2>
+                    <h2 class="col-12 pt-3  ">Busca por: {{$search}}</h2>
+                    <p class="col-12 border-bottom pb-3 mb-3">Total de resultados encontrados: <strong>{{$found}}</strong></p>
                     @foreach ($produtos as $produto)
                     <div class="col-md-3 pb-1 pb-md-0 mb-3">
                         <a href="/detalheProduto/{{$produto->slug}}">
@@ -74,7 +75,11 @@
 
         </div>
         <div class="d-flex justify-content-center mt-4">
-            {{ $produtos->appends(['search'=>isset($search) ? $search:''])->links() }}
+            {{ $produtos->appends([
+                'search'=>isset($search) ? $search:'',
+                'preco'=>isset($precoBuscado) ? $precoBuscado:'',
+                
+                ])->links() }}
         </div>
 
 
