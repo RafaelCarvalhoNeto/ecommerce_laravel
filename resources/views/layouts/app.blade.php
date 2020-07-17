@@ -33,9 +33,9 @@
               </a>
 
 
-                <form action="/busca" method="get" class="form-inline ml-auto p-2 my-0">
+                <form action="{{ url('/search') }}" method="GET" class="form-inline ml-auto p-2 my-0">
                     <div class="input-group" id="busca">
-                        <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search">
+                        <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search" name="search">
                         <div class="input-group-append">
                             <button class="search btn p-0" type="submit"><i class="fas fa-search"></i></button>
                         </div>

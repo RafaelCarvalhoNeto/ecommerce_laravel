@@ -1,9 +1,12 @@
 @extends('layouts.app')
+@section('title')
+    {{$produto->nome}}
+@endsection
 @section('content')
     <section class="container mt-3">
         <div class="row">
             <div class="col-12">
-                <p><small><a href="/">Página inicial</a> > <a href='/categoria/{{$categoria[0]->slug}}'>{{$categoria[0]->tipo}}</a> > {{$produto->nome}}</small></p>
+                <p><small><a href="/">Página inicial</a> > <a href='/categoria/{{$categoria->slug}}'>{{$categoria->tipo}}</a> > {{$produto->nome}}</small></p>
             </div>
             <div class="col-md-6 my-3">
                 <div>
@@ -15,7 +18,7 @@
                 <small>{{$produto->id}}</small>
                 <p class="my-3">{{$produto->descricao}}
                 </p>
-                <form action="./carrinho" method="GET" id="formComprar">
+                <form action="/carrinho" method="GET" id="formComprar">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-2 p-0">
@@ -96,7 +99,7 @@
         <div class="row mt-4">
             @foreach ($recomendacoes as $recomendacao)
             <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                <a href="/detalheProduto/{{$recomendacao->id}}">
+                <a href="/detalheProduto/{{$recomendacao->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
                             <img src="{{ $recomendacao->imagem != null ? asset($recomendacao->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">

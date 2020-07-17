@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Carrinho
+@endsection
 @section('content')
 
 <section class="container-fluid m-0 p-0 ajuste">

@@ -371,6 +371,9 @@ form input.form-control, form textarea.form-control, form select.form-control{
     font-size: 2em;
 }
 
+
+/* BUSCA */
+
 @media only screen and (min-width: 425px) {
 
     #carrosel {

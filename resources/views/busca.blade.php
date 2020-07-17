@@ -4,160 +4,94 @@
 
         <div class="row">
             <div class="col-2">
-                <h2 class="col-12 p-3 mb-3 border-bottom">Ofertas</h2>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Promoção</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Desconto</label>
-                </div>
-                <div class="list-group">
-                    <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Preço</h2>
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
-                    <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Marca</h2>
+                <form action="{{ url('/search') }}" method="GET">
+                    <input type="hidden" value='{{$search}}' name='search'>
+                    {{-- <h2 class="col-12 p-3 mb-3 border-bottom">Ofertas</h2>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                        <label class="form-check-label" for="inlineCheckbox1">Asus</label>
+                        <input class="form-check-input" type="checkbox" value="option1">
+                        <label class="form-check-label">Promoção</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Sony</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                        <label class="form-check-label" for="inlineCheckbox2">Microsoft</label>
+                        <input class="form-check-input" type="checkbox" value="option2">
+                        <label class="form-check-label">Desconto</label>
+                    </div> --}}
+                    <div class="list-group">
+                        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Preço</h2>
+                        <div class="slidecontainer text-center">
+                            <small class='inputRange'>R$ 1 -</small>
+                            <small id="final-range" class='inputRange'>R$ {{$precoBuscado != null?$precoBuscado:$maxPrice}}</small>
+                            <input type="range" id="myRange" min='1' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
+                        </div>
+                        {{-- <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Marca</h2>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option3">
+                            <label class="form-check-label">Asus</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="option4">
+                            <label class="form-check-label">Sony</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" value="option5">
+                            <label class="form-check-label">Microsoft</label>
+                        </div> --}}
+                     </div>
+                     <div class="col-md-12 p-0 my-4">
+                        <button type="submit" class="btn btn-primary btn-sm btn-block">Pesquisar</button>
                     </div>
 
-                 </div>
+
+                    
+                </form>
 
             </div>
             <div class="col-10">
-                <div class="row text-center mt-4">
+                <div class="row">
+                    <h2 class="col-12 p-3 mb-3 border-bottom">Busca por: {{$search}}</h2>
+                    @foreach ($produtos as $produto)
                     <div class="col-md-3 pb-1 pb-md-0 mb-3">
-                        <a href="detalheProduto.php">
+                        <a href="/detalheProduto/{{$produto->slug}}">
                             <div class="card avancar">
                                 <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-01.png" alt="Card image cap" width="140px" height="140px">
+                                    <img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-title produto">Playstation 4 com 20Gb de memoria</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
+                                    <h3 class="card-title produto">{{ $produto->nome }}</h3>
+                                    <p class="card-text preco m-0">R$ {{number_format(($produto->preco),2)}}</p>
+                                    <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
                                 </div>
                             </div>
                         </a>
                     </div>
+                    @endforeach
     
-                    <div class="col-md-3 pb-1 pb-md-0  mb-3">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-02.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Atari - Um dos primeiros do mundo</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-    
-                    <div class="col-md-3 pb-1 pb-md-0">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-03.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Console PS3 com 10 jogos exlusivos</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 pb-1 pb-md-0">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-04.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Nintendo 64 e 4 controles e 200 jogos</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 pb-1 pb-md-0">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-04.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Nintendo 64 e 4 controles e 200 jogos</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 pb-1 pb-md-0">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-04.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Nintendo 64 e 4 controles e 200 jogos</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 pb-1 pb-md-0">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-04.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Nintendo 64 e 4 controles e 200 jogos</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 pb-1 pb-md-0">
-                        <a href="detalheProduto.php">
-                            <div class="card avancar">
-                                <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                                    <img src="img\eletronico-04.png" alt="Card image cap" width="140px" height="140px">
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title produto">Nintendo 64 e 4 controles e 200 jogos</h3>
-                                    <p class="card-text preco">R$ 900,00</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
+                   
                 </div>
+                    
 
             </div>
+            
 
         </div>
-        <!-- Card deck -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $produtos->appends(['search'=>isset($search) ? $search:''])->links() }}
+        </div>
 
 
-            
+        
 
   
         
 
     </div>
+
+    <script>
+        var range = document.getElementById('myRange');
+        var textRange = document.getElementById('final-range');
+        range.addEventListener('change', function(){
+            textRange.innerText = `R$ ${range.value}`;
+        })
+    </script>
 
 
 @endsection
