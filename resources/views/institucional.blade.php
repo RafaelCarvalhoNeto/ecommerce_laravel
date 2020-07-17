@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Institucional
+@endsection
 @section('content')
 
 <div class="container jumbotron pt-3 mt-3">

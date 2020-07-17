@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Finalizar compra
+@endsection
 @section('content')
     <section class="container my-3">
                 <form action="pagamento-confirmado.html" method="post" class="row">
