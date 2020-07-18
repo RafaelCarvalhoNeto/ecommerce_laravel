@@ -44,38 +44,34 @@
                                 <td scope="row">R$ {{ number_format($produto->preco,2) }}</td>
                                 <td scope="row">{{ $produto->tipo }}</td>                   
                                 <td>
-                                    <a href="#">
+                                    <a href="/admin/admProdutos{{ $produto->id }}">
                                         <i class="fas fa-edit"></i>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="#" data-toggle="modal" data-target="#modal">
+                                <a href="/admin/admProdutos" data-toggle="modal" data-target="#modal{{ $produto->id }}">
                                         <i class="fas fa-trash"></i>
                                     </a>
-                                    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="modal{{ $produto->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Deseja realmente excluir?</h5>
+                                                <h5 class="modal-title">Deseja realmente excluir o produto ?</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                                                    <span aria-hidden="true">&times;</span>
+                                                <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <h3>Computador</h3>
+                                                <h3> {{ $produto->nome}}</h3>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                                <a href="Bolsas">
-                        
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>                     
                                                 <form action="/admin/admProdutos/{{ $produto->id }}" method="POST">
                                                     @csrf
                                                     {{ method_field('DELETE') }}
                                                     <button id="delete-contact" type="submit" class="btn btn-danger">Excluir</button>
                                                 </form>
-                        
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -139,77 +135,79 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
+                                
                                 <label for="inputCategoria">Categoria</label>
-
                                 <select class="custom-select" name= "inputCategoria">
                                     @foreach ($categorias as $categoria)
                                         <option value="{{$categoria->id}}">{{$categoria->tipo}}</option>
+                                    
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-md-6">
 
-                                <label for="inputPreco">Preço</label>
-                                <input type="number" class="form-control" placeholder="Insira o preço do produto"
-                                aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"required>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="inputDescricao">Descrição</label>
-                                <input type="text" class="form-control" placeholder="Insira a descrição do produto"
-                                aria-describedby="adicionarDescricaoHelp" id="inputDescricao" name="inputDescricao"
-                                required>
+                            <div class="form-group col-md-6">
+    
+                                    <label for="inputPreco">Preço</label>
+                                    <input type="number" class="form-control" placeholder="Insira o preço do produto"
+                                    aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"required>
                             </div>
                             <div class="form-group col-md-6">
-
-                                <label for="inputParcelamento">Parcelamento</label>
-                                <input type="number" class="form-control" placeholder="Insira o preço do produto"
-                                aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento"required>
+                                    <label for="inputDescricao">Descrição</label>
+                                    <input type="text" class="form-control" placeholder="Insira a descrição do produto"
+                                    aria-describedby="adicionarDescricaoHelp" id="inputDescricao" name="inputDescricao"
+                                    required>
+                            </div>
+                            <div class="form-group col-md-6">
+    
+                                    <label for="inputParcelamento">Parcelamento</label>
+                                    <input type="number" class="form-control" placeholder="Insira o preço do produto"
+                                    aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento"required>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="titulo1">Titulo</label>
-                                <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                id="titulo1" name="titulo1">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="titulo1">Titulo</label>
+                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
+                                    id="titulo1" name="titulo1">
+                                </div>
+                                <div class="form-group col-md-6">
+    
+                                    <label for="inputTecnica1">Info</label>
+                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
+                                    id="inputTecnica1" name="inputTecnica1">
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-
-                                <label for="inputTecnica1">Info</label>
-                                <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                id="inputTecnica1" name="inputTecnica1">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="titulo2">Titulo</label>
+                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
+                                    id="titulo2" name="titulo2">
+                                </div>
+                                <div class="form-group col-md-6">
+    
+                                    <label for="inputTecnica2">Info</label>
+                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
+                                    id="inputTecnica2" name="inputTecnica2">
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="titulo2">Titulo</label>
-                                <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                id="titulo2" name="titulo2">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="titulo3">Titulo</label>
+                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
+                                    id="titulo3" name="titulo3">
+                                </div>
+                                <div class="form-group col-md-6">
+    
+                                    <label for="inputTecnica3">Info</label>
+                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
+                                    id="inputTecnica3" name="inputTecnica3">
+                                </div>
                             </div>
-                            <div class="form-group col-md-6">
-
-                                <label for="inputTecnica2">Info</label>
-                                <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                id="inputTecnica2" name="inputTecnica2">
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Adicionar</button>
+    
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="titulo3">Titulo</label>
-                                <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                id="titulo3" name="titulo3">
-                            </div>
-                            <div class="form-group col-md-6">
-
-                                <label for="inputTecnica3">Info</label>
-                                <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                id="inputTecnica3" name="inputTecnica3">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Adicionar</button>
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        </div>
                     </form>
                 </div>
             </div>

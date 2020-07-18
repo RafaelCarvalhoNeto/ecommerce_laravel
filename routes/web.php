@@ -74,8 +74,8 @@ Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
 Route::get('/admin/admProdutos', 'ProdutosController@index')->name('adm.produtos');
 Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
 Route::post('/admin/update/{id}', 'ProdutosController@edit');
-Route::delete('/admin/admProdutos/{id}', 'CardsController@delete');
-Route::post('/admin/admProdutos/search', 'CardsController@search');
+Route::delete('/admin/admProdutos/{id}', 'ProdutosController@delete');
+Route::post('/admin/admProdutos/search', 'ProdutosController@search');
 
 // USUARIOS
 Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
