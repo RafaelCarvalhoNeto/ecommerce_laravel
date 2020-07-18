@@ -48,7 +48,6 @@ class ProdutosController extends Controller
         $produto->imagem = $pathRelative;
         $produto->categoria = $request->inputCategoria;
         $produto->preco  = $request->inputPreco;
-        $produto->preco  = $request->inputPreco;
         $produto->descricao = $request->inputDescricao;
         $produto->parcelamento = $request->inputParcelamento;
 
@@ -103,14 +102,17 @@ class ProdutosController extends Controller
         if($produto->delete()){
 
             $produtos = Produto::paginate(10);
+            $categorias = Categoria::all();
 
+            if($produtos){
             return view('admin.admProdutos')->with([
-                'produtos' => $produtos,
+                'produtos' => $produtos, 
+                'categorias'=> $categorias,
                 'success' => 'Registro excluído com sucesso'
-            ]);
+                ]);
+            }
         }
     }
-
     public function search(Request $request){
 
         $search = $request->input('search');
