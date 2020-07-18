@@ -20,10 +20,10 @@ class CarrinhoController extends Controller
     }
 
 
-public function store(Request $request)
+public function store(Produto $produto)
 {
-    Cart::add($request->nome, $request->imagem, $request->preco, $request->parcelamento)
+    Cart::add($produto->nome, $produto->imagem, 1, $produto->preco, $produto->parcelamento)
     ->associate('App\Produto')
 
-    return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
+    return redirect()->route('carrinho')->with('success_message', 'Item was added to your cart!');
 }

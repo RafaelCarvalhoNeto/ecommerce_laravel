@@ -85,7 +85,7 @@
         @endforeach
         @else
 
-        <h3>No há nenhum iten no carrinho!</h3>
+        <h3>Nao há nenhum iten no carrinho!</h3>
         <div class="spacer"></div>
         <a href="{{ route('index') }}" class="button">Continue a Navegar</a>
         <div class="spacer"></div>
