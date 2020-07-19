@@ -113,11 +113,11 @@ class ProdutosController extends Controller
             }
         }
     }
-    public function search(Request $request){
+    public function searchProduto(Request $request){
 
-        $search = $request->input('search');
+        $search = $request->input('inputSearch');
 
-        $produtos = Produto::where('title', 'like', '%' . $search . '%')
+        $produtos = Produto::where('produto', 'like', '%' . $search . '%')
             ->orWhere('content', 'like', '%' . $search . '%')
             ->paginate(10);
 

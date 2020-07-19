@@ -7,19 +7,23 @@
             
             <h2 class="col-12 p-3 mb-3 border-bottom">Produtos</h2>
             <div class="col-12 mt-3 mb-3">
-                <p>Pesquise por uma Produto:</p>
-                <form action="#" method="GET">
+                <p>Pesquise aqui por um Produto:</p>
+                <form class="form-inline" action="{{ url('/admin/admProdutos') }}" method="GET">
                     <div class="input-group col-12 px-0">
-                        <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
+                        <input class="form-control border-0" id="inputSearch" type="inputSearch" arial-label="inputSearch" placeholder="Pesquisar..." name='inputSearch'>
                         <div class="input-group-append">
-
                             <button class="btn btn-primary" type="submit">Pesquisar</button>
-
                         </div>
-
                     </div>
                 </form>
-                <div id="table"  class="tableAdm">
+                @if($produtos->isEmpty())
+                    <section class="row">
+                        <div class="col-12">
+                            <h1 class="col-12 text-center">Que pena! Não encontramos o produto desejado.</h1>
+                        </div>
+                    </section>
+                    @else
+                    <div id="table"  class="tableAdm">
                     <table class="table table-striped text-center mt-3">
                         <thead class="thead-dark">
                             <tr>
@@ -77,14 +81,15 @@
                                     </div>
                                 </div>
                                 </td>
-                            </tr>
-                                
+                            </tr>   
                             @endforeach
-                            
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $produtos->appends(['search' => isset($search) ? $search : ''])->links() }}
+                    </div>
                 </div>
-                
+              @endif  
 
             </div>
         </div>
@@ -97,10 +102,6 @@
                 <i class="far fa-plus-square"></i>
             </a>
         </p>
-        <div class="d-flex justify-content-center mt-4">
-            {{ $produtos->appends(['search'=>isset($search) ? $search:''])->links() }}
-        </div>
-
 
         <!-- Modal Adicionar -->
         <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
