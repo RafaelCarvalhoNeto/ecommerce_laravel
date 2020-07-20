@@ -121,8 +121,13 @@ Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
 // SEARCH MENSAGENS
 Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
+// CARRINHO
+Route::middleware(['auth'])->group(function (){
 
-
+    Route::post('/carrinho/{produto}', 'CartController@store')->name('cart.store');
+    
+    });
+    
 // ACESSO USUÁRIO
 
 Route::get('/usuarios/historicoPedidos', function () {

@@ -36,15 +36,19 @@
                                     <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->preco),2)}}</p>
                                     <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
                                 </div>
+                                <form action="{{ route('cart.store', $produto) }}" method="post">
+                                {{ csrf_field() }}
                                 <div class="form-group m-0 mb-4">
-                                    <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
+                                    <button type='submit' class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
                                 </div>
+                                </form>
                             </div>
                         </div>
 
                     </div>
                 </form>
 
+                {{-- @php dd(Cart::content()); @endphp --}}
 
             </div>
         </div>
