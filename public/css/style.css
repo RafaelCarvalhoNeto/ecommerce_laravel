@@ -10,6 +10,7 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
     font-style: normal;
+    list-style: none;
 }
 a,
 a:active,
@@ -372,7 +373,22 @@ form input.form-control, form textarea.form-control, form select.form-control{
 }
 
 
-/* BUSCA */
+/* FINALIZAR PEDIDO */
+.dadosPedido{
+    font-size: 0.8em;
+}
+.pedidoFinal{
+    font-size: 2em;
+}
+.checkCompra{
+    color: rgb(7, 170, 7);
+    font-size: 6em;
+}
+.boxCheck{
+    padding: 50px;
+    border-bottom: 1px solid rgb(7, 170, 7, 0.3);
+    /* border-radius: 50px; */
+}
 
 @media only screen and (min-width: 425px) {
 

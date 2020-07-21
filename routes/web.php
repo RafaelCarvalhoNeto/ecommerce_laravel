@@ -49,7 +49,9 @@ Route::get('/busca', function () {
 Route::get('/finalizarCompra', function () {
     return view('finalizarCompra');
 });
-
+Route::get('/compraFinalizada', function () {
+    return view('compraFinalizada');
+});
 // NAVEGAÇÃO SITE
 
 Route::get('/', 'NavigateController@index')->name('index');
