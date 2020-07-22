@@ -13,7 +13,7 @@
                         <input class="form-control border-0" id="myInput" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
                         <div class="input-group-append">
 
-                            <button class="btn btn-primary px-5" type="submit">Pesquisar</button>
+                            <button class="btn btn-primary btn-search-adm" type="submit">Pesquisar</button>
 
                         </div>
 
