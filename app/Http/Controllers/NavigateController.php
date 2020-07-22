@@ -6,6 +6,7 @@ use App\Categoria;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class NavigateController extends Controller
 {
@@ -96,6 +97,34 @@ class NavigateController extends Controller
             'precoBuscado'=> $precoBuscado,
             'found'=>$found,
         ]);
+    }
+
+
+    // AUTH USUÁRIO
+
+    public function finalizarPedido(){
+        if(Auth::check()===true){
+            return view('usuarios.finalizarCompra');
+        }
+        return redirect()->route('login.direct');
+    }
+    
+    public function loginDirect(){
+        return view('loginDirect');
+    }
+
+    public function login(Request $request){
+
+        $credentials = [
+            'email'=> $request->email,
+            'password'=> $request->password
+        ];
+
+        if (Auth::attempt($credentials)){
+            return redirect()->route('finaliza.compra');
+
+        }
+        return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);
     }
 
 

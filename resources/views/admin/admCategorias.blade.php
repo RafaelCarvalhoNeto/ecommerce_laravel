@@ -22,11 +22,12 @@
                     <input class="form-control border-0" id="myInput" type="search" arial-label="search"
                         placeholder="Pesquisar..." name='search'>
                     <div class="input-group-append">
-                        <button class="btn btn-primary px-5" type="submit">Pesquisar</button>
+                        <button class="btn btn-primary btn-search-adm" type="submit">Pesquisar</button>
                     </div>
 
                 </div>
             </form>
+            <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{$found}}</strong></p>
             <div id="table" class="tableAdm">
                 <table class="table table-striped text-center mt-3">
                     <thead class="thead-dark">

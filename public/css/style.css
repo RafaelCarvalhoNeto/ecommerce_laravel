@@ -489,6 +489,9 @@ form input.form-control, form textarea.form-control, form select.form-control{
     .ola-nav{
         width: 15%;
     }
+    .btn-search-adm{
+        width: 150px;
+    }
 
 
 

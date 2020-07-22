@@ -46,9 +46,7 @@ Route::get('/bolsas', function () {
 Route::get('/busca', function () {
     return view('busca');
 });
-Route::get('/finalizarCompra', function () {
-    return view('finalizarCompra');
-});
+
 Route::get('/compraFinalizada', function () {
     return view('compraFinalizada');
 });
@@ -63,7 +61,12 @@ Route::get('/categoria/{categoria}', 'NavigateController@pagCategorias');
 
 Route::get('/search', 'NavigateController@searchItems');
 
+Route::get('/loginDirect', 'NavigateController@loginDirect')->name('login.direct');
+Route::post('/login/do', 'NavigateController@login')->name('login.do');
+
 Auth::routes();
+
+Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
 
 // ACESSO ADMIN
 
@@ -89,7 +92,7 @@ Route::get('/usuarios/editUsuarios/{id}', 'UsersController@editUser');
 Route::put('/usuarios/editUsuarios/{id}', 'UsersController@updateUser');
 
 // CRIAR USUÁRIO
-Route::get('/cadastro', 'UsersController@createPage');
+Route::get('/cadastro', 'UsersController@createPage')->name('cadastro.usuario');
 Route::post('/cadastro', 'UsersController@createUser');
 
 // DELETE USUÁRIO
