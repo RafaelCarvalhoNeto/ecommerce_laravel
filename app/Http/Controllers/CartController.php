@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Produto;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
@@ -47,8 +47,8 @@ class CartController extends Controller
             return redirect()->route('/carrinho')->with('success_message', 'Item já está no seu carrinho!');
         }
 
-        Cart::add($produto->id, $produto->nome, 1, $produto->preco)
-            ->associate('App\Produto');
+        Cart::add($produto->nome, $produto->imagem, 1, $produto->preco, $produto->parcelamento)
+            ->associate('App\Produto')
 
         dd(Cart::content());
         return redirect()->route('/carrinho')->with('success_message', 'Item adicionado ao carrinho');
