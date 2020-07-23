@@ -131,6 +131,7 @@ Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho');
 Route::get('/carrinho/adicionar', function() {
     return redirect()->route('index');
 });
+Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
 //Route::post('/carrinho/{id}', 'CarrinhoController@index');
 
