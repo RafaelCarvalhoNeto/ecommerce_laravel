@@ -33,8 +33,10 @@
             <div class="d-flex flex-column text-right dropdown">
               @guest
               <p class="m-0 text-white admin">Painel Administrativo</p>
+
               @else
               <p class="m-0 text-white admin">Painel Administrativo</p>
+              @if (Auth::user()->admin==1)
               <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Olá, {{ Auth::user()->nome }}
@@ -47,8 +49,12 @@
                   </form>
                 </div>
               </div>
+              @endif
             </div>
             @endguest
+                  
+
+
           </div>
         </nav>
       <div class="subnav">

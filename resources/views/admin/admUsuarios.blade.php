@@ -30,12 +30,11 @@
                         <thead class="thead-dark">
                             <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Admin</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Sobrenome</th>
                             <th scope="col"> CPF</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Endereço</th>
-                            <th scope="col">CEP</th>
                             <th scope="col">Cidade</th>
                             <th scope="col">UF</th>
                             <th scope="col" colspan="2">Ações</th>
@@ -45,12 +44,24 @@
                             @foreach ($users as $user)
                                 <tr>
                                     <th scope="row">{{$user->id}}</th>
+                                    <td scope="row">
+                                        <form action="/admin/toggleAdmin/{{$user->id}}" method="post">
+                                            @csrf
+                                            {{ method_field('PUT')}} 
+                                            @if ($user->admin==null||$user->admin==0)
+                                            <input type="hidden" name="admin" value='1'>
+                                            <button type='submit' class="btn btn-success btn-sm">Tornar Admin</button>
+                                            
+                                            @else
+                                            <input type="hidden" name="admin" value='0'>
+                                            <button type="submit" class="btn btn-danger btn-sm">Retirar Admin</button>
+                                            @endif
+                                        </form>
+                                    </td>
                                     <td scope="row">{{$user->nome}}</td>
                                     <td scope="row">{{$user->sobrenome}}</td>
                                     <td scope="row">{{$user->cpf}}</td>
                                     <td scope="row">{{$user->email}}</td>
-                                    <td scope="row">{{$user->endereco}}</td>
-                                    <td scope="row">{{$user->cep}}</td>
                                     <td scope="row">{{$user->cidade}}</td>
                                     <td scope="row">{{$user->uf}}</td>
                                     <td scope="row">
@@ -63,14 +74,17 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="modalEditLabel">Editar usuário #ID{{ $user->id }}</h5>
+
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
+
                                                     </div>
-                                                    <form action="#" method="post">
+                                                    <form action="/usuarios/editUsuarios/{{$user->id}}" method="post">
                                                     @csrf
                                                     {{ method_field('PUT')}} 
                                                         <div class="modal-body">
+
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
                                                                     <label for="inputNome">Nome</label>
@@ -188,7 +202,7 @@
                                                             
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-dark btn-block">Editar</a>
+                                                            <button type="submit" class="btn btn-dark btn-block">Editar</a>
                                                         </div>
                                                     </form>
                                 

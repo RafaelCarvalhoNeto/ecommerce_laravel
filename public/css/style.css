@@ -390,6 +390,10 @@ form input.form-control, form textarea.form-control, form select.form-control{
     /* border-radius: 50px; */
 }
 
+#tornar-admin{
+    display: none;
+}
+
 @media only screen and (min-width: 425px) {
 
     #carrosel {

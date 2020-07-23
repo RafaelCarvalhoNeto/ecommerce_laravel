@@ -12,11 +12,14 @@ class CategoriasController extends Controller
     public function listAllCategorias(){
 
         if(Auth::check()===true){
-            $categorias = DB::table('categorias');
-            $found = $categorias->count();
-            $categorias = $categorias->paginate(10);
-    
-            return view('admin.admCategorias')->with(['categorias'=>$categorias, 'found'=>$found]);
+            if(Auth::user()->admin==1){
+                $categorias = DB::table('categorias');
+                $found = $categorias->count();
+                $categorias = $categorias->paginate(10);
+        
+                return view('admin.admCategorias')->with(['categorias'=>$categorias, 'found'=>$found]);
+                
+            }
 
         }
         return redirect()->route('admin.login');

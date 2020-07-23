@@ -14,11 +14,15 @@ class UsersController extends Controller
     public function listAllUsers(){
 
         if(Auth::check()===true){
-            $users = DB::table('users');
-            $found = $users->count();
-            $users = $users->paginate(10);
-    
-            return view('admin.admUsuarios')->with(['users'=>$users, 'found'=>$found]);
+            if(Auth::user()->admin==1){
+                $users = DB::table('users');
+                $found = $users->count();
+                $users = $users->paginate(10);
+        
+                return view('admin.admUsuarios')->with(['users'=>$users, 'found'=>$found]);
+
+
+            }
 
         }
         return redirect()->route('admin.login');
@@ -60,10 +64,15 @@ class UsersController extends Controller
         }
         $user->update();
 
-        return view('usuarios.editUsuarios')->with([
-            'user'=> $user,
-            'success'=>'Usuário alterado com sucesso'
-        ]);
+        if(Auth::user()->admin!=1){
+            return view('usuarios.editUsuarios')->with([
+                'user'=> $user,
+                'success'=>'Usuário alterado com sucesso'
+            ]);
+
+        } 
+        return redirect()->route('users.listAll');
+
     }
 
     // GERAR PÁGINA DE CADASTRO DE USUÁRIOS
