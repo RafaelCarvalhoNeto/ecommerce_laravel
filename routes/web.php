@@ -26,10 +26,6 @@ Route::get('/404', function () {
 Route::get('/politicas', function () {
     return view('politicas');
 });
-Route::get('/carrinho', function () {
-    return view('carrinho');
-});
-
 
 Route::get('/ofertas', function () {
     return view('ofertas');
@@ -121,13 +117,20 @@ Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
 // SEARCH MENSAGENS
 Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
-
-
 // ACESSO USUÁRIO
 
 Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
 
+//CARRINHO
+Route::get('/carrinho', function () {
+    return view('carrinho');
+});
+Route::get('/carrinho', 'CarrinhoController@index')->name('carrinho');
+Route::get('/carrinho/adicionar', function() {
+    return redirect()->route('index');
+});
 
+//Route::post('/carrinho/{id}', 'CarrinhoController@index');
 
