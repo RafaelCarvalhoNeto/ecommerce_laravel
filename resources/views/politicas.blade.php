@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Política de Privacidade
+@endsection
 @section('content')
 
 

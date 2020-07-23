@@ -10,6 +10,7 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
     font-style: normal;
+    list-style: none;
 }
 a,
 a:active,
@@ -43,44 +44,32 @@ header {
     background-color: #313f8f;
 }
 .subnav ul{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    display: none;
 
 }
-.subnav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-.subnav li a:hover {
-    background-color: #75B8BF;
-    
-}
-
-.subnav ul li, .subnav ul{
+.subnav .btn-group{
     flex: 1;
 }
+
 .navbar-brand {
     color: white !important;
 }
 .search{
-    background-image: url(../img/lupa.png);
     background-color: #f0f0f5;
-    background-repeat: no-repeat;
-    background-size:  20px;
-    background-position: right;
-    background-position-x: 2px;
-    width: 30px;
+    width: 35px;
     border-radius: 8px ;
 }
+.search.btn i{
+    font-size: 1.4em;
+    color: var(--primary-color);
+}
+
+
 .ola-nav{
    transition: all 0.1s linear;
    border: 2px solid var(--primary-color);
+   display: flex;
+   flex-direction: column;
     
 }
 .ola-nav:hover{
@@ -88,8 +77,14 @@ header {
     border-radius: 5px;
     padding: 0 -2px 0 -2px;    
 }
+.link-ola-nav{
+    display: flex;
+    flex-direction: column;
+}
 .btn-categorias{
     border-radius: 0;
+    padding: 14px 16px;
+    border: none;
 }
 .d-categorias{
     width: 100%;
@@ -112,14 +107,35 @@ header {
     transition: all .5s,z-index 0ms;
     visibility: hidden;
     z-index: 99;
-    
 }
 .active-noir{
     opacity: .5;
     visibility: visible;
 }
+.icon-carrinho{
+    position: relative;
+}
+.bolinha{
+    visibility: visible;
+    background-color: red;
+    color: white;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    font-size: 0.8em;
+    text-align: center;
+    right: 0;
+}
 
+.navbar .container form{
+    order: 1;
+    width: 100%;
+}
 
+.subnav .container{
+    padding: 0;
+}
 /* INDEX */
 body {
     background-color: #ffffff;
@@ -166,11 +182,11 @@ body {
 .icones{
     border-radius: 100px;
     width: 215px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
 }
 
 .icones:hover{
-    transform: rotate(360deg) scale(1.05);
+    transform: rotate(30deg) scale(1.05);
 }
 
 aside {
@@ -199,13 +215,11 @@ footer {
     margin: auto;
     filter: drop-shadow(-10px 0 5px grey);
 }
-.link-footer a{
-    list-style: none;
-    flex: 1;
-    padding: 20px 0;
+#footer a {
+    color: white;
 }
 
-.link-footer a:hover {
+/* .link-footer a:hover {
     background-color: var(--primary-color);
 }
 .link-footer a{
@@ -213,9 +227,16 @@ footer {
 }
 .link-footer a:hover{
     color: #fff !important;
-}
+} */
 
-#footer a {
+
+#footer .link-footer a{
+    color: grey;
+    list-style: none;
+    flex: 1;
+    padding: 20px 0;
+}
+#footer .link-footer a:hover{
     color: white;
 }
 .redes-sociais{
@@ -239,7 +260,7 @@ address{
 
 /* TABELAS */
 
-.tableAdm {
+.tableAdm, .tableCarrinho {
     overflow-x:auto !important;
 
 }
@@ -351,6 +372,28 @@ form input.form-control, form textarea.form-control, form select.form-control{
     font-size: 2em;
 }
 
+
+/* FINALIZAR PEDIDO */
+.dadosPedido{
+    font-size: 0.8em;
+}
+.pedidoFinal{
+    font-size: 2em;
+}
+.checkCompra{
+    color: rgb(7, 170, 7);
+    font-size: 6em;
+}
+.boxCheck{
+    padding: 50px;
+    border-bottom: 1px solid rgb(7, 170, 7, 0.3);
+    /* border-radius: 50px; */
+}
+
+#tornar-admin{
+    display: none;
+}
+
 @media only screen and (min-width: 425px) {
 
     #carrosel {
@@ -375,4 +418,85 @@ form input.form-control, form textarea.form-control, form select.form-control{
     .carousel-control-next-icon, .carousel-control-prev-icon{
         color: black
     }
+
+    .subnav ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow-x:auto !important;
+        display: flex;
+        flex-direction: row;
+    
+    }
+    .subnav .container{
+        padding: 0 15px;
+    }
+
+    .navbar .container form{
+        order: 0;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .subnav li a {
+        flex: 1;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    /* .subnav li a:hover {
+        background-color: #75B8BF;
+        
+    } */
+    .subnav li a, .link-footer a {
+        border-color: #fff;
+        border-radius: 0;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        -webkit-transition: color 150ms ease-in-out;
+        transition: color 150ms ease-in-out;
+    }
+    .link-footer a{
+        color: var(--primary-color);
+    }
+
+    .subnav li a:after, .link-footer a:after {
+        content: '';
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+        width: 0;
+        height: 100%;
+        background: rgb(42, 55, 129);
+        z-index: -1;
+        transition: width 250ms ease-in-out;
+    }
+      .subnav li a:hover, .link-footer a:hover {
+        color: #fff;
+    }
+      .subnav li a:hover:after, .link-footer a:hover:after {
+        width: 110%;
+    }
+    
+    .subnav ul li, .subnav ul{
+        flex: 1;
+    }
+    .subnav .btn-group{
+        flex: 0;
+    }
+    .ola-nav{
+        width: 15%;
+    }
+    .btn-search-adm{
+        width: 150px;
+    }
+
+
+
 }

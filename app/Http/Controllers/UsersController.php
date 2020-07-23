@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
@@ -13,8 +14,15 @@ class UsersController extends Controller
     public function listAllUsers(){
 
         if(Auth::check()===true){
-            $users = User::paginate(10);
-            return view('admin.admUsuarios')->with('users', $users);
+            if(Auth::user()->admin==1){
+                $users = DB::table('users');
+                $found = $users->count();
+                $users = $users->paginate(10);
+        
+                return view('admin.admUsuarios')->with(['users'=>$users, 'found'=>$found]);
+
+
+            }
 
         }
         return redirect()->route('admin.login');
@@ -56,10 +64,15 @@ class UsersController extends Controller
         }
         $user->update();
 
-        return view('usuarios.editUsuarios')->with([
-            'user'=> $user,
-            'success'=>'Usuário alterado com sucesso'
-        ]);
+        if(Auth::user()->admin!=1){
+            return view('usuarios.editUsuarios')->with([
+                'user'=> $user,
+                'success'=>'Usuário alterado com sucesso'
+            ]);
+
+        } 
+        return redirect()->route('users.listAll');
+
     }
 
     // GERAR PÁGINA DE CADASTRO DE USUÁRIOS
@@ -110,23 +123,30 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if($user->delete()){
-            $users = User::paginate(10);
-
-            return view('admin.admUsuarios')->with([
-                'users'=>$users,
+            $users = DB::table('users');
+            $found = $users->count();
+            $users = $users->paginate(10);
+    
+            return view('admin.admUsuarios')->with(
+                ['users'=>$users,
+                'found'=>$found,
                 'success'=> 'Usuário excluído com sucesso'
             ]);
+
         }
     }
 
     // PROCUAR USUÁRIOS
     public function searchUser(Request $request){
         $search = $request->input('search');
-        $users = User::where('nome', 'like', '%'.$search.'%')->orWhere('sobrenome', 'like','%'.$search.'%')->paginate(10);
+        $users = User::where('nome', 'like', '%'.$search.'%')->orWhere('sobrenome', 'like','%'.$search.'%');
+        $found = $users->count();
+        $users = $users->paginate(10);
 
         return view('admin.admUsuarios')->with([
             'search'=>$search,
-            'users'=>$users
+            'users'=>$users,
+            'found'=>$found
         ]);
     }
 

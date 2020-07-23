@@ -31,52 +31,50 @@
               <a class="navbar-brand" href="/">
                   <img src={{asset('img/logo.png')}} alt="Logo" width=65px height=50px>
               </a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse"
-                  data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                  aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                  <form action="/busca" method="get" class="form-inline ml-auto p-2 my-0">
-                      <div class="input-group" id="busca">
-                          <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search">
-                          <div class="input-group-append">
-                              <button class="search btn" type="submit"></button>
-                          </div>
-                      </div>
-                  </form>
-                  @guest
-                  <a class="d-flex flex-column text-white ola-nav p-2" href="#" data-toggle="modal" data-target="#modalLogin">
-                      <small class="login m-0">Olá, faça seu login</small>
-                      <small class="login m-0">ou cadastre-se</small>
-                  </a>
-                  @else
-                  <a class='d-flex flex-column text-white' href="/usuarios/historicoPedidos">
 
-                    <div id="acesso"class="d-flex flex-column dropdown ola-nav text-white p-2">
-                      <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
-                      <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
-                      <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">Sair</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                          @csrf
-                        </form>
-                      </div>
+                <form action="{{ url('/search') }}" method="GET" class="form-inline ml-auto p-2 my-0">
+                    <div class="input-group" id="busca">
+                        <input class="form-control border-0" type="search" placeholder="Busca" aria-label="Search" name="search">
+                        <div class="input-group-append">
+                            <button class="search btn p-0" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
                     </div>
+                </form>
+                @guest
+                <a class="text-white ola-nav p-2" href="#" data-toggle="modal" data-target="#modalLogin">
+                    <small class="login m-0">Olá, faça seu login</small>
+                    <small class="login m-0">ou cadastre-se</small>
+                </a>
+                @else
+                <a class='link-ola-nav text-white' href="/usuarios/historicoPedidos">
 
-                  </a>
-                  @endguest
-                  
+                  <div id="acesso"class="dropdown ola-nav text-white p-2">
+                    <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
+                    <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
+                    <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
+                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">Sair</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                      </form>
+                    </div>
+                  </div>
 
-                  <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="carrinho"><i class="fas fa-shopping-cart"></i></a>
-              </div>
+                </a>
+                @endguest
+                
+                <div class='icon-carrinho'>
+                  <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="/carrinho"><i class="fas fa-shopping-cart"></i></a>
+                  <small class="bolinha">0</small>
+                </div>
+
+              
           </div>
       </nav>
       <div class="subnav">
         <div class="container">
-          <div class="row d-flex px-3">
+          <div class="d-flex">
             <div class="btn-group" >
               <button type="button" id="btn-fade" class="btn btn-secondary dropdown-toggle btn-categorias" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bars mr-2"></i>Todas as Categorias
@@ -88,10 +86,10 @@
                 @endforeach
               </div>
             </div>
-            <ul class='d-flex flex-row'>
+            <ul>
              
               @foreach ($categoriasNav as $categoriaNav)
-              <li><a href="/categoria/{{$categoriaNav->slug}}">{{$categoriaNav->tipo}}</a></li>
+              <li class="d-flex"><a class="d-flex align-items-center justify-content-center"href="/categoria/{{$categoriaNav->slug}}">{{$categoriaNav->tipo}}</a></li>
                   
               @endforeach
             </ul>
@@ -110,19 +108,20 @@
           <div class="container">
             <div class="row">
               <div class="col-md-12 d-flex justify-content-between my-0 text-center link-footer">
-                <a href="./ofertas">Ofertas</a>
-                <a href="./livros">Livros</a>
-                <a href="./eletronicos">Eletrônicos</a>
-                <a href="./bolsas">Bolsas</a>
+
+                @foreach ($categoriasNav as $categoriaNav)
+                <a href="/categoria/{{$categoriaNav->slug}}">{{$categoriaNav->tipo}}</a>
+                    
+                @endforeach
               </div>
             </div>
           </div>
         </div>
-        <div class="container text-white bg-dark pt-4">
+        <div class="container bg-dark pt-4">
             
-          <div class="row">
+          <div class="row ">
             <div class="col-md-12 col-lg-12 text-center">
-              <div class="d-flex flex-row flex-nowrap justify-content-center redes-sociais mb-2">
+              <div class="d-flex flex-row flex-nowrap  justify-content-center redes-sociais mb-2">
                 <a href="#" target="_blank" title="Acesse nosso Insta"><i class="fab fa-instagram mr-2"></i></a>
                 <a href="#" target="_blank" title="Acesse nosso Face"><i class="fab fa-facebook mr-2"></i></a>
                 <a href="#" target="_blank" title="Acesse nosso Twitter"><i class="fab fa-twitter mr-2"></i></a>
@@ -159,13 +158,22 @@
               @csrf
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="meuemail@meuprovedor.com" aria-describedby="emailHelp" name="email">
-                <small id="emailHelp" class="form-text text-muted">Nunca salve seu email em computadores públicos.</small>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="meuemail@meuprovedor.com" name="email">
+                @error('email')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
               <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control" id="password" placeholder="insira sua senha" aria-describedby="passwordHelp" name="password">
-                <small id="passwordHelp" class="form-text text-muted">Nunca salve sua senha em computadores públicos.</small>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="insira sua senha" name="password">
+
+                @error('password')
+                  <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
             </div>
             <div class="modal-footer">
@@ -184,7 +192,7 @@
   <script>
     let btn = document.getElementById('btn-fade');
     let noir = document.querySelector('.noir');
-    btn.addEventListener('click', function(event){
+    btn.addEventListener('click', function(){
       noir.classList.toggle('active-noir')
       btn.style.zIndex = 100
     })

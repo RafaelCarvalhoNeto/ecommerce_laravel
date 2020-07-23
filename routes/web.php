@@ -46,20 +46,27 @@ Route::get('/bolsas', function () {
 Route::get('/busca', function () {
     return view('busca');
 });
-Route::get('/finalizarCompra', function () {
-    return view('finalizarCompra');
-});
 
+Route::get('/compraFinalizada', function () {
+    return view('compraFinalizada');
+});
 // NAVEGAÇÃO SITE
 
 Route::get('/', 'NavigateController@index')->name('index');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/detalheProduto/{id}', 'NavigateController@showDetails');
+Route::get('/detalheProduto/{produto}', 'NavigateController@showDetails');
 
 Route::get('/categoria/{categoria}', 'NavigateController@pagCategorias');
 
+Route::get('/search', 'NavigateController@searchItems');
+
+Route::get('/loginDirect', 'NavigateController@loginDirect')->name('login.direct');
+Route::post('/login/do', 'NavigateController@login')->name('login.do');
+
 Auth::routes();
+
+Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
 
 // ACESSO ADMIN
 
@@ -69,6 +76,8 @@ Route::get('/admin/login', 'AuthController@showLoginForm')->name('admin.login');
 Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
 
 Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
+
+Route::put('/admin/toggleAdmin/{id}', 'AuthController@toggleAdmin');
 
 // PRODUTOS
 Route::get('/admin/admProdutos', 'ProdutosController@index')->name('adm.produtos');
@@ -85,7 +94,7 @@ Route::get('/usuarios/editUsuarios/{id}', 'UsersController@editUser');
 Route::put('/usuarios/editUsuarios/{id}', 'UsersController@updateUser');
 
 // CRIAR USUÁRIO
-Route::get('/cadastro', 'UsersController@createPage');
+Route::get('/cadastro', 'UsersController@createPage')->name('cadastro.usuario');
 Route::post('/cadastro', 'UsersController@createUser');
 
 // DELETE USUÁRIO
@@ -127,10 +136,5 @@ Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
 
-
-// View::composer(['*'], function($view){
-
-//     $view->with
-// });
 
 

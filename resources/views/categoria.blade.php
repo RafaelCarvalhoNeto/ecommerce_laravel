@@ -1,17 +1,20 @@
 @extends('layouts.app')
+@section('title')
+    {{$categoria->tipo}}
+@endsection
 @section('content')
 
 <div class="container pt-3">
-    <h2 class="col-12 p-3 mb-3 border-bottom">{{$categoria[0]->tipo}}</h2>
+    <h2 class="col-12 p-3 mb-3 border-bottom">{{$categoria->tipo}}</h2>
 
     <div class="mb-3 col-lg-12 px-0">
-        <img class="d-block w-100" src="{{ $categoria[0]->banner != null ? asset($categoria[0]->banner) : asset('img/null.png') }}" >
+        <img class="d-block w-100" src="{{ $categoria->banner != null ? asset($categoria->banner) : asset('img/null.png') }}" >
     </div>
 
     <div class="row mt-4">
         @foreach ($produtos as $produto)
         <div class="col-md-3 pb-1 pb-md-0 mb-3">
-            <a href="/detalheProduto/{{$produto->id}}">
+            <a href="/detalheProduto/{{$produto->slug}}">
                 <div class="card avancar">
                     <div class="card-img-top d-flex align-items-center justify-content-center p-4">
                         <img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
@@ -25,6 +28,9 @@
             </a>
         </div>
         @endforeach    
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        {{ $produtos->links() }}
     </div>
 
 

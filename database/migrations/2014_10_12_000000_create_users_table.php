@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('cep');
             $table->string('cidade');
             $table->string('uf');
+            $table->boolean('admin')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

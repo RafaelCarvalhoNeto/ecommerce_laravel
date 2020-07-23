@@ -12,7 +12,9 @@
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="inputSearch" type="search" arial-label="search" placeholder="Pesquisar..." name='inputSearch'>
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">Pesquisar</button>
+
+                            <button class="btn btn-primary btn-search-adm" type="submit">Pesquisar</button>
+
                         </div>
                     </div>
                 </form>

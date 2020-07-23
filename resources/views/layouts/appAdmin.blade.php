@@ -33,8 +33,10 @@
             <div class="d-flex flex-column text-right dropdown">
               @guest
               <p class="m-0 text-white admin">Painel Administrativo</p>
+
               @else
               <p class="m-0 text-white admin">Painel Administrativo</p>
+              @if (Auth::user()->admin==1)
               <div class="btn-group">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Olá, {{ Auth::user()->nome }}
@@ -47,18 +49,22 @@
                   </form>
                 </div>
               </div>
+              @endif
             </div>
             @endguest
+                  
+
+
           </div>
         </nav>
       <div class="subnav">
           <div class="container">
-              <div class="row">
+              <div class="d-flex">
                   <ul class="d-flex flex-row">
-                      <li><a href="/admin/admUsuarios">Usuários</a></li>
-                      <li><a href="/admin/admProdutos">Produtos</a></li>
-                      <li><a href="/admin/admCategorias">Categorias</a></li>
-                      <li><a href="/admin/admMensagens">Mensagens</a></li>
+                    <li class="d-flex"><a class="d-flex align-items-center justify-content-center" href="/admin/admUsuarios">Usuários</a></li>
+                    <li class="d-flex"><a class="d-flex align-items-center justify-content-center" href="/admin/admProdutos">Produtos</a></li>
+                    <li class="d-flex"><a class="d-flex align-items-center justify-content-center" href="/admin/admCategorias">Categorias</a></li>
+                    <li class="d-flex"><a class="d-flex align-items-center justify-content-center" href="/admin/admMensagens">Mensagens</a></li>
                   </ul>
               </div>
           </div>

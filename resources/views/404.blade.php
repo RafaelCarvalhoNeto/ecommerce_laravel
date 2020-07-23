@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    404 - Página não encontrada
+@endsection
 @section('content')
 
     <aside id="error" class="container jumbotron pt-0 mt-3 ajuste">

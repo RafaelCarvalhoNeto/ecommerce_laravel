@@ -5,14 +5,21 @@ namespace App\Http\Controllers;
 use App\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CategoriasController extends Controller
 {
     public function listAllCategorias(){
 
         if(Auth::check()===true){
-            $categorias = Categoria::paginate(10);
-            return view('admin.admCategorias')->with('categorias', $categorias);
+            if(Auth::user()->admin==1){
+                $categorias = DB::table('categorias');
+                $found = $categorias->count();
+                $categorias = $categorias->paginate(10);
+        
+                return view('admin.admCategorias')->with(['categorias'=>$categorias, 'found'=>$found]);
+                
+            }
 
         }
         return redirect()->route('admin.login');
@@ -58,21 +65,34 @@ class CategoriasController extends Controller
         $categoria = Categoria::find($id);
 
         if($categoria->delete()){
-            $categorias = Categoria::paginate(10);
+            // $categorias = Categoria::paginate(10);
 
+            // return view('admin.admCategorias')->with([
+            //     'categorias'=>$categorias,
+            //     'success'=> 'Categoria excluída com sucesso'
+            // ]);
+
+            $categorias = DB::table('categorias');
+            $found = $categorias->count();
+            $categorias = $categorias->paginate(10);
+    
             return view('admin.admCategorias')->with([
                 'categorias'=>$categorias,
+                'found'=>$found,
                 'success'=> 'Categoria excluída com sucesso'
             ]);
         }
     }
     public function searchCategoria(Request $request){
         $search = $request->input('search');
-        $categorias = Categoria::where('tipo', 'like', '%'.$search.'%')->paginate(10);
+        $categorias = Categoria::where('tipo', 'like', '%'.$search.'%');
+        $found = $categorias->count();
+        $categorias = $categorias->paginate(10);
 
         return view('admin.admCategorias')->with([
             'search'=>$search,
-            'categorias'=>$categorias
+            'categorias'=>$categorias,
+            'found'=>$found
         ]);
     }
 

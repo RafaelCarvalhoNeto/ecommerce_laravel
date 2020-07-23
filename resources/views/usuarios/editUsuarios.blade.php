@@ -12,7 +12,7 @@
             </section>
         @endif
         <h2 class="col-12 p-3 mb-3 border-bottom">Editar Usuário</h1>
-        <form action="/admin/editUsuarios/{{$user->id}}" method="post" id="formCadastro" enctype="multipart/form-data">     
+        <form action="/usuarios/editUsuarios/{{$user->id}}" method="post" id="formCadastro" enctype="multipart/form-data">     
             @csrf
             {{ method_field('PUT')}}                         
             <div class="form-row">

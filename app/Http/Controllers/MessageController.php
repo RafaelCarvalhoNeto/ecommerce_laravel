@@ -5,15 +5,21 @@ namespace App\Http\Controllers;
 use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
     public function listMessage(){
 
         if(Auth::check()===true){
-            $messages = Message::paginate(10);
-    
-            return view('admin.admMensagens')->with('messages',$messages);
+            if(Auth::user()->admin==1){
+                $messages = DB::table('messages');
+                $found = $messages->count();
+                $messages = $messages->paginate(10);
+        
+                return view('admin.admMensagens')->with(['messages'=>$messages, 'found'=>$found]);
+
+            }
             
         }
         return redirect()->route('admin.login');
@@ -48,21 +54,35 @@ class MessageController extends Controller
         $message = Message::find($id);
 
         if($message->delete()){
-            $messages = Message::paginate(10);
+            // $messages = Message::paginate(10);
 
+            // return view('admin.admMensagens')->with([
+            //     'messages'=> $messages,
+            //     'success'=> 'Mensagem excluída com sucesso'
+            // ]);
+
+            $messages = DB::table('messages');
+            $found = $messages->count();
+            $messages = $messages->paginate(10);
+    
             return view('admin.admMensagens')->with([
-                'messages'=> $messages,
+                'messages'=>$messages,
+                'found'=>$found,
                 'success'=> 'Mensagem excluída com sucesso'
             ]);
+
         }
     }
     public function searchMessage(Request $request){
         $search = $request->input('search');
-        $messages = Message::where('assunto', 'like', '%'.$search.'%')->orWhere('nome', 'like','%'.$search.'%')->paginate(10);
+        $messages = Message::where('assunto', 'like', '%'.$search.'%')->orWhere('nome', 'like','%'.$search.'%');
+        $found = $messages->count();
+        $messages = $messages->paginate(10);
 
-        return view('/admin/admMensagens')->with([
+        return view('admin.admMensagens')->with([
             'search'=>$search,
-            'messages'=>$messages
+            'messages'=>$messages,
+            'found'=>$found
         ]);
 
     }
