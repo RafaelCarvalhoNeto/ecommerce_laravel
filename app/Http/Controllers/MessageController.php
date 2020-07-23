@@ -12,11 +12,14 @@ class MessageController extends Controller
     public function listMessage(){
 
         if(Auth::check()===true){
-            $messages = DB::table('messages');
-            $found = $messages->count();
-            $messages = $messages->paginate(10);
-    
-            return view('admin.admMensagens')->with(['messages'=>$messages, 'found'=>$found]);
+            if(Auth::user()->admin==1){
+                $messages = DB::table('messages');
+                $found = $messages->count();
+                $messages = $messages->paginate(10);
+        
+                return view('admin.admMensagens')->with(['messages'=>$messages, 'found'=>$found]);
+
+            }
             
         }
         return redirect()->route('admin.login');

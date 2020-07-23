@@ -77,6 +77,8 @@ Route::post('/admin/login/do', 'AuthController@login')->name('admin.login.do');
 
 Route::post('/admin/logout','AuthController@logout')->name('admin.logout');
 
+Route::put('/admin/toggleAdmin/{id}', 'AuthController@toggleAdmin');
+
 // PRODUTOS
 Route::get('/admin/admProdutos', 'ProdutosController@index')->name('adm.produtos');
 Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
