@@ -82,9 +82,9 @@ Route::put('/admin/toggleAdmin/{id}', 'AuthController@toggleAdmin');
 // PRODUTOS
 Route::get('/admin/admProdutos', 'ProdutosController@index')->name('adm.produtos');
 Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
-Route::post('/admin/update/{id}', 'ProdutosController@edit');
-Route::delete('/admin/admProdutos/{id}', 'CardsController@delete');
-Route::post('/admin/admProdutos/search', 'CardsController@search');
+Route::post('/admin/admProdutos/update/{id}', 'ProdutosController@update');
+Route::delete('/admin/admProdutos/{id}', 'ProdutosController@delete');
+Route::get('/admin/admProdutos/search', 'ProdutosController@search');
 
 // USUARIOS
 Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');

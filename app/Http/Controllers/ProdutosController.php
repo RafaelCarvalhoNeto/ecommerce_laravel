@@ -14,7 +14,8 @@ class ProdutosController extends Controller
         // $produtos = Produto::paginate(10);
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
+         'produtos.descricao', 'produtos.parcelamento')
         ->paginate(10);
         $categorias = Categoria::all();
 
@@ -48,7 +49,6 @@ class ProdutosController extends Controller
         $produto->imagem = $pathRelative;
         $produto->categoria = $request->inputCategoria;
         $produto->preco  = $request->inputPreco;
-        $produto->preco  = $request->inputPreco;
         $produto->descricao = $request->inputDescricao;
         $produto->parcelamento = $request->inputParcelamento;
 
@@ -69,31 +69,53 @@ class ProdutosController extends Controller
             return redirect()->route('adm.produtos')->with('success','Usuário alterado com sucesso');
         }
     } 
-    
-    public function edit($id){
-        $produto = Produto::find($id);
-        if($produto){
-            return view('admin.admProdutos')->with('produto', $produto);
-        }
-    }
 
     public function update(Request $request, $id){
-        $request->validate([
-            'title' => 'required|min:5',
-            'content' => 'required|min:30'
-        ]);
-
         $produto = Produto::find($id);
-        $produto->title = $request->title;
-        $produto->content = $request->content;
+        $imagem = $request->file('imagem');
+        
+        if(empty($imagem)){
+            $pathRelative = null;
+        } else{
+            $imagem->storePublicly('uploads');
+            
+            $absolutePath = public_path()."/storage/uploads";
 
+            $name = $imagem->getClientOriginalName();
+
+            $imagem->move($absolutePath, $name);
+
+            $pathRelative = "storage/uploads/$name";
+        }
+
+        $produto->nome = $request->inputProduto;
+        $produto->imagem = $pathRelative;
+        $produto->categoria = $request->inputCategoria;
+        $produto->preco  = $request->inputPreco;
+        $produto->descricao = $request->inputDescricao;
+        $produto->parcelamento = $request->inputParcelamento;
+
+        $informacoes  = [
+            $request->titulo1 => $request->inputTecnica1,
+            $request->titulo2 => $request->inputTecnica2,
+            $request->titulo3 => $request->inputTecnica3,
+        ];
+
+        $arrayinfos = json_encode($informacoes);
+
+        $produto->informacoes = $arrayinfos;
+        
         $produto->update();
-
+        
         if($produto){
-            return view('produtos.edit')->with([
-                'produto' => $produto,
-                'success' => 'Cartão atualizado com sucesso'
-            ]);
+        $produtos = DB::table('produtos')
+        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.descricao', 'produtos.parcelamento')
+        ->paginate(10);
+        $categorias = Categoria::all();
+
+            return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
+                'success'=> 'Produto alterado com sucesso' ]);
         }
     }
     public function delete($id){
@@ -103,25 +125,34 @@ class ProdutosController extends Controller
         if($produto->delete()){
 
             $produtos = Produto::paginate(10);
+            $categorias = Categoria::all();
 
+            if($produtos){
             return view('admin.admProdutos')->with([
-                'produtos' => $produtos,
+                'produtos' => $produtos, 
+                'categorias'=> $categorias,
                 'success' => 'Registro excluído com sucesso'
-            ]);
+                ]);
+            }
         }
     }
-
     public function search(Request $request){
 
-        $search = $request->input('search');
+        $search = $request->input('inputSearch');
 
-        $produtos = Produto::where('title', 'like', '%' . $search . '%')
-            ->orWhere('content', 'like', '%' . $search . '%')
-            ->paginate(10);
+        $produtos = DB::table('produtos')
+        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao')
+        ->where('produtos.nome', 'like' , '%'. $search . '%')
+        ->orWhere('categorias.tipo', 'like' , '%'. $search . '%')
+        ->paginate(10);
+        // $produtos = Produto::where('nome', 'like', '%' . $search . '%')->paginate(10);
+        $categorias = Categoria::All();
 
         return view('admin.admProdutos')->with([
             'search' => $search,
-            'produtos' => $produtos
+            'produtos' => $produtos,
+            'categorias'=>$categorias
         ]);
     }
 }
