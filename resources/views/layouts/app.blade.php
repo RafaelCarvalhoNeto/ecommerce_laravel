@@ -192,14 +192,23 @@
   <script>
     let btn = document.getElementById('btn-fade');
     let noir = document.querySelector('.noir');
-    btn.addEventListener('click', function(){
-      noir.classList.toggle('active-noir')
-      btn.style.zIndex = 100
+    btn.addEventListener('click', function(event){
+
+      if(event.target.getAttribute('aria-expanded')=='false'){
+        noir.classList.add('active-noir')
+        btn.style.zIndex = 100
+        console.log(event.target.getAttribute('aria-expanded'))
+      }else{
+        noir.classList.remove('active-noir')
+      }
     })
+
     document.addEventListener('click', function(){
-      noir.classList.remove('active-noir')
+      if(btn.getAttribute('aria-expanded')=='true')
+        noir.classList.remove('active-noir')
     })
-    
+
+
   </script>
 
 
