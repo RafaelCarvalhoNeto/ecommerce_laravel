@@ -56,6 +56,7 @@ class ProdutosController extends Controller
             $request->titulo1 => $request->inputTecnica1,
             $request->titulo2 => $request->inputTecnica2,
             $request->titulo3 => $request->inputTecnica3,
+            $request->titulo4 => $request->inputTecnica4
         ];
 
         $arrayinfos = json_encode($informacoes);
@@ -99,6 +100,7 @@ class ProdutosController extends Controller
             $request->titulo1 => $request->inputTecnica1,
             $request->titulo2 => $request->inputTecnica2,
             $request->titulo3 => $request->inputTecnica3,
+            $request->titulo4 => $request->inputTecnica4
         ];
 
         $arrayinfos = json_encode($informacoes);

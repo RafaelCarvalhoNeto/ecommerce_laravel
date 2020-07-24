@@ -72,58 +72,75 @@
                                                         @csrf
                                                         {{ method_field('POST') }}
                                                         <div class="form-row">
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-12 text-left">
                                                                 <label for="inputImagem">Imagem</label>
                                                                 <div class="custom-file">
                                                                 <input type="file" class="custom-file-input" id="inputImagem" lang="pt" name="imagem" value="{{$produto->imagem}}">
                                                                     <label class="custom-file-label" for="inputImagem">Escolha o arquivo</label>
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group col-md-6">
+                                                            <div class="form-group col-md-12 text-left">
                                                                 <label for="inputProduto">Produto</label>
                                                                 <input type="text" class="form-control" placeholder="Insira o nome do produto"
                                                             aria-describedby="adicionarProdutoHelp" id="inputProduto" name="inputProduto" value="{{$produto->nome}}"
                                                                 required>
                                                             </div>
-                                                            
+                                                            <div class="form-group col-md-12 text-center">
+                                                                    <label for="inputDescricao">Descrição</label>
+                                                                    <input type="text" class="form-control" placeholder="Insira a descrição do produto"
+                                                            aria-describedby="adicionarDescricaoHelp" id="inputDescricao" name="inputDescricao" value="{{$produto->descricao}}"
+                                                                    required>
+                                                            </div>
                                                         </div>
                                                             <div class="form-row">
-                                                                <div class="form-group col-md-6">
-                                                                    
+                                                                <div class="form-group col-md-4 text-center">
                                                                     <label for="inputCategoria">Categoria</label>
                                                                     <select class="custom-select" name= "inputCategoria">
                                                                         @foreach ($categorias as $categoria)
                                                                             <option value="{{$categoria->id}}">{{$categoria->tipo}}</option>
-                                                                        
                                                                         @endforeach
                                                                     </select>
                                                                 </div>
-                                    
-                                                                <div class="form-group col-md-6">
-                                        
+                                                                <div class="form-group col-md-4 text-center">
                                                                         <label for="inputPreco">Preço</label>
-                                                                        <input type="number" class="form-control" placeholder="Insira o preço do produto"
+                                                                        <input type="number" class="form-control" placeholder="Preço R$"
                                                                 aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"required value="{{$produto->preco}}">
                                                                 </div>
-                                                                <div class="form-group col-md-6">
-                                                                        <label for="inputDescricao">Descrição</label>
-                                                                        <input type="text" class="form-control" placeholder="Insira a descrição do produto"
-                                                                aria-describedby="adicionarDescricaoHelp" id="inputDescricao" name="inputDescricao" value="{{$produto->descricao}}"
-                                                                        required>
+                                                                <div class="form-group col-md-2 text-center">
+                                                                    <label for="inputParcelamento">Parcelas</label>
+                                                                    <input type="number" class="form-control" placeholder="N°"
+                                                                    aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento" value="{{$produto->parcelamento}}" required>
                                                                 </div>
-                                                                <div class="form-group col-md-6">
-                                                                    
-                                                                        <label for="inputParcelamento">Parcelamento</label>
-                                                                        <input type="number" class="form-control" placeholder="Insira o preço do produto"
-                                                                        aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento" value="{{$produto->parcelamento}}" required>
-                                                                    </div>
+                                                                <div class="form-group col-md-2 text-center">
+                                                                    <label for="titulo1">Garantia</label>
+                                                                    <input type="number" class="form-control" placeholder="Ano"
+                                                                    aria-describedby="adicionarTitulo1Help" id="inputTecnica1" name="inputTecnica1"required>
                                                                 </div>
-                                                                
-                                                                <div class="modal-footer">
-                                                                    <button type="submit" class="btn btn-primary">Adicionar</button>
-                                        
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6 text-center">
+                                                                    <label for="Titulo2">Marca</label>
+                                                                    <input type="text" class="form-control" placeholder="Insira a marca"
+                                                                    id="inputTecnica2" name="inputTecnica2">
                                                                 </div>
+                                                                <div class="form-group col-md-6 text-center">
+                                                                    <label for="titulo3">Modelo</label>
+                                                                    <input type="text" class="form-control" placeholder="Insira o modelo"
+                                                                    id="inputTecnica3" name="inputTecnica3">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-12 text-center">
+                                                                    <label for="Titulo4">Especificações Técnicas</label>
+                                                                    <input type="text" class="form-control" placeholder="Especificações..."
+                                                                    id="inputTecnica4" name="inputTecnica4">
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Adicionar</button>
+                                    
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -202,23 +219,29 @@
                     @csrf
                     {{ method_field('POST') }}
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="inputImagem">Imagem</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="inputImagem" lang="pt" name="imagem">
                                 <label class="custom-file-label" for="inputImagem">Escolha o arquivo</label>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="inputProduto">Produto</label>
                             <input type="text" class="form-control" placeholder="Insira o nome do produto"
                             aria-describedby="adicionarProdutoHelp" id="inputProduto" name="inputProduto"
                             required>
                         </div>
+                        <div class="form-group col-md-12 text-center">
+                                <label for="inputDescricao">Descrição</label>
+                                <input type="text" class="form-control" placeholder="Insira a descrição do produto"
+                                aria-describedby="adicionarDescricaoHelp" id="inputDescricao" name="inputDescricao"
+                                required>
+                        </div>
                         
                     </div>
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4 text-center">
                                 
                                 <label for="inputCategoria">Categoria</label>
                                 <select class="custom-select" name= "inputCategoria">
@@ -229,69 +252,50 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4 text-center">
     
                                     <label for="inputPreco">Preço</label>
-                                    <input type="number" class="form-control" placeholder="Insira o preço do produto"
+                                    <input type="number" class="form-control" placeholder="Preço R$"
                                     aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"required>
                             </div>
-                            <div class="form-group col-md-6">
-                                    <label for="inputDescricao">Descrição</label>
-                                    <input type="text" class="form-control" placeholder="Insira a descrição do produto"
-                                    aria-describedby="adicionarDescricaoHelp" id="inputDescricao" name="inputDescricao"
-                                    required>
-                            </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-2 text-center">
                                 
-                                    <label for="inputParcelamento">Parcelamento</label>
-                                    <input type="number" class="form-control" placeholder="Insira o preço do produto"
-                                    aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento"required>
-                                </div>
+                                <label for="inputParcelamento">Parcelas</label>
+                                <input type="number" class="form-control" placeholder="N°"
+                                aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento"required>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="titulo1">Titulo</label>
-                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                    id="titulo1" name="titulo1">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    
-                                    <label for="inputTecnica1">Info</label>
-                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                    id="inputTecnica1" name="inputTecnica1">
-                                </div>
+                            <div class="form-group col-md-2 text-center">
+                                <label for="titulo1">Garantia</label>
+                                <input type="number" class="form-control" placeholder="Ano"
+                                id="inputTecnica1" name="inputTecnica1">
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="titulo2">Titulo</label>
-                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                    id="titulo2" name="titulo2">
-                                </div>
-                                <div class="form-group col-md-6">
-    
-                                    <label for="inputTecnica2">Info</label>
-                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                    id="inputTecnica2" name="inputTecnica2">
-                                </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 text-center">
+                            
+                                <label for="Titulo2">Marca</label>
+                                <input type="text" class="form-control" placeholder="Insira a marca do produto"
+                                id="inputTecnica2" name="inputTecnica2">
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="titulo3">Titulo</label>
-                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                    id="titulo3" name="titulo3">
-                                </div>
-                                <div class="form-group col-md-6">
-    
-                                    <label for="inputTecnica3">Info</label>
-                                    <input type="text" class="form-control" placeholder="Insira o preço do produto"
-                                    id="inputTecnica3" name="inputTecnica3">
-                                </div>
+                            <div class="form-group col-md-6 text-center">
+                                <label for="titulo3">Modelo</label>
+                                <input type="text" class="form-control" placeholder="Insira o modelo do produto"
+                                id="inputTecnica3" name="inputTecnica3">
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Adicionar</button>
-    
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12 text-center">
+
+                                <label for="inputTecnica4">Especificações Técnicas</label>
+                                <input type="text" class="form-control" placeholder="Especificações..."
+                                id="inputTecnica4" name="inputTecnica4">
                             </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Adicionar</button>
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>    
                     </form>
                 </div>
             </div>
