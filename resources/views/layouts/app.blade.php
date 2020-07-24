@@ -197,7 +197,6 @@
       if(event.target.getAttribute('aria-expanded')=='false'){
         noir.classList.add('active-noir')
         btn.style.zIndex = 100
-        console.log(event.target.getAttribute('aria-expanded'))
       }else{
         noir.classList.remove('active-noir')
       }
