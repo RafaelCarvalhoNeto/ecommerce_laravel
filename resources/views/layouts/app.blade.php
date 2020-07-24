@@ -219,7 +219,7 @@
   <script>
     let drop = document.getElementById('acesso');
     let dmenu = document.querySelector('#acessoOptions');
-    let itens = document.querySelector('.dropdown-item')
+    let item = document.querySelectorAll('#acessoOptions .dropdown-item')[1]
     let nav = document.querySelector('.row')
     drop.addEventListener('mouseenter',function(){
       drop.classList.add('show')
@@ -230,7 +230,7 @@
       dmenu.classList.remove('show')
     })
 
-    itens.addEventListener('mouseout',function(){
+    item.addEventListener('mouseout',function(){
       drop.classList.remove('show')
       dmenu.classList.remove('show')
     })
