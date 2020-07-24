@@ -53,6 +53,9 @@
                     <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
                     <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
                     <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
+                      @if (Auth::user()->admin==1)
+                        <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                      @endif
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">Sair</a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
