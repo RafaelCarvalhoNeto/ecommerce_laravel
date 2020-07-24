@@ -50,13 +50,9 @@ class CategoriasController extends Controller
 
         $categoria->save();
 
-        if($categoria){             
-            $categorias = Categoria::paginate(10);             
-            
-            return view('admin.admCategorias')->with([
-                'categorias'=> $categorias,
-                'success'=>'Categoria adicionada com sucesso'
-                ]);
+        if($categoria){    
+
+            return redirect()->route('categorias.listAll')->with('success', 'Categoria criada com sucesso');
         }
 
     }
@@ -65,22 +61,7 @@ class CategoriasController extends Controller
         $categoria = Categoria::find($id);
 
         if($categoria->delete()){
-            // $categorias = Categoria::paginate(10);
-
-            // return view('admin.admCategorias')->with([
-            //     'categorias'=>$categorias,
-            //     'success'=> 'Categoria excluída com sucesso'
-            // ]);
-
-            $categorias = DB::table('categorias');
-            $found = $categorias->count();
-            $categorias = $categorias->paginate(10);
-    
-            return view('admin.admCategorias')->with([
-                'categorias'=>$categorias,
-                'found'=>$found,
-                'success'=> 'Categoria excluída com sucesso'
-            ]);
+            return redirect()->route('categorias.listAll')->with('success', 'Categoria excluída com sucesso');
         }
     }
     public function searchCategoria(Request $request){

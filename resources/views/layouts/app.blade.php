@@ -53,6 +53,9 @@
                     <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
                     <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
                     <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
+                      @if (Auth::user()->admin==1)
+                        <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                      @endif
                       <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">Sair</a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -192,14 +195,22 @@
   <script>
     let btn = document.getElementById('btn-fade');
     let noir = document.querySelector('.noir');
-    btn.addEventListener('click', function(){
-      noir.classList.toggle('active-noir')
-      btn.style.zIndex = 100
+    btn.addEventListener('click', function(event){
+
+      if(event.target.getAttribute('aria-expanded')=='false'){
+        noir.classList.add('active-noir')
+        btn.style.zIndex = 100
+      }else{
+        noir.classList.remove('active-noir')
+      }
     })
+
     document.addEventListener('click', function(){
-      noir.classList.remove('active-noir')
+      if(btn.getAttribute('aria-expanded')=='true')
+        noir.classList.remove('active-noir')
     })
-    
+
+
   </script>
 
 
@@ -208,7 +219,7 @@
   <script>
     let drop = document.getElementById('acesso');
     let dmenu = document.querySelector('#acessoOptions');
-    let itens = document.querySelector('.dropdown-item')
+    let item = document.querySelectorAll('#acessoOptions .dropdown-item')[1]
     let nav = document.querySelector('.row')
     drop.addEventListener('mouseenter',function(){
       drop.classList.add('show')
@@ -219,7 +230,7 @@
       dmenu.classList.remove('show')
     })
 
-    itens.addEventListener('mouseout',function(){
+    item.addEventListener('mouseout',function(){
       drop.classList.remove('show')
       dmenu.classList.remove('show')
     })

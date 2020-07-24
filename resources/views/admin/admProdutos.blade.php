@@ -1,4 +1,7 @@
 @extends('layouts.appAdmin')
+@section('title')
+    ADM - Produtos
+@endsection
 @section('content')
 
 

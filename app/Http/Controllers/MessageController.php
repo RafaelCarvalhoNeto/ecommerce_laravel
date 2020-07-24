@@ -54,22 +54,8 @@ class MessageController extends Controller
         $message = Message::find($id);
 
         if($message->delete()){
-            // $messages = Message::paginate(10);
-
-            // return view('admin.admMensagens')->with([
-            //     'messages'=> $messages,
-            //     'success'=> 'Mensagem excluída com sucesso'
-            // ]);
-
-            $messages = DB::table('messages');
-            $found = $messages->count();
-            $messages = $messages->paginate(10);
-    
-            return view('admin.admMensagens')->with([
-                'messages'=>$messages,
-                'found'=>$found,
-                'success'=> 'Mensagem excluída com sucesso'
-            ]);
+   
+            return redirect()->route('messages.listAll')->with('success', 'Mensagem excluída com sucesso');
 
         }
     }

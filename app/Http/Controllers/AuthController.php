@@ -24,7 +24,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-
+        
         $credentials = [
             'email'=> $request->email,
             'password'=> $request->password,
@@ -34,7 +34,7 @@ class AuthController extends Controller
             return redirect()->route('admin');
 
         }
-        return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);
+        return redirect()->back()->withInput()->withErrors(['email'=>'As informações não foram encontradas no sistema.']);
     }
 
     public function logout(){

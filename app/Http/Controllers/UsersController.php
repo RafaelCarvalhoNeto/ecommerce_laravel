@@ -18,8 +18,10 @@ class UsersController extends Controller
                 $users = DB::table('users');
                 $found = $users->count();
                 $users = $users->paginate(10);
+
+                $estados = array( "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" );
         
-                return view('admin.admUsuarios')->with(['users'=>$users, 'found'=>$found]);
+                return view('admin.admUsuarios')->with(['users'=>$users, 'found'=>$found, 'estados'=>$estados]);
 
 
             }
@@ -31,8 +33,11 @@ class UsersController extends Controller
     public function editUser($id){
         $user = User::find($id);
 
+        $estados = array( "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" );
+
+
         if($user){
-            return view('usuarios.editUsuarios')->with('user',$user);
+            return view('usuarios.editUsuarios')->with(['user'=>$user, 'estados'=>$estados]);
         }
     }
     // EDITAR USUÁRIOS
@@ -71,7 +76,7 @@ class UsersController extends Controller
             ]);
 
         } 
-        return redirect()->route('users.listAll');
+        return redirect()->route('users.listAll')->with('success', 'Usuário alterado com sucesso');
 
     }
 
@@ -123,15 +128,8 @@ class UsersController extends Controller
         $user = User::find($id);
 
         if($user->delete()){
-            $users = DB::table('users');
-            $found = $users->count();
-            $users = $users->paginate(10);
-    
-            return view('admin.admUsuarios')->with(
-                ['users'=>$users,
-                'found'=>$found,
-                'success'=> 'Usuário excluído com sucesso'
-            ]);
+               
+            return redirect()->route('users.listAll')->with('success', 'Usuário excluído com sucesso');
 
         }
     }
@@ -143,10 +141,13 @@ class UsersController extends Controller
         $found = $users->count();
         $users = $users->paginate(10);
 
+        $estados = array( "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO" );
+
         return view('admin.admUsuarios')->with([
             'search'=>$search,
             'users'=>$users,
-            'found'=>$found
+            'found'=>$found,
+            'estados'=>$estados
         ]);
     }
 
