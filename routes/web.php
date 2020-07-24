@@ -116,7 +116,7 @@ Route::get('/admin/admCategorias/search', 'CategoriasController@searchCategoria'
 Route::delete('/admin/removeCategoria/{id}', 'CategoriasController@deleteCategoria');
 
 // LISTAR MENSAGENS
-Route::get('/admin/admMensagens', 'MessageController@listMessage');
+Route::get('/admin/admMensagens', 'MessageController@listMessage')->name('messages.listAll');
 
 // ENVIAR DE MENSAGEM
 Route::get('/contato', 'MessageController@pagContato');

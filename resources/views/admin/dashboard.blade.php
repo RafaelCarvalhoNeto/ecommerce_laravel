@@ -1,4 +1,7 @@
 @extends('layouts.appAdmin')
+@section('title')
+    ADM - Dashboard
+@endsection
 @section('content')
  
 <div class="container pt-3 ajuste">

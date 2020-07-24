@@ -1,13 +1,16 @@
 
 @extends('layouts.appAdmin')
+@section('title')
+    ADM - Mensagens
+@endsection
 @section('content')
 
     <main class="container pt-3 ajuste" id="barraPedidos">
-        @if(isset($success) && $success != "")
+        @if(session('success'))
             <section class="row">
                 <div class="col-12">
                     <div class="message alert alert-success text-center">
-                        {{ $success }}
+                        {{ session('success') }}
                     </div>
                 </div>
             </section>
