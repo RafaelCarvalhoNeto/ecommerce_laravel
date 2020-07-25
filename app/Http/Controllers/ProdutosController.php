@@ -22,9 +22,8 @@ class ProdutosController extends Controller
         if($produtos){
             return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias]);
         }
-    
-    
     }
+
     public function create(Request $request) {
          
         $imagem = $request->file('imagem');
@@ -120,6 +119,7 @@ class ProdutosController extends Controller
                 'success'=> 'Produto alterado com sucesso' ]);
         }
     }
+
     public function delete($id){
         
         $produto = Produto::find($id);
@@ -138,6 +138,7 @@ class ProdutosController extends Controller
             }
         }
     }
+    
     public function search(Request $request){
 
         $search = $request->input('inputSearch');
