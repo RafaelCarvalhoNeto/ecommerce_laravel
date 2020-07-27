@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
-use Illuminate\Http\Request;
 use App\Produto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
@@ -18,9 +18,11 @@ class ProdutosController extends Controller
          'produtos.descricao', 'produtos.parcelamento')
         ->paginate(10);
         $categorias = Categoria::all();
-
+        $found = $categorias->count();
+        
+        
         if($produtos){
-            return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias]);
+            return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=>$found, 'categorias'=>$categorias]);
         }
     }
 
@@ -66,7 +68,7 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            return redirect()->route('adm.produtos')->with('success','Usuário alterado com sucesso');
+            return redirect()->route('adm.produtos')->with('success','Produto criado com sucesso');
         }
     } 
 
@@ -151,11 +153,13 @@ class ProdutosController extends Controller
         ->paginate(10);
         // $produtos = Produto::where('nome', 'like', '%' . $search . '%')->paginate(10);
         $categorias = Categoria::All();
+        $found = $categorias->count();
 
         return view('admin.admProdutos')->with([
             'search' => $search,
             'produtos' => $produtos,
-            'categorias'=>$categorias
+            'categorias'=>$categorias,
+            'found'=> $found
         ]);
     }
 }

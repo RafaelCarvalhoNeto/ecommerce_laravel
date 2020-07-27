@@ -6,8 +6,17 @@
 
 
     <main class="container pt-3 ajuste" id="barraPedidos">
+        @if(session('success'))
+        <section class="row">
+            <div class="col-12">
+                <div class="Message alert alert-success text-center">
+                    {{ session('success')}}
+                </div>
+            </div>
+        </section>
+        @endif
         <div class="row">
-            
+
             <h2 class="col-12 p-3 mb-3 border-bottom">Produtos</h2>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise aqui por um Produto:</p>
@@ -15,23 +24,22 @@
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="inputSearch" type="search" arial-label="search" placeholder="Pesquisar..." name='inputSearch'>
                         <div class="input-group-append">
-
                             <button class="btn btn-primary btn-search-adm" type="submit">Pesquisar</button>
-
                         </div>
                     </div>
                 </form>
+                <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{ $found ?? '' }}</strong></p>
                 <div class="card-body">
                     @if($produtos->isEmpty())
-                        <section class="row">
-                            <div class="col-12">
-                                <h1 class="col-12 text-center">Que pena! Não encontramos o produto desejado.</h1>
-                            </div>
-                </div>
-                        </section>
-                    @else
-                       <div id="table"  class="tableAdm">
-                        <table class="table table-striped text-center mt-3">
+                    <section class="row">
+                        <div class="col-12">
+                            <h1 class="col-12 text-center">Que pena! Não encontramos o produto desejado.</h1>
+                        </div>
+                    </div>
+                </section>
+                @else
+                <div id="table"  class="tableAdm">
+                    <table class="table table-striped text-center mt-3">
                         <thead class="thead-dark">
                             <tr>
                                 <!-- Por alguma razao as paginas Adm nao estao puxando codigo CSS entao inclui style individual em cada imagem -->
@@ -41,16 +49,16 @@
                                 <th scope="col">Preço (BRL)</th>
                                 <th scope="col">Categoria</th>
                                 <th scope="col" colspan="2">Ações</th>
-            
+                                
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($produtos as $produto)
                             <tr>
                                 <td scope="row">{{ $produto->id }}</td>
-
+                                
                                 <td scope="row"><img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="" width="50" height="50"></td>
-
+                                
                                 <td scope="row">{{ $produto->nome }}</td>
                                 <td scope="row">R$ {{ number_format($produto->preco,2) }}</td>
                                 <td scope="row">{{ $produto->tipo }}</td>                   
