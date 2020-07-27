@@ -9,6 +9,6 @@ class Message extends Model
     protected $table = 'messages';
 
     protected $fillable = [
-        'nome', 'sobrenome', 'email', 'assunto', 'conteudo',
+        'nome', 'sobrenome', 'email', 'assunto', 'conteudo','status',
     ];
 }

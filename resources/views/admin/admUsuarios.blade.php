@@ -53,11 +53,11 @@
                                             {{ method_field('PUT')}} 
                                             @if ($user->admin==null||$user->admin==0)
                                             <input type="hidden" name="admin" value='1'>
-                                            <button type='submit' class="btn btn-success btn-sm">Tornar Admin</button>
+                                            <button type='submit' class="btn btn-danger btn-sm">Tornar Admin</button>
                                             
                                             @else
                                             <input type="hidden" name="admin" value='0'>
-                                            <button type="submit" class="btn btn-danger btn-sm">Retirar Admin</button>
+                                            <button type="submit" class="btn btn-success btn-sm">Admin</button>
                                             @endif
                                         </form>
                                     </td>

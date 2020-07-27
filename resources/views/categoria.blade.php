@@ -8,7 +8,7 @@
     <h2 class="col-12 p-3 mb-3 border-bottom">{{$categoria->tipo}}</h2>
 
     <div class="mb-3 col-lg-12 px-0">
-        <img class="d-block w-100" src="{{ $categoria->banner != null ? asset($categoria->banner) : asset('img/null.png') }}" >
+        <img class="d-block w-100 banner" src="{{ $categoria->banner != null ? asset($categoria->banner) : asset('img/null.png') }}">
     </div>
 
     <div class="row mt-4">

@@ -22,7 +22,8 @@
                 <p>Somos uma empresa que ouve nossos clientes. Nos mande um email! </p>
                 <form action="contato" method="post" id="formContato">
                     @csrf
-                    {{ method_field('POST') }} 
+                    {{ method_field('POST') }}
+                    <input type="hidden" class="form-control" name="status" value="Não lido">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputNome">Nome</label>

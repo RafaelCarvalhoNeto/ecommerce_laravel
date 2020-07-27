@@ -57,6 +57,38 @@ class CategoriasController extends Controller
 
     }
 
+    public function update(Request $request, $id){
+
+        $banner = $request->file('banner');
+
+        if(empty($banner)){
+            $pathRelative = $request->bannerName;
+        } else{
+            $banner->storePublicly('uploads');
+            
+            $absolutePath = public_path()."/storage/uploads";
+
+            $name = $banner->getClientOriginalName();
+
+            $banner->move($absolutePath, $name);
+
+            $pathRelative = "storage/uploads/$name";
+        }
+
+        $categoria = Categoria::find($id);
+
+        $categoria->banner = $pathRelative;
+        $categoria->tipo = $request->inputCategoria;
+
+        $categoria->update();
+
+        if($categoria){    
+
+            return redirect()->route('categorias.listAll')->with('success', 'Categoria editada com sucesso');
+        }
+
+    }
+
     public function deleteCategoria($id){
         $categoria = Categoria::find($id);
 

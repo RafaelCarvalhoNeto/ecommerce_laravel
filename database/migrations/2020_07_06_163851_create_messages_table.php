@@ -15,6 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
+            $table->enum('status',['Não lido','Lido','Respondido']);
             $table->string('nome');
             $table->string('sobrenome');
             $table->string('email');
