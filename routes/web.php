@@ -115,6 +115,8 @@ Route::get('/admin/admCategorias/search', 'CategoriasController@searchCategoria'
 // DELETE CATEGORIA
 Route::delete('/admin/removeCategoria/{id}', 'CategoriasController@deleteCategoria');
 
+Route::put('/admin/admCategorias/update/{id}', 'CategoriasController@update');
+
 // LISTAR MENSAGENS
 Route::get('/admin/admMensagens', 'MessageController@listMessage')->name('messages.listAll');
 
@@ -128,6 +130,10 @@ Route::delete('/admin/removeMessage/{id}', 'MessageController@deleteMessage');
 // SEARCH MENSAGENS
 Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 
+Route::put('/admin/toggleEmail/{id}', 'MessageController@toggleEmail');
+
+// ENVIAR E-MAIL
+Route::post('/sendemail/send', 'MessageController@send');
 
 
 // ACESSO USUÁRIO
@@ -135,6 +141,3 @@ Route::get('admin/admMensagens/search', 'MessageController@searchMessage');
 Route::get('/usuarios/historicoPedidos', function () {
     return view('usuarios.historicoPedidos');
 });
-
-
-

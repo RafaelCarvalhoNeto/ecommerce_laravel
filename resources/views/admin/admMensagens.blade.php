@@ -36,6 +36,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">ID</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Sobrenome</th>
                                 <th scope="col">E-mail</th>
@@ -47,7 +48,24 @@
                         <tbody>
                             @foreach ($messages as $message)
                             <tr>
-                                <td scope="row">{{ $message->id }}</td>    
+                                <th scope="row">{{ $message->id }}</td>    
+                                <td scope="row">
+                                    <form action="/admin/toggleEmail/{{$message->id}}" method="post">
+                                        @csrf
+                                        {{ method_field('PUT')}} 
+                                        @if ($message->status=='Não lido')
+                                        <input type="hidden" name="status" value='Lido'>
+                                        <button type='submit' class="btn btn-danger btn-sm">Não lido</button>
+                                        
+                                        @elseif($message->status=='Lido')
+                                        <input type="hidden" name="status" value='Não lido'>
+                                        <button type="submit" class="btn btn-success btn-sm">Lido</button>
+
+                                        @else
+                                        <button type="button" class="btn btn-primary btn-sm">Respondido</button>
+                                        @endif
+                                    </form>
+                                </td>    
                                 <td scope="row">{{ $message->nome }}</td>
                                 <td scope="row">{{ $message->sobrenome }}</td>
                                 <td scope="row">{{ $message->email }}</td>
@@ -113,29 +131,30 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <form>
+                                                            <form method='post' action='/sendemail/send'>
+                                                                <div class="modal-body">
+                                                                    @csrf
+                                                                    <input type="hidden" name="inputAssunto" id="" value="{{$message->assunto}}">
+                                                                    <input type="hidden" name="id" id="" value="{{$message->id}}">
                                                                     <div class="form-group">
 
                                                                         <label for="recipient-name" class="col-form-label">Destinatário:</label>
-                                                                        <input type="text" readonly class="form-control" id="inputNome" value="{{ $message->nome }} {{ $message->sobrenome }}">
+                                                                        <input type="text" readonly class="form-control" id="inputNome" name="inputNome" value="{{ $message->nome }} {{ $message->sobrenome }}">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="recipient-name" class="col-form-label">Email:</label>
-                                                                        <input type="email" readonly class="form-control" id="inputEmail" value="{{ $message->email }}">
+                                                                        <input type="email" readonly class="form-control" id="inputEmail" name="inputEmail" value="{{ $message->email }}">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="message-text" class="col-form-label">Mensagem:</label>
-                                                                        <textarea class="form-control" id="message-text" rows="4"></textarea>
+                                                                        <textarea class="form-control" id="message-text" rows="4" name="inputConteudo"></textarea>
 
                                                                     </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-
-                                                                <button type="button" class="btn btn-primary btn-block">Enviar</button>
-
-                                                            </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+                                                                </div>
+                                                            </form>
                                         
                                                         </div>
                                                     </div>

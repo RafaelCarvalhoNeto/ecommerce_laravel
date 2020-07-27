@@ -6,6 +6,8 @@ use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMail;
 
 class MessageController extends Controller
 {
@@ -49,6 +51,7 @@ class MessageController extends Controller
             return view('contato')->with('success', 'Mensagem enviada com sucesso');
         }
     }
+    
 
     public function deleteMessage($id){
         $message = Message::find($id);
@@ -71,6 +74,32 @@ class MessageController extends Controller
             'found'=>$found
         ]);
 
+    }
+    public function send(Request $request){
+        $data = array(
+            'name'=>$request->inputNome,
+            'subject'=>$request->inputAssunto,
+            'message'=>$request->inputConteudo
+        );
+        Mail::to($request->inputEmail)->send(new SendMail($data));
+        
+        $id = $request->id;
+        $message = Message::find($id);
+        $message->status = 'Respondido';
+
+        $message->update();
+
+        return back()->with('success', 'E-mail enviado com sucesso');
+
+    }    
+
+    public function toggleEmail(Request $request, $id){
+        
+        $message = Message::find($id);
+        $message->status = $request->status;
+        $message->update();
+
+        return redirect()->route('messages.listAll');
     }
 
     

@@ -36,7 +36,7 @@
                     <thead class="thead-dark">
                         <tr>
                             <th scope="row">ID</th>
-                            <th scope="row">Banner</th>
+                            <th class='imagem' scope="row">Banner</th>
                             <th scope="col">Categoria</th>
                             <th scope="col" colspan="2">Ações</th>
                         </tr>
@@ -44,9 +44,56 @@
                     <tbody>
                         @foreach ($categorias as $categoria)
                         <tr>
-                            <td scope="row">{{ $categoria->id }}</td>
+                            <th scope="row">{{ $categoria->id }}</td>
                             <td scope="row"><img src="{{ $categoria->banner != null ? asset($categoria->banner) : asset('img/null.png') }}" alt="" width="50" height="50"></td>
                             <td scope="row">{{ $categoria->tipo }}</td>
+                            <td>
+                                <a href="#" data-toggle="modal" data-target="#modal2{{ $categoria->id }}">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <!-- Modal Editar -->
+                                <div class="modal fade" id="modal2{{ $categoria->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content  text-left">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Editar o categoria?</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form method="post" action="/admin/admCategorias/update/{{$categoria->id}}" enctype="multipart/form-data">
+                                                    @csrf
+                                                    {{ method_field('PUT') }}
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <label for="inputImagem">Banner</label>
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input" id="banner" lang="pt" name="banner">
+                                                                <label class="custom-file-label" for="banner">Escolha a imagem</label>
+                                                            </div>
+                                                            <input type="hidden" name="bannerName" value={{$categoria->banner}}>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-3">
+                                                        <div class="col-12">
+                                                            <label for="inputProduto">Categoria</label>
+                                                            <input type="text" class="form-control" id="inputCategoria" name="inputCategoria" value="{{$categoria->tipo}}">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary btn-block">Editar</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
                             <td scope="row">
                                 <a href="#" data-toggle="modal" data-target="#modalExcluir{{ $categoria->id }}">
                                     <i class="fas fa-trash"></i>

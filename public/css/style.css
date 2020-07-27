@@ -287,6 +287,10 @@ img#thumbProduto{
 .tableAdm thead th:first-child{
     width: 5%;
 }
+.tableAdm thead .imagem{
+    width: 10%;
+}
+
 
 
 
@@ -331,6 +335,16 @@ img#thumbProduto{
 .acordeao p:hover{
     animation: bounce 1s;
 }
+
+/* Categorias */
+
+.banner{ 
+    width: 960px;
+    max-height: 250px;
+    object-fit: cover;
+}
+
+
 @keyframes bounce {
     0%, 20%, 60%, 100% {
         -webkit-transform: translateY(0);

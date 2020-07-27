@@ -106,7 +106,7 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $recomendacao->nome }}</h3>
-                            <p class="card-text preco m-0">R$ {{ $recomendacao->preco }}</p>
+                            <p class="card-text preco m-0">R$ {{ number_format($recomendacao->preco,2)}}</p>
                             <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
                         </div>
                     </div>
