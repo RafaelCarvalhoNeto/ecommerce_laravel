@@ -26,9 +26,29 @@ Route::get('/404', function () {
 Route::get('/politicas', function () {
     return view('politicas');
 });
-Route::get('/carrinho', function () {
-    return view('carrinho');
+
+
+
+
+Route::get('/carrinho','CarrinhoController@index')->name('carrinho');
+
+Route::get('/carrinho/adicionar', function(){
+    return redirect()->route('index');
 });
+Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
+
+Route::delete('/carrinho/remover''CarrinhoController@adicionar')->name('carrinho.remover');
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::get('/ofertas', function () {
