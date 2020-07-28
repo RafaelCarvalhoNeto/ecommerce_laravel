@@ -27,6 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($pedido->pedido_produtos as $pedido_produto)
                             <tr>
                                 <td colspan="2">
