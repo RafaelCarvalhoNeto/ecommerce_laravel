@@ -61,6 +61,10 @@ class CarrinhoController extends Controller
             'valor'=>$produto->preco,
             'status'=>'RE'
         ]);
+
+        if($req->input('back')){
+            return redirect()->back();
+        }
         
         $req->session()->flash('mensagem-sucesso', 'Produto adicionado ao carrinho com sucesso!');
 
