@@ -30,12 +30,9 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center">
-                @forelse ($pedidos as $pedido)
-                    <h5 class='col-12'>Pedido: {{$pedido->id}}</h5>
-                    <h5 class='col-12'>Criado em: {{$pedido->created_at->format('d/m/Y H:i')}}</h5>
-                    
-
+            @forelse ($pedidos as $pedido)
+                <div class="col-12 text-center">
+                  
                     <div id="table"  class="tableCarrinho">
                         <table class="table text-center mt-5">
                             <thead class="thead">
@@ -60,31 +57,31 @@
                                             <div class="text-left mx-0 mx-md-3">
                                                 <h5 class="my-0"> {{$pedido_produto->produto->nome}}</h5>
                                                 <small class="text-muted my-0">{{$pedido_produto->produto->id}}</small><br>
-                                                <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
-                                                <a href="#" class="ml-3 text-dark"><small>Excluir</small></a>
+                                                {{-- <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
+                                                <a href="#" class="ml-3 text-dark"><small>Excluir</small></a> --}}
                                             </div>
                                         </div>
                                     </td>
                                     <td class="center-align">
                                         <div class="center-align">
-                                            <a href="#" class="">
+                                            <a href="#" class="" onclick="carrinhoRemoverProduto({{$pedido->id}}, {{$pedido_produto->produto_id}},1)">
                                                 <li><i class="fas fa-minus-circle"></i></li>
                                             </a>
                                             <span>{{$pedido_produto->qtd}}</span>
-                                            <a href="#" class="">
+                                            <a href="#" class="" onclick="carrinhoAdicionarProduto({{$pedido_produto->produto_id}})">
                                                 <li><i class="fas fa-plus-circle"></i></li>
                                             </a>
                                         </div>
-                                        <a href="#" class="tooltiped" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho">Retirar produto</a>
+                                        <a href="#" class="tooltiped" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho" onclick="carrinhoRemoverProduto({{$pedido->id}}, {{$pedido_produto->produto_id}},0)">Retirar produto</a>
                                         
                                     </td>
-                                    <td class="align-middle">{{number_format($pedido_produto->produto->preco, 2, ',','.')}}</td>
-                                    <td class="align-middle font-weight-bold">{{number_format($pedido_produto->produto->descontos, 2, ',','.')}}</td>
+                                    <td class="align-middle">R$ {{number_format($pedido_produto->produto->preco, 2, ',','.')}}</td>
+                                    <td class="align-middle">R$ {{number_format($pedido_produto->produto->descontos, 2, ',','.')}}</td>
                                     @php
                                         $total_produto = $pedido_produto->valores - $pedido_produto->descontos;
                                         $total_pedido += $total_produto;
                                     @endphp
-                                    <td>R$ {{number_format($total_produto, 2, ',','.')}}</td>
+                                    <td class='align-middle  font-weight-bold'>R$ {{number_format($total_produto, 2, ',','.')}}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
@@ -104,23 +101,51 @@
                             </div>
                         </div>
                         <div class="form-group col-md-2 offset-4">
-                            <a class="btn btn-primary" href="/finalizarCompra">Finalizar Compra</a>
+                            <form action="{{route('pagina.finalizar')}}" method='post'>
+                                @csrf
+                                <input type="hidden" name="pedido_id" value="{{$pedido->id}}">
+                                <button type='submit' class="btn btn-primary">Finalizar Compra</button>
+                            </form>
                         </div>
                     </div>
-                @empty
-                <h5>Não há nenhum pedido no carrinho</h5>
-                @endforelse
-    
-            </div>
+                </div>
+            @empty
+                <div class="col-md-12 text-center">
+                    <div class="my-4 p-5 p-auto border ">
+                        <h4 class="font-weight-bold">Seu carrinho está vazio</h4>
+                        <a class="text-secondary" href="/">Volte para a página inicial</a>
+
+                    </div>
+                </div>
+                
+            @endforelse
         </div>
 
 
     </div>
 
+    <form id="form-remover-produto" method='post' action="{{ route('carrinho.remover')}}">
+        @csrf
+        {{ method_field('DELETE') }}
+        <input type="hidden" name="pedido_id">
+        <input type="hidden" name="produto_id">
+        <input type="hidden" name="item">
+
+    </form>
+    <form id="form-adicionar-produto" method="post" action="{{ route('carrinho.adicionar')}}">
+        @csrf 
+        <input type="hidden" name="id">
+
+
+
+    </form>
+
 
 
 
 </section>
+
+<script src='./js/carrinho.js'></script>
 
 
 @endsection

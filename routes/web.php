@@ -37,9 +37,9 @@ Route::get('/carrinho/adicionar', function(){
 });
 Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
-Route::delete('/carrinho/remover''CarrinhoController@adicionar')->name('carrinho.remover');
-
-
+Route::delete('/carrinho/remover','CarrinhoController@remover')->name('carrinho.remover');
+// Route::post('finalizarCompra', 'CarrinhoController@concluir')->name('finalizar.compra');
+Route::post('finalizarCompra', 'CarrinhoController@compras')->name('pagina.finalizar');
 
 
 
@@ -86,7 +86,7 @@ Route::post('/login/do', 'NavigateController@login')->name('login.do');
 
 Auth::routes();
 
-Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
+// Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
 
 // ACESSO ADMIN
 
