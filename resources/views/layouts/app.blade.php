@@ -69,7 +69,10 @@
                 
                 <div class='icon-carrinho'>
                   <a class="btn btn-outline-warning px-4 ml-2 arrendonar" href="/carrinho"><i class="fas fa-shopping-cart"></i></a>
-                  <small class="bolinha">0</small>
+                  
+                  @if ($itensCarro !=0)
+                  <small class="bolinha">{{$itensCarro}}</small>
+                  @endif
                 </div>
 
               
