@@ -29,51 +29,110 @@
 
     <h2 class="col-12 p-3 mt-3 mb-3 border-bottom" id="caixaPedidos">Todos os Pedidos</h2>
     
-    <div class="col-12 mt-3 mb-3">
+    {{-- <div class="col-12 mt-3 mb-3">
       <p>Pesquise por um pedido:</p>  
       <input class="form-control" id="myInput" type="text" placeholder="Pesquisar...">
       <div id="table" class="tableCarrinho">
-        <table class="table table-striped text-center mt-3">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">N<sup>o</sup> do Pedido</th>
-              <th scope="col">Produto</th>
-              <th scope="col">Data</th>
-              <th scope="col">Pagamento</th>
-              <th scope="col">Status</th>
-              <th scope="col">NF-e</th>
-            </tr>
-          </thead>
-          <tbody id="myTable">
-            <tr>
-              <th scope="row">1</th>
-              <td>Bolsa</td>
-              <td>02/01/2020</td>
-              <td>Boleto Bancario</td>
-              <td>Enviado</td>
-              <td><a href="#">pdf</a></td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Computador</td>
-              <td>02/01/2020</td>
-              <td>Cartao de Credito</td>
-              <td>Entregue</td>
-              <td><a href="#">pdf</a></td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Livro</td>
-              <td>02/01/2020</td>
-              <td>Paypal</td>
-              <td>Entregue</td>
-              <td><a href="#">pdf</a></td>
-            </tr>
-          </tbody>
-        </table>
+        @foreach ($pedidos as $pedido)
+          <p>{{$pedido->id}}</p>
+          @foreach ($pedido->pedido_produtos as $pedido_produto)
+              
+          <table class="table table-striped text-center mt-3">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">N<sup>o</sup> do Pedido</th>
+                <th scope="col">Produto</th>
+                <th scope="col">Data</th>
+                <th scope="col">Pagamento</th>
+                <th scope="col">Status</th>
+                <th scope="col">NF-e</th>
+              </tr>
+            </thead>
+            <tbody id="myTable">
+              <tr>
+                <th scope="row">1</th>
+                <td>Bolsa</td>
+                <td>02/01/2020</td>
+                <td>Boleto Bancario</td>
+                <td>Enviado</td>
+                <td><a href="#">pdf</a></td>
+              </tr>
+            </tbody>
+          </table>
+          @endforeach
+        @endforeach
       </div>
 
+    </div> --}}
+
+    <!-- ACCORDION -->
+
+    <div class="col-md-12">
+
+      <div class="accordion" id="accordionTabsProduto">
+        @forelse ($pedidos as $pedido)
+        <div>
+          <button class="acordeao text-left my-2 d-flex justify-content-between" type="button" data-toggle="collapse" data-target="#titulo{{$pedido->id}}" aria-expanded="false" aria-controls="titulo{{$pedido->id}}">
+            <p class="m-0">Pedido {{$pedido->id}}<i class="fas fa-chevron-down ml-3 font-weight-light"></i></p>
+            <small class="m-0 font-weight-bold">{{$pedido->updated_at->format('d/m/Y H:i')}} - Status {{$pedido->status}}</small>
+          </button>
+
+          <div id="titulo{{$pedido->id}}" class="collapse" aria-labelledby="aba{{$pedido->id}}" data-parent="#accordionTabsProduto">
+            <div class="card-body p-0">
+
+              <div id="table" class="tableCarrinho">
+                @php
+                  $item = 1;
+                @endphp
+                  <table class="table table-striped text-center mt-3">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Produto</th>
+                        <th scope="col">Qtd</th>
+                        <th scope="col">nf</th>
+                        <th scope="col">Valor</th>
+                      </tr>
+                    </thead>
+                    @php
+                      $total_pedido = 0;
+                    @endphp
+                    <tbody id="myTable">
+                      @foreach ($pedido->pedido_produtos as $pedido_produto)
+                      <tr>
+                        <th scope="row">{{$item++}}</th>
+                        <td>{{$pedido_produto->produto->nome}}</td>
+                        <td>{{$pedido_produto->qtd}}</td>
+                        <td><a href="#">pdf</a></td>
+                        <td>R$ {{number_format($pedido_produto->valores, 2, ',','.')}}</td>
+                      </tr>
+                      @php
+                        $total_pedido += $pedido_produto->valores;
+                      @endphp
+                      @endforeach
+                        <tr class='table-dark'>
+                          <td colspan="3"></td>
+                          <td class="align-middle font-weight-bold">Total</td>
+                          <td class="align-middle font-weight-bold">R$ {{number_format($total_pedido, 2, ',','.')}}</td>
+                        </tr>
+                    </tbody>
+                  </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      @empty
+        <div class="col-md-12 text-center">
+          <div class="my-4 p-5 p-auto border ">
+            <h4 class="font-weight-bold">Nenhuma compra foi realizada</h4>
+            <a class="text-secondary" href="/">Explore nossa loja</a>
+        </div>
     </div>
+      @endforelse
+      </div>
+    </div>
+
 
 
   </main>

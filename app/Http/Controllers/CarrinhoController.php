@@ -122,49 +122,53 @@ class CarrinhoController extends Controller
 
     }
 
-    // public function concluir(){
-    //     $this->middleware('VerifyCsrfToker');
+    public function concluir(){
+        $this->middleware('VerifyCsrfToker');
 
-    //     $req = Request();
-    //     $idpedido = $req->input('pedido_id');
-    //     $idusuario = Auth::id();
+        $req = Request();
+        $idpedido = $req->input('pedido_id');
+        $idusuario = Auth::id();
 
-    //     $check_pedido = Pedido::where([
-    //         'id' => $idpedido,
-    //         'user_id'=>$idusuario,
-    //         'status'=>'RE'
-    //     ])->exists();
+
+        $check_pedido = Pedido::where([
+            'id' => $idpedido,
+            'user_id'=>$idusuario,
+            'status'=>'RE'
+        ])->exists();
         
-    //     if(!$check_point){
-    //         $req->session()->flash('mensagem-falha', 'Pedido não encontrado');
-    //         return redirect()->route('carrinho');
-    //     }
+        if(!$check_pedido){
+            $req->session()->flash('mensagem-falha', 'Pedido não encontrado');
+            return redirect()->route('carrinho');
+        }
 
-    //     $check_produtos = PedidoProduto::where([
-    //         'pedido_id'=>$idpedido
-    //     ])->exists();
+        $check_produtos = PedidoProduto::where([
+            'pedido_id'=>$idpedido,
+            'status'=>'RE'
+        ])->exists();
 
-    //     if($check_produtos){
-    //         $req->sesstion()->flash('mensagem-falha', 'Produtos do pedido não encontrados!');
-    //         return redirect()->route('carrinho');
-    //     }
+        if(!$check_produtos){
+            $req->session()->flash('mensagem-falha', 'Produtos do pedido não encontrados!');
+            return redirect()->route('carrinho');
+        }
 
-    //     PedidoProduto::where([
-    //         'pedido_id'=>$idpedido
-    //     ])->update([
-    //         'status'=> 'PA'
-    //     ]);
-    //     Pedido::where([
-    //         'id'=>$idpedido
-    //     ])->update([
-    //         'status'=>'PA'
-    //     ]);
+        PedidoProduto::where([
+            'pedido_id'=>$idpedido
+        ])->update([
+            'status'=> 'PA'
+        ]);
+        Pedido::where([
+            'id'=>$idpedido
+        ])->update([
+            'status'=>'PA'
+        ]);
 
-    //     $req->session()->flash('mensagem-sucesso','Compra concluída com sucesso!');
+        $pedido = Pedido::where([
+            'id'=>$idpedido
+        ])->first();
 
-    //     return redirect()->route('carrinho.concluir');
+        return view('compraFinalizada')->with('pedido', $pedido);
 
-    // }
+    }
 
     public function compras(Request $request){
         
@@ -180,17 +184,19 @@ class CarrinhoController extends Controller
     }
 
     // HISTÓRICO DE PEDIDOS
-    // public function compras(){
-    //     $compras = Pedido::where([
-    //         'status'=>'RE',
-    //         'user_id'=> Auth::id()
-    //     ])->orderBy('created_at', 'desc')->get();
+    public function showHistorico(){
+        $pedidos = Pedido::where([
+            'status'=>'PA',
+            'user_id'=> Auth::id()
+        ])->orderBy('updated_at', 'desc')->get();
 
     //     $canceladas = Pedido::where([
     //         'status'=>'CA',
     //         'user_id'=> Auth::id()
     //     ])->orderBy('created_at', 'desc')->get();
 
-    //     return view('usuarios.historicoPedidos', compact('compras', 'canceladas'));
-    // }
+        // return $pedidos[0]->pedido_produtos;
+        // die;
+        return view('usuarios.historicoPedidos', compact('pedidos'));
+    }
 }

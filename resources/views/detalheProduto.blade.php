@@ -13,22 +13,15 @@
                     <img class="d-block w-100 .produto" src=" {{asset($produto->imagem)}} " alt="" >
                 </div>
             </div>
-            <div class="col-md-6 my-3">
-                <h2>{{$produto->nome}}</h2>
-                <small>{{$produto->id}}</small>
-                <p class="my-3">{{$produto->descricao}}
-                </p>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-2 p-0">
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="quantidade">Quantidade</label>
-                                    <input type="number" class="form-control" id="quantidade" step="1" min="1" value="1" required>
-                                </div>
-                            </div>
-                        </div>    
-                    </div>
+            <div class="col-md-6 my-3 d-flex flex-column justify-content-between">
+                <div>
+
+                    <h2>{{$produto->nome}}</h2>
+                    <small>{{$produto->id}}</small>
+                    <p class="my-3">{{$produto->descricao}}
+                    </p>
+                </div>
+                <div class="container align-self-end">
                     <div class="row">
                         <div class="col-md-12 d-flex flex-column justify-content-center bg-light ">
                             <div class="form-group mt-4 mb-2">

@@ -101,9 +101,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-2 offset-4">
-                            <form action="{{route('pagina.finalizar')}}" method='post'>
-                                @csrf
-                                <input type="hidden" name="pedido_id" value="{{$pedido->id}}">
+                            <form action="{{route('pagina.finalizar')}}" method='get'>
                                 <button type='submit' class="btn btn-primary">Finalizar Compra</button>
                             </form>
                         </div>

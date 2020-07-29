@@ -4,7 +4,8 @@
 @endsection
 @section('content')
     <section class="container my-3">
-        <form action="compraFinalizada" method="post" class="row">
+        <form action="{{route('pedido.concluido')}}" method="post" class="row">
+            @csrf
             <article class="col-12 col-md-7" id="formularioPagamento">
                 <div class="">
                     <h2 class="col-12 p-3 mb-3 border-bottom">Finalizando compra</h2>
@@ -28,21 +29,21 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="nomeDestinatario">Nome do Destinatário</label>
-                                <input type="text" class="form-control" name="nomeDestinatario" id="nomeDestinatario" placeholder="Nome de quem vai receber" required="">
+                                <input type="text" class="form-control" name="nomeDestinatario" id="nomeDestinatario" placeholder="Nome de quem vai receber">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="emailDestinatario">email do Destinatário</label>
-                                <input type="email" class="form-control" name="emailDestinatario" id="emailDestinatario" placeholder="email@destinatario.com" required="">
+                                <input type="email" class="form-control" name="emailDestinatario" id="emailDestinatario" placeholder="email@destinatario.com">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="cepDestinatario">CEP</label>
-                                <input type="text" class="form-control" name="cepDestinatario" id="cepDestinatario" placeholder="01234-567" required="">
+                                <input type="text" class="form-control" name="cepDestinatario" id="cepDestinatario" placeholder="01234-567">
                             </div>
                             <div class="form-group col-md-7">
                                 <label for="cidadeDestinatario">Cidade</label>
-                                <input type="text" class="form-control" name="cidadeDestinatario" id="cidadeDestinatario" placeholder="São Paulo" required="">
+                                <input type="text" class="form-control" name="cidadeDestinatario" id="cidadeDestinatario" placeholder="São Paulo">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="ufDestinatario">UF</label>
@@ -81,15 +82,15 @@
                         <div class="form-row">
                             <div class="form-group col-md-7">
                                 <label for="logradouroDestinatario">Endereço</label>
-                                <input type="text" class="form-control" name="logradouroDestinatario" id="logradouroDestinatario" placeholder="Av. Brasil" required="">
+                                <input type="text" class="form-control" name="logradouroDestinatario" id="logradouroDestinatario" placeholder="Av. Brasil">
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="numeroDestinatario">Número</label>
-                                <input type="text" class="form-control" name="numeroDestinatario" id="numeroDestinatario" placeholder="123-A" required="">
+                                <input type="text" class="form-control" name="numeroDestinatario" id="numeroDestinatario" placeholder="123-A">
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="complementoDestinatario">Complemento</label>
-                                <input type="text" class="form-control" name="complementoDestinatario" id="complementoDestinatario" placeholder="Apto. 420" required="">
+                                <input type="text" class="form-control" name="complementoDestinatario" id="complementoDestinatario" placeholder="Apto. 420">
                             </div>
                         </div>
                         <div class="form-group">
@@ -101,7 +102,7 @@
                 </div>
             </article>
             <article class="dados-pedido col-12 col-md-5 jumbotron p-0 pb-3" id="dadosPedido">
-                <div class="sticky-top">
+                <div class="">
                     <h2 class="col-12 p-3 mb-3 border-bottom">Dados do pedido</h2>
                     <div class="col-md-12">
                         <p class="ml-0">Confirmação do Pedido</p>
@@ -184,25 +185,26 @@
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="nomeTitular">Nome do Titular do Cartão</label>
-                                <input type="text" class="form-control bg-white" name="nomeTitular" id="nomeTitular" placeholder="Nome Completo" aria-describedby="#nomeTitularHelp" required="">
+                                <input type="text" class="form-control bg-white" name="nomeTitular" id="nomeTitular" placeholder="Nome Completo" aria-describedby="#nomeTitularHelp">
                                 <small id="nomeTitularHelp" class="form-text text-muted">Digite o nome exatamente como está no cartão</small>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="numeroCartao">Número do Cartão</label>
-                                <input type="text" class="form-control bg-white" name="numeroCartao" id="numeroCartao" placeholder="1234 5678 9012 3456" required="">
+                                <input type="text" class="form-control bg-white" name="numeroCartao" id="numeroCartao" placeholder="1234 5678 9012 3456" >
                             </div>
                             <div class="form-group col-md-2">
                                 <label for="cvcCartao">Cód.</label>
-                                <input type="text" class="form-control bg-white" name="cvcCartao" id="cvcCartao" placeholder="123" required="">
+                                <input type="text" class="form-control bg-white" name="cvcCartao" id="cvcCartao" placeholder="123">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="vencimentoCartao">Vencimento</label>
-                                <input type="month" class="form-control bg-white" name="vencimentoCartao" id="vencimentoCartao" placeholder="123" required="">
+                                <input type="month" class="form-control bg-white" name="vencimentoCartao" id="vencimentoCartao" placeholder="123">
                             </div>
                         </div>
                         <div class="form-group clearfix">
+                            <input type="hidden" name="pedido_id" value="{{$pedido->id}}">
                             <button type="submit" class="btn btn-primary btn-block">Confirmar Pagamento</i></button>
                         </div>
 

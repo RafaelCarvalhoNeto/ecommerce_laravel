@@ -38,12 +38,12 @@ Route::get('/carrinho/adicionar', function(){
 Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
 Route::delete('/carrinho/remover','CarrinhoController@remover')->name('carrinho.remover');
-Route::post('finalizarCompra', 'CarrinhoController@concluir')->name('finalizar.compra');
-Route::post('finalizarCompra', 'CarrinhoController@compras')->name('pagina.finalizar');
+Route::post('compraFinalizada', 'CarrinhoController@concluir')->name('pedido.concluido');
+Route::get('finalizarCompra', 'CarrinhoController@compras')->name('pagina.finalizar');
 
 
 
-
+Route::get('/usuarios/historicoPedidos', 'CarrinhoController@showHistorico')->name('show.historico');
 
 
 
@@ -159,7 +159,3 @@ Route::post('/sendemail/send', 'MessageController@send');
 
 
 // ACESSO USUÁRIO
-
-Route::get('/usuarios/historicoPedidos', function () {
-    return view('usuarios.historicoPedidos');
-});
