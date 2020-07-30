@@ -26,9 +26,31 @@ Route::get('/404', function () {
 Route::get('/politicas', function () {
     return view('politicas');
 });
-Route::get('/carrinho', function () {
-    return view('carrinho');
+
+
+
+
+Route::get('/carrinho','CarrinhoController@index')->name('carrinho');
+
+Route::get('/carrinho/adicionar', function(){
+    return redirect()->route('index');
 });
+Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
+
+Route::delete('/carrinho/remover','CarrinhoController@remover')->name('carrinho.remover');
+Route::post('compraFinalizada', 'CarrinhoController@concluir')->name('pedido.concluido');
+Route::get('finalizarCompra', 'CarrinhoController@compras')->name('pagina.finalizar');
+
+
+
+Route::get('/usuarios/historicoPedidos', 'CarrinhoController@showHistorico')->name('show.historico');
+
+
+
+
+
+
+
 
 
 Route::get('/ofertas', function () {
@@ -66,7 +88,7 @@ Route::post('/login/do', 'NavigateController@login')->name('login.do');
 
 Auth::routes();
 
-Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
+// Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
 
 // ACESSO ADMIN
 
@@ -137,7 +159,3 @@ Route::post('/sendemail/send', 'MessageController@send');
 
 
 // ACESSO USUÁRIO
-
-Route::get('/usuarios/historicoPedidos', function () {
-    return view('usuarios.historicoPedidos');
-});

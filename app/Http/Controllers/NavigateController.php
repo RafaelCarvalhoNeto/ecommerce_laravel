@@ -121,7 +121,8 @@ class NavigateController extends Controller
         ];
 
         if (Auth::attempt($credentials)){
-            return redirect()->route('finaliza.compra');
+            return redirect()->route('carrinho');
+            // return redirect()->route('finaliza.compra');
 
         }
         return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);

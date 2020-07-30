@@ -13,37 +13,39 @@
                     <img class="d-block w-100 .produto" src=" {{asset($produto->imagem)}} " alt="" >
                 </div>
             </div>
-            <div class="col-md-6 my-3">
-                <h2>{{$produto->nome}}</h2>
-                <small>{{$produto->id}}</small>
-                <p class="my-3">{{$produto->descricao}}
-                </p>
-                <form action="/carrinho" method="GET" id="formComprar">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-2 p-0">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="quantidade">Quantidade</label>
-                                        <input type="number" class="form-control" id="quantidade" step="1" min="1" value="1" required>
-                                    </div>
-                                </div>
-                            </div>    
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 d-flex flex-column justify-content-center bg-light ">
-                                <div class="form-group mt-4 mb-2">
-                                    <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->preco),2)}}</p>
-                                    <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
-                                </div>
-                                <div class="form-group m-0 mb-4">
-                                    <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>comprar</button>
-                                </div>
+            <div class="col-md-6 my-3 d-flex flex-column justify-content-between">
+                <div>
+
+                    <h2>{{$produto->nome}}</h2>
+                    <small>{{$produto->id}}</small>
+                    <p class="my-3">{{$produto->descricao}}
+                    </p>
+                </div>
+                <div class="container align-self-end">
+                    <div class="row">
+                        <div class="col-md-12 d-flex flex-column justify-content-center bg-light ">
+                            <div class="form-group mt-4 mb-2">
+                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->preco),2)}}</p>
+                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
+                            </div>
+                            <div class="form-group m-0 mb-4">
+                                <form action="{{route('carrinho.adicionar')}}" method="POST" id="formComprar">
+                                    @csrf
+                                    <input type="hidden" name="id" value={{$produto->id}}>
+                                    <input type="hidden" name="back" value="1">
+                                    <button type="submit" class="mx-auto mt-2 btn btn-secondary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>adicionar ao carrinho</button>
+                                </form>
+                                <form action="{{route('carrinho.adicionar')}}" method="POST" id="formComprar">
+                                    @csrf
+                                    <input type="hidden" name="id" value={{$produto->id}}>
+                                    <button type="submit" class="mx-auto my-2 btn btn-primary font-weight-bold comprar">comprar agora</button>
+                                </form>
                             </div>
                         </div>
-
                     </div>
-                </form>
+
+                </div>
+
 
 
             </div>
