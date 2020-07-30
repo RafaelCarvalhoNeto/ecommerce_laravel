@@ -264,6 +264,9 @@ address{
     overflow-x:auto !important;
 
 }
+.tableCarrinho th{
+    border-top: none;
+}
 
 .arrendonar{
     border-radius: 100px;
@@ -335,7 +338,9 @@ img#thumbProduto{
 .acordeao p:hover{
     animation: bounce 1s;
 }
-
+.bounce {
+    animation: bounce 1s; 
+}
 /* Categorias */
 
 .banner{ 
@@ -415,6 +420,25 @@ form input.form-control, form textarea.form-control, form select.form-control{
 #tornar-admin{
     display: none;
 }
+
+.setas-add-cart{
+    display: flex;
+    width: 100%;
+    border: 1px solid gray;
+    padding: 10px;
+    color: black;
+}
+.setas-add-cart span{
+    flex: 1;
+    padding: 0 5px;
+}
+.setas-add-cart a{
+    color:gray;
+}
+.retirar-pedido{
+    font-size: 0.8em;
+}
+
 
 @media only screen and (min-width: 425px) {
 

@@ -33,7 +33,7 @@
                                     @csrf
                                     <input type="hidden" name="id" value={{$produto->id}}>
                                     <input type="hidden" name="back" value="1">
-                                    <button type="submit" class="mx-auto mt-2 btn btn-secondary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>adicionar ao carrinho</button>
+                                    <button type="submit" id="add-cart"class="mx-auto mt-2 btn btn-secondary font-weight-bold comprar"><i class="fas fa-shopping-cart mr-2"></i>adicionar ao carrinho</button>
                                 </form>
                                 <form action="{{route('carrinho.adicionar')}}" method="POST" id="formComprar">
                                     @csrf
