@@ -15,14 +15,13 @@ class ProdutosController extends Controller
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
-         'produtos.descricao', 'produtos.parcelamento')
-        ->paginate(10);
-        $categorias = Categoria::all();
-        $found = $categorias->count();
-        
-        
+         'produtos.descricao', 'produtos.parcelamento');
+        $categorias = Categoria::All();
+        $found = $produtos->count();
+        $produtos = $produtos->paginate(10);
+                
         if($produtos){
-            return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=>$found, 'categorias'=>$categorias]);
+            return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
         }
     }
 
@@ -68,7 +67,7 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            return redirect()->route('adm.produtos')->with('success','Produto criado com sucesso');
+            return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso');
         }
     } 
 
@@ -77,7 +76,7 @@ class ProdutosController extends Controller
         $imagem = $request->file('imagem');
         
         if(empty($imagem)){
-            $pathRelative = null;
+            $pathRelative = $request->imagemName ;
         } else{
             $imagem->storePublicly('uploads');
             
@@ -115,7 +114,7 @@ class ProdutosController extends Controller
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.descricao', 'produtos.parcelamento')
         ->paginate(10);
-        $categorias = Categoria::all();
+        $categorias = Categoria::All();
 
             return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
                 'success'=> 'Produto alterado com sucesso' ]);
@@ -129,13 +128,13 @@ class ProdutosController extends Controller
         if($produto->delete()){
 
             $produtos = Produto::paginate(10);
-            $categorias = Categoria::all();
+            $categorias = Categoria::All();
 
             if($produtos){
             return view('admin.admProdutos')->with([
                 'produtos' => $produtos, 
                 'categorias'=> $categorias,
-                'success' => 'Registro excluído com sucesso'
+                'success' => 'Produto excluído com sucesso'
                 ]);
             }
         }
@@ -149,11 +148,11 @@ class ProdutosController extends Controller
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao')
         ->where('produtos.nome', 'like' , '%'. $search . '%')
-        ->orWhere('categorias.tipo', 'like' , '%'. $search . '%')
-        ->paginate(10);
+        ->orWhere('categorias.tipo', 'like' , '%'. $search . '%');
         // $produtos = Produto::where('nome', 'like', '%' . $search . '%')->paginate(10);
         $categorias = Categoria::All();
-        $found = $categorias->count();
+        $found = $produtos->count();
+        $produtos = $produtos->paginate(10);
 
         return view('admin.admProdutos')->with([
             'search' => $search,

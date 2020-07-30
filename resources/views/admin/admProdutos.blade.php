@@ -20,7 +20,7 @@
             <h2 class="col-12 p-3 mb-3 border-bottom">Produtos</h2>
             <div class="col-12 mt-3 mb-3">
                 <p>Pesquise aqui por um Produto:</p>
-                <form class="form-inline" action="{{ url('admin/admProdutos/search') }}" method="GET">
+                <form action="{{ url('/admin/admProdutos/search') }}" method="GET">
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="inputSearch" type="search" arial-label="search" placeholder="Pesquisar..." name='inputSearch'>
                         <div class="input-group-append">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </form>
-                <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{ $found ?? '' }}</strong></p>
+                <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{$found}}</strong></p>
                 <div class="card-body">
                     @if($produtos->isEmpty())
                     <section class="row">
@@ -56,9 +56,7 @@
                             @foreach ($produtos as $produto)
                             <tr>
                                 <td scope="row">{{ $produto->id }}</td>
-                                
                                 <td scope="row"><img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="" width="50" height="50"></td>
-                                
                                 <td scope="row">{{ $produto->nome }}</td>
                                 <td scope="row">R$ {{ number_format($produto->preco,2) }}</td>
                                 <td scope="row">{{ $produto->tipo }}</td>                   
@@ -86,9 +84,10 @@
                                                             <div class="form-group col-md-12 text-left">
                                                                 <label for="inputImagem">Imagem</label>
                                                                 <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputImagem" lang="pt" name="imagem" value="{{$produto->imagem}}">
+                                                                <input type="file" class="custom-file-input" id="inputImagem" lang="pt" name="imagem">
                                                                     <label class="custom-file-label" for="inputImagem">Escolha o arquivo</label>
                                                                 </div>
+                                                            <input type="hidden" name="imagemName" value="{{$produto->imagem}}">
                                                             </div>
                                                             <div class="form-group col-md-12 text-left">
                                                                 <label for="inputProduto">Produto</label>
@@ -177,7 +176,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div class="modal-body text-left">
                                                 <h3> {{ $produto->nome}}</h3>
                                             </div>
                                             <div class="modal-footer">
@@ -311,9 +310,5 @@
                 </div>
             </div>
         </div>
-        
-        
-    
-        
     </main>
 @endsection

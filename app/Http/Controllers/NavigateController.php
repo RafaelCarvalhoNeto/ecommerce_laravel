@@ -73,6 +73,7 @@ class NavigateController extends Controller
             ]);
         }
     }
+    
 
     public function searchItems(Request $request){
 
