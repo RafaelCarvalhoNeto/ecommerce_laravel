@@ -335,7 +335,9 @@ img#thumbProduto{
 .acordeao p:hover{
     animation: bounce 1s;
 }
-
+.bounce {
+    animation: bounce 1s; 
+}
 /* Categorias */
 
 .banner{ 

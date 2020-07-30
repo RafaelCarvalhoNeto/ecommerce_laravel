@@ -195,49 +195,11 @@
 
   </div>
 
-  <script>
-    let btn = document.getElementById('btn-fade');
-    let noir = document.querySelector('.noir');
-    btn.addEventListener('click', function(event){
-
-      if(event.target.getAttribute('aria-expanded')=='false'){
-        noir.classList.add('active-noir')
-        btn.style.zIndex = 100
-      }else{
-        noir.classList.remove('active-noir')
-      }
-    })
-
-    document.addEventListener('click', function(){
-      if(btn.getAttribute('aria-expanded')=='true')
-        noir.classList.remove('active-noir')
-    })
-
-
-  </script>
-
-
+  <script src="/js/fade-menu-categorias.js"></script>
+  <script src="/js/bolinha.js"></script>
   @guest
   @else
-  <script>
-    let drop = document.getElementById('acesso');
-    let dmenu = document.querySelector('#acessoOptions');
-    let item = document.querySelectorAll('#acessoOptions .dropdown-item')[1]
-    let nav = document.querySelector('.row')
-    drop.addEventListener('mouseenter',function(){
-      drop.classList.add('show')
-      dmenu.classList.add('show')
-    })
-    nav.addEventListener('mouseenter',function(){
-      drop.classList.remove('show')
-      dmenu.classList.remove('show')
-    })
-
-    item.addEventListener('mouseout',function(){
-      drop.classList.remove('show')
-      dmenu.classList.remove('show')
-    })
-  </script>
+  <script src="/js/drop-menu-perfil.js"></script>
   @endguest
 
 </body>
