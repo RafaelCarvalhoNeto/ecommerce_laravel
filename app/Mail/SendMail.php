@@ -34,7 +34,7 @@ class SendMail extends Mailable
     public function build()
     {
 
-        return $this->from('ADD EMAIL')
+        return $this->from('rodrigmachado11@gmail.com')
         ->subject('RE: '.$this->data['subject'])
         ->view('admin.sendMail')
         ->with('data',$this->data);
