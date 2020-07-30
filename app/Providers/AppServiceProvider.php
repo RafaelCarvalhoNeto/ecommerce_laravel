@@ -36,7 +36,9 @@ class AppServiceProvider extends ServiceProvider
                     'status'=>'RE',
                     'user_id'=>Auth::id()
                 ])->get();
-                $itensCarro = $itensCarro[0]->pedido_produtos->count();
+                !empty($itensCarro[0]->id)?
+                $itensCarro = $itensCarro[0]->pedido_produtos->count():
+                $itensCarro = 0;
             } else {
                 $itensCarro = 0;
 

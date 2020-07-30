@@ -4,11 +4,9 @@
 @endsection
 @section('content')
 
-<section class="container-fluid m-0 p-0 ajuste">
+<section class="container pt-3 ajuste">
 
-    <div class="row jumbotron p-0 m-0 text-center">
-        <h1 class="col-md-12 p-1 mt-3 mb-3">Carrinho</h1>
-    </div>
+    <h2 class="col-12 p-3 mb-3 border-bottom">Carrinho</h2>
     @if(session('mensagem-sucesso'))
     <section class="row">
         <div class="col-12">
@@ -34,7 +32,7 @@
                 <div class="col-12 text-center">
                   
                     <div id="table"  class="tableCarrinho">
-                        <table class="table text-center mt-5">
+                        <table class="table text-center mt-3 tableCarrinho">
                             <thead class="thead">
                                 <tr>
                                     <th scope="col" colspan="2" class="text-left"><h4 class="mb-0">Itens selecionados</h4></th>
@@ -63,16 +61,16 @@
                                         </div>
                                     </td>
                                     <td class="center-align">
-                                        <div class="center-align">
+                                        <div class="center-align setas-add-cart">
                                             <a href="#" class="" onclick="carrinhoRemoverProduto({{$pedido->id}}, {{$pedido_produto->produto_id}},1)">
-                                                <li><i class="fas fa-minus-circle"></i></li>
+                                                <li><i class="fas fa-minus"></i></li>
                                             </a>
                                             <span>{{$pedido_produto->qtd}}</span>
                                             <a href="#" class="" onclick="carrinhoAdicionarProduto({{$pedido_produto->produto_id}})">
-                                                <li><i class="fas fa-plus-circle"></i></li>
+                                                <li><i class="fas fa-plus"></i></li>
                                             </a>
                                         </div>
-                                        <a href="#" class="tooltiped" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho" onclick="carrinhoRemoverProduto({{$pedido->id}}, {{$pedido_produto->produto_id}},0)">Retirar produto</a>
+                                        <a href="#" class="retirar-pedido" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho" onclick="carrinhoRemoverProduto({{$pedido->id}}, {{$pedido_produto->produto_id}},0)">Retirar produto</a>
                                         
                                     </td>
                                     <td class="align-middle">R$ {{number_format($pedido_produto->produto->preco, 2, ',','.')}}</td>
