@@ -106,7 +106,7 @@
                     </div>
                 </div>
             @empty
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 p-0 text-center">
                     <div class="my-4 p-5 p-auto border ">
                         <h4 class="font-weight-bold">Seu carrinho está vazio</h4>
                         <a class="text-secondary" href="/">Volte para a página inicial</a>

@@ -427,6 +427,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
     border: 1px solid gray;
     padding: 10px;
     color: black;
+    border-radius:15px;
 }
 .setas-add-cart span{
     flex: 1;
@@ -440,7 +441,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
 }
 
 
-@media only screen and (min-width: 425px) {
+@media only screen and (min-width: 769px) {
 
     #carrosel {
         display: inherit;

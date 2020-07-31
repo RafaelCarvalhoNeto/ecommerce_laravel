@@ -16,10 +16,10 @@
         </section>
         @endif
         <div class="row">
-
             <h2 class="col-12 p-3 mb-3 border-bottom">Produtos</h2>
             <div class="col-12 mt-3 mb-3">
-                <p>Pesquise aqui por um Produto:</p>
+                <p>Pesquise por um Produto:</p>
+                
                 <form action="{{ url('/admin/admProdutos/search') }}" method="GET">
                     <div class="input-group col-12 px-0">
                         <input class="form-control border-0" id="inputSearch" type="search" arial-label="search" placeholder="Pesquisar..." name='inputSearch'>
@@ -29,15 +29,7 @@
                     </div>
                 </form>
                 <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{$found}}</strong></p>
-                <div class="card-body">
-                    @if($produtos->isEmpty())
-                    <section class="row">
-                        <div class="col-12">
-                            <h1 class="col-12 text-center">Que pena! Não encontramos o produto desejado.</h1>
-                        </div>
-                    </div>
-                </section>
-                @else
+
                 <div id="table"  class="tableAdm">
                     <table class="table table-striped text-center mt-3">
                         <thead class="thead-dark">
@@ -199,12 +191,10 @@
                         {{ $produtos->appends(['search' => isset($search) ? $search : ''])->links() }}
                     </div>
                 </div>
-              @endif  
+
 
             </div>
         </div>
-
-            <!-- Modal Excluir -->
 
 
         <p class="font-weight-bold">Adicionar Produto

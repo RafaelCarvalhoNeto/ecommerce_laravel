@@ -54,7 +54,7 @@
 
         <div class="row mt-4">
             @foreach ($produtos as $produto)
-            <div class="col-md-3 pb-1 pb-md-0 mb-3">
+            <div class="col-md-3 col-sm-6 pb-1 mb-3">
                 <a href="/detalheProduto/{{$produto->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
@@ -100,7 +100,7 @@
     <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Ofertas</h2>
 
         <div class="row text-center mt-4">
-            <div class="col-md-3 pb-1 pb-md-0 mb-3">
+            <div class="col-md-3 pb-1 col-sm-6 mb-3">
                 <a href="/detalheProduto">
                     <div class="card avancar">
                         <div class="card-header bg-success text-white text-center">
@@ -117,7 +117,7 @@
                 </a>
             </div>
 
-            <div class="col-md-3 pb-1 pb-md-0  mb-3">
+            <div class="col-md-3 pb-1 col-sm-6  mb-3">
                 <a href="/detalheProduto">
                     <div class="card avancar">
                         <div class="card-header bg-success text-white text-center">
@@ -134,7 +134,7 @@
                 </a>
             </div>
 
-            <div class="col-md-3 pb-1 pb-md-0">
+            <div class="col-md-3 pb-1 col-sm-6">
                 <a href="/detalheProduto">
                     <div class="card avancar">
                         <div class="card-header bg-danger text-white text-center">
@@ -150,7 +150,7 @@
                     </div>
                 </a>
             </div>   
-            <div class="col-md-3 pb-1 pb-md-0">
+            <div class="col-md-3 pb-1 col-sm-6">
                 <a href="/detalheProduto">
                     <div class="card avancar">
                         <div class="card-header bg-danger text-white text-center">
@@ -170,7 +170,7 @@
 
         <div class="row mt-4">
             @foreach ($produtosBottom as $produtoBottom)
-            <div class="col-md-3 pb-1 pb-md-0 mb-3">
+            <div class="col-md-3 pb-1 col-sm-6 mb-3">
                 <a href="/detalheProduto/{{$produtoBottom->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">

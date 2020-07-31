@@ -67,7 +67,7 @@
 
     <!-- ACCORDION -->
 
-    <div class="col-md-12">
+    <div class="col-md-12 p-0">
 
       <div class="accordion" id="accordionTabsProduto">
         @forelse ($pedidos as $pedido)
@@ -123,12 +123,12 @@
           </div>
         </div>
       @empty
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 p-0 text-center">
           <div class="my-4 p-5 p-auto border ">
             <h4 class="font-weight-bold">Nenhuma compra foi realizada</h4>
             <a class="text-secondary" href="/">Explore nossa loja</a>
         </div>
-    </div>
+      </div>
       @endforelse
       </div>
     </div>
