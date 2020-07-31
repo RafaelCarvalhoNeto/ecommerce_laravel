@@ -23,7 +23,6 @@
                       <div class="form-group">
                         <label for="password">Senha</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="insira sua senha" name="password">
-        
                         @error('password')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

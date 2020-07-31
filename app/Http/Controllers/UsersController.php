@@ -134,7 +134,7 @@ class UsersController extends Controller
         }
     }
 
-    // PROCUAR USUÁRIOS
+    // PROCURAR USUÁRIOS
     public function searchUser(Request $request){
         $search = $request->input('search');
         $users = User::where('nome', 'like', '%'.$search.'%')->orWhere('sobrenome', 'like','%'.$search.'%');

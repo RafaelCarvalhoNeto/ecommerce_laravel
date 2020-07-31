@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
-use Illuminate\Http\Request;
 use App\Produto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProdutosController extends Controller
@@ -15,16 +15,16 @@ class ProdutosController extends Controller
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
-         'produtos.descricao', 'produtos.parcelamento')
-        ->paginate(10);
-        $categorias = Categoria::all();
-
+         'produtos.descricao', 'produtos.parcelamento');
+        $categorias = Categoria::All();
+        $found = $produtos->count();
+        $produtos = $produtos->paginate(10);
+                
         if($produtos){
-            return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias]);
+            return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
         }
-    
-    
     }
+
     public function create(Request $request) {
          
         $imagem = $request->file('imagem');
@@ -56,6 +56,7 @@ class ProdutosController extends Controller
             $request->titulo1 => $request->inputTecnica1,
             $request->titulo2 => $request->inputTecnica2,
             $request->titulo3 => $request->inputTecnica3,
+            $request->titulo4 => $request->inputTecnica4
         ];
 
         $arrayinfos = json_encode($informacoes);
@@ -66,7 +67,7 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            return redirect()->route('adm.produtos')->with('success','Usuário alterado com sucesso');
+            return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso');
         }
     } 
 
@@ -75,7 +76,7 @@ class ProdutosController extends Controller
         $imagem = $request->file('imagem');
         
         if(empty($imagem)){
-            $pathRelative = null;
+            $pathRelative = $request->imagemName ;
         } else{
             $imagem->storePublicly('uploads');
             
@@ -99,6 +100,7 @@ class ProdutosController extends Controller
             $request->titulo1 => $request->inputTecnica1,
             $request->titulo2 => $request->inputTecnica2,
             $request->titulo3 => $request->inputTecnica3,
+            $request->titulo4 => $request->inputTecnica4
         ];
 
         $arrayinfos = json_encode($informacoes);
@@ -112,12 +114,13 @@ class ProdutosController extends Controller
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.descricao', 'produtos.parcelamento')
         ->paginate(10);
-        $categorias = Categoria::all();
+        $categorias = Categoria::All();
 
             return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
                 'success'=> 'Produto alterado com sucesso' ]);
         }
     }
+
     public function delete($id){
         
         $produto = Produto::find($id);
@@ -125,17 +128,18 @@ class ProdutosController extends Controller
         if($produto->delete()){
 
             $produtos = Produto::paginate(10);
-            $categorias = Categoria::all();
+            $categorias = Categoria::All();
 
             if($produtos){
             return view('admin.admProdutos')->with([
                 'produtos' => $produtos, 
                 'categorias'=> $categorias,
-                'success' => 'Registro excluído com sucesso'
+                'success' => 'Produto excluído com sucesso'
                 ]);
             }
         }
     }
+    
     public function search(Request $request){
 
         $search = $request->input('inputSearch');
@@ -144,15 +148,17 @@ class ProdutosController extends Controller
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao')
         ->where('produtos.nome', 'like' , '%'. $search . '%')
-        ->orWhere('categorias.tipo', 'like' , '%'. $search . '%')
-        ->paginate(10);
+        ->orWhere('categorias.tipo', 'like' , '%'. $search . '%');
         // $produtos = Produto::where('nome', 'like', '%' . $search . '%')->paginate(10);
         $categorias = Categoria::All();
+        $found = $produtos->count();
+        $produtos = $produtos->paginate(10);
 
         return view('admin.admProdutos')->with([
             'search' => $search,
             'produtos' => $produtos,
-            'categorias'=>$categorias
+            'categorias'=>$categorias,
+            'found'=> $found
         ]);
     }
 }
