@@ -11,7 +11,7 @@ class ProdutosController extends Controller
 {
     public function index() {
 
-        if(Auth::user()->admin===1){
+        if(Auth::user('admin')===1){
 
             $produtos = DB::table('produtos')
             ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
@@ -25,6 +25,7 @@ class ProdutosController extends Controller
                 return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
             }
         }
+        return redirect()->route('admin.login');
     }
 
     public function create(Request $request) {
