@@ -4,7 +4,6 @@
 @endsection
 @section('content')
 
-
     <main class="container pt-3 ajuste" id="barraPedidos">
         @if(session('success'))
         <section class="row">
@@ -76,7 +75,7 @@
                                                             <div class="form-group col-md-12 text-left">
                                                                 <label for="inputImagem">Imagem</label>
                                                                 <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputImagem" lang="pt" name="imagem">
+                                                                    <input type="file" class="custom-file-input" id="inputImagem" lang="pt" name="imagem">
                                                                     <label class="custom-file-label" for="inputImagem">Escolha o arquivo</label>
                                                                 </div>
                                                             <input type="hidden" name="imagemName" value="{{$produto->imagem}}">

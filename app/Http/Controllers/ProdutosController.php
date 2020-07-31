@@ -71,7 +71,7 @@ class ProdutosController extends Controller
         if($produto){
             return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso!');
         }
-        return redirect()->route('admin.admProdutos')->with('success', 'Prodruto criado com sucesso!');
+        return redirect()->route('admin.admProdutos')->with('success', 'Produto criado com sucesso!');
     } 
 
     public function update(Request $request, $id){
@@ -79,7 +79,7 @@ class ProdutosController extends Controller
         $imagem = $request->file('imagem');
         
         if(empty($imagem)){
-            $pathRelative = $request->imagemName ;
+            $pathRelative = $request->imagemName;
         } else{
             $imagem->storePublicly('uploads');
             
@@ -120,8 +120,9 @@ class ProdutosController extends Controller
         $categorias = Categoria::All();
 
             return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
-                'success'=> 'Produto alterado com sucesso' ]);
+                'success'=> 'Produto alterado com sucesso!' ]);
         }
+        return redirect()->route('admin.admProdutos')->with('success', 'Produto alterado com sucesso!');
     }
 
     public function delete($id){
@@ -140,6 +141,7 @@ class ProdutosController extends Controller
                 'success' => 'Produto excluído com sucesso'
                 ]);
             }
+            return redirect()->route('admin.admProdutos')->with('success', 'Produto excluído com sucesso!');
         }
     }
     
