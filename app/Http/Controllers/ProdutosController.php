@@ -6,6 +6,7 @@ use App\Categoria;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutosController extends Controller
 {
@@ -161,4 +162,29 @@ class ProdutosController extends Controller
             'found'=> $found
         ]);
     }
+
+
+    public function faturamento(){
+
+        if(Auth::check()===true){
+            if(Auth::user()->admin==1){
+
+                $maisVendidos = Produto::all();
+        
+                if($maisVendidos){
+                    return view('admin.fatProdutos')->with([
+                        'maisVendidos'=> $maisVendidos
+                    ]);
+                }
+
+                // return $maisVendidos[0]->cat;
+                // die;
+
+            }
+        }
+        return redirect()->route('admin.login');
+    }
+
+
+
 }

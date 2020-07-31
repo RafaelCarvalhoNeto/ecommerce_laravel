@@ -58,6 +58,19 @@
 
             </a>
         </div>
+        <div class="col-md-6 col-sm-12">
+            <a href="/admin/fatProdutos">
+                <div class="row bg-dark text-white m-0 mb-3 avancar p-3" style="align-items:center">
+                    <div class="col-lg-4 col-md-12 p-0 text-center">
+                        <p class=" display-4 m-0"><i class="fas fa-money-bill"></i></p>
+                    </div>
+                    <div class="p-3 col-lg-8 col-md-12">
+                        <h4>Faturamento por Produto</h4>
+                    </div>
+                </div>
+
+            </a>
+        </div>
     </div>
 
 

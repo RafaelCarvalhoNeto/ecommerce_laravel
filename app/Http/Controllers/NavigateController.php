@@ -7,6 +7,7 @@ use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\PedidoProduto;
 
 class NavigateController extends Controller
 {
@@ -14,12 +15,19 @@ class NavigateController extends Controller
         $produtos = Produto::paginate(8);
         $descontos = Produto::where('categoria',1)->take(4)->get();
         $produtosBottom = DB::table('produtos')->latest()->take(4)->get();
-        
+
+        $maisVendidos = PedidoProduto::select(\DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))
+        ->where('status','=','PA')
+        ->groupBy('produto_id')
+        ->orderBy('qtd', 'desc')
+        ->take(8)->get();
+
         if($produtos && $descontos && $produtosBottom){
             return view('index')->with([
                 'produtos'=> $produtos,
                 'descontos'=> $descontos,
-                'produtosBottom'=> $produtosBottom
+                'produtosBottom'=> $produtosBottom,
+                'maisVendidos'=>$maisVendidos
             ]);
         }
     }
