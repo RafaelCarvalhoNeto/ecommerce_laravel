@@ -12,7 +12,8 @@ class ProdutosController extends Controller
     public function index() {
 
         if(Auth::user('admin')===1){
-
+            return redirect()->route('admin.login');
+        }
             $produtos = DB::table('produtos')
             ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
             ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
@@ -25,8 +26,6 @@ class ProdutosController extends Controller
                 return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
             }
         }
-        return redirect()->route('admin.login');
-    }
 
     public function create(Request $request) {
          
@@ -70,8 +69,9 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso');
+            return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso!');
         }
+        return redirect()->route('admin.admProdutos')->with('success', 'Prodruto criado com sucesso!');
     } 
 
     public function update(Request $request, $id){
@@ -159,7 +159,7 @@ class ProdutosController extends Controller
         return view('admin.admProdutos')->with([
             'search' => $search,
             'produtos' => $produtos,
-            'categorias'=>$categorias,
+            'categorias'=> $categorias,
             'found'=> $found
         ]);
     }

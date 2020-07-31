@@ -28,7 +28,7 @@
                         </div>
                     </div>
                 </form>
-                <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{$found}}</strong></p>
+                <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{$found ?? ''}}</strong></p>
 
                 <div id="table"  class="tableAdm">
                     <table class="table table-striped text-center mt-3">
