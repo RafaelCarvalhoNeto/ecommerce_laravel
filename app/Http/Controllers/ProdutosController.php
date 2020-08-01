@@ -12,22 +12,26 @@ class ProdutosController extends Controller
 {
     public function index() {
 
-        if(Auth::user('admin')===1){
-            return redirect()->route('admin.login');
-        }
-            $produtos = DB::table('produtos')
-            ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-            ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
-            'produtos.descricao', 'produtos.parcelamento');
-            $categorias = Categoria::All();
-            $found = $produtos->count();
-            $produtos = $produtos->paginate(10);
-                
-            if($produtos){
-                return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
+        if(Auth::check()===true){
+            if(Auth::user()->admin==1){
+
+                $produtos = DB::table('produtos')
+                ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
+                ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
+                'produtos.descricao', 'produtos.parcelamento');
+                $categorias = Categoria::All();
+                $found = $produtos->count();
+                $produtos = $produtos->paginate(10);
+                    
+                if($produtos){
+                    return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
+                }
             }
         }
 
+        return redirect()->route('admin.login');
+    }
+    
     public function create(Request $request) {
          
         $imagem = $request->file('imagem');
