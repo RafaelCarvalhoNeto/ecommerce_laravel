@@ -6,24 +6,26 @@ use App\Categoria;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 class ProdutosController extends Controller
 {
     public function index() {
 
-        // $produtos = Produto::paginate(10);
-        $produtos = DB::table('produtos')
-        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
-         'produtos.descricao', 'produtos.parcelamento');
-        $categorias = Categoria::All();
-        $found = $produtos->count();
-        $produtos = $produtos->paginate(10);
-                
-        if($produtos){
-            return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
+        if(Auth::user('admin')===1){
+            return redirect()->route('admin.login');
         }
-    }
+            $produtos = DB::table('produtos')
+            ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
+            ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
+            'produtos.descricao', 'produtos.parcelamento');
+            $categorias = Categoria::All();
+            $found = $produtos->count();
+            $produtos = $produtos->paginate(10);
+                
+            if($produtos){
+                return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
+            }
+        }
 
     public function create(Request $request) {
          
@@ -67,8 +69,9 @@ class ProdutosController extends Controller
         $produto->save();
 
         if($produto){
-            return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso');
+            return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso!');
         }
+        return redirect()->route('admin.admProdutos')->with('success', 'Produto criado com sucesso!');
     } 
 
     public function update(Request $request, $id){
@@ -76,7 +79,7 @@ class ProdutosController extends Controller
         $imagem = $request->file('imagem');
         
         if(empty($imagem)){
-            $pathRelative = $request->imagemName ;
+            $pathRelative = $request->imagemName;
         } else{
             $imagem->storePublicly('uploads');
             
@@ -116,8 +119,9 @@ class ProdutosController extends Controller
         ->paginate(10);
         $categorias = Categoria::All();
 
-            return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
-                'success'=> 'Produto alterado com sucesso' ]);
+            return redirect()->route('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
+                'success'=> 'Produto alterado com sucesso!' ]);
+
         }
     }
 
@@ -131,12 +135,11 @@ class ProdutosController extends Controller
             $categorias = Categoria::All();
 
             if($produtos){
-            return view('admin.admProdutos')->with([
-                'produtos' => $produtos, 
-                'categorias'=> $categorias,
-                'success' => 'Produto excluído com sucesso'
-                ]);
+            return redirect()->route('admin.admProdutos')->with(['produtos' => $produtos, 'categorias'=> $categorias,
+                'success' => 'Produto excluído com sucesso']);
+
             }
+            
         }
     }
     
@@ -149,7 +152,6 @@ class ProdutosController extends Controller
         ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao')
         ->where('produtos.nome', 'like' , '%'. $search . '%')
         ->orWhere('categorias.tipo', 'like' , '%'. $search . '%');
-        // $produtos = Produto::where('nome', 'like', '%' . $search . '%')->paginate(10);
         $categorias = Categoria::All();
         $found = $produtos->count();
         $produtos = $produtos->paginate(10);
@@ -157,7 +159,7 @@ class ProdutosController extends Controller
         return view('admin.admProdutos')->with([
             'search' => $search,
             'produtos' => $produtos,
-            'categorias'=>$categorias,
+            'categorias'=> $categorias,
             'found'=> $found
         ]);
     }
