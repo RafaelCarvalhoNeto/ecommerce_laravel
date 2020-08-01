@@ -119,10 +119,10 @@ class ProdutosController extends Controller
         ->paginate(10);
         $categorias = Categoria::All();
 
-            return view('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
+            return redirect()->route('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
                 'success'=> 'Produto alterado com sucesso!' ]);
+
         }
-        return redirect()->route('admin.admProdutos')->with('success', 'Produto alterado com sucesso!');
     }
 
     public function delete($id){
@@ -135,13 +135,11 @@ class ProdutosController extends Controller
             $categorias = Categoria::All();
 
             if($produtos){
-            return view('admin.admProdutos')->with([
-                'produtos' => $produtos, 
-                'categorias'=> $categorias,
-                'success' => 'Produto excluído com sucesso'
-                ]);
+            return redirect()->route('admin.admProdutos')->with(['produtos' => $produtos, 'categorias'=> $categorias,
+                'success' => 'Produto excluído com sucesso']);
+
             }
-            return redirect()->route('admin.admProdutos')->with('success', 'Produto excluído com sucesso!');
+            
         }
     }
     
