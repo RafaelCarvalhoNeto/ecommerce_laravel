@@ -42,25 +42,41 @@
                     </div>
                 </form>
                 @guest
-                <a class="text-white ola-nav p-2" href="#" data-toggle="modal" data-target="#modalLogin">
+                <a class="text-white ola-nav px-2 py-1" href="#" data-toggle="modal" data-target="#modalLogin">
+                  <div class="foto-perfil-nav">
+                    <i class="far fa-user-circle"></i>
+
+                  </div>
+                  <div class="text-ola-nav">
                     <small class="login m-0">Olá, faça seu login</small>
                     <small class="login m-0">ou cadastre-se</small>
+
+                  </div>
                 </a>
                 @else
                 <a class='link-ola-nav text-white' href="/usuarios/historicoPedidos">
 
-                  <div id="acesso"class="dropdown ola-nav text-white p-2">
-                    <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
-                    <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
-                    <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
-                      @if (Auth::user()->admin==1)
-                        <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
-                      @endif
-                      <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">Sair</a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                      </form>
+
+                  <div id="acesso"class="dropdown ola-nav text-white px-2 py-1">
+                    <div class="foto-perfil-nav">
+                      <img src="{{ Auth::user()->imagem != null ? asset(Auth::user()) : asset('https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg') }}" width="32" height="32" alt="Imagem de Perfil">
+  
+                    </div>
+                    <div class="text-ola-nav">
+                      <small class="login m-0">Olá, {{ Auth::user()->nome }}</small>
+                      <small class="login m-0 font-weight-bold dropdown-toggle" id="dLabel" aria-haspopup="true" aria-expanded="false">Acesse o perfil</small>
+                      <div class="dropdown-menu" id="acessoOptions" aria-labelledby="dLabel">
+                        @if (Auth::user()->admin==1)
+                          <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                        @endif
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Sair</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                          @csrf
+                        </form>
+                      </div>
+
+
                     </div>
                   </div>
 

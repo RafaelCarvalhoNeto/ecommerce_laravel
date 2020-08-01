@@ -20,6 +20,14 @@ class AuthController extends Controller
     }
 
     public function showLoginForm(){
+
+        if(Auth::check()===true){
+            if(Auth::user()->admin==1){
+                return view('admin.dashboard');
+
+            }
+        }         
+
         return view('admin.formLogin');
     }
 

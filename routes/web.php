@@ -108,6 +108,8 @@ Route::post('/admin/admProdutos/update/{id}', 'ProdutosController@update');
 Route::delete('/admin/admProdutos/{id}', 'ProdutosController@delete');
 Route::get('/admin/admProdutos/search', 'ProdutosController@search');
 
+Route::get('/admin/fatProdutos', 'ProdutosController@faturamento');
+
 // USUARIOS
 Route::get('/admin/admUsuarios', 'UsersController@listAllUsers')->name('users.listAll');
 

@@ -20,8 +20,7 @@ class CarrinhoController extends Controller
             'user_id'=>Auth::id()
         ])->get();
 
-        // return !empty($pedidos[0]->id)?$pedidos[0]->id:"sou null";
-        // return $pedidos;
+        // return $pedidos[0]->pedido_produtos[0];
         // die;
 
         return view('carrinho', compact('pedidos'));

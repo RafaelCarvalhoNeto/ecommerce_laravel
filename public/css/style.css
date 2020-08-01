@@ -69,7 +69,8 @@ header {
    transition: all 0.1s linear;
    border: 2px solid var(--primary-color);
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
+   align-items: center;
     
 }
 .ola-nav:hover{
@@ -77,6 +78,22 @@ header {
     border-radius: 5px;
     padding: 0 -2px 0 -2px;    
 }
+.foto-perfil-nav{
+    font-size:32px;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+}
+.foto-perfil-nav img{
+    border-radius: 50%;
+}
+
+.text-ola-nav{
+    display: flex;
+    flex:1;
+    flex-direction: column;
+}
+
 .link-ola-nav{
     display: flex;
     flex-direction: column;
@@ -543,7 +560,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
         flex: 0;
     }
     .ola-nav{
-        width: 15%;
+        width: 20%;
     }
     .btn-search-adm{
         width: 150px;

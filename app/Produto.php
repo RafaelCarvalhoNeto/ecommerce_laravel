@@ -15,4 +15,16 @@ class Produto extends Model
         $this->attributes['slug'] = Str::slug($value);
 
     }
+
+    public function pedido_produtos(){
+        return $this->hasMany('App\PedidoProduto')
+        ->select(\DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))
+        ->groupBy('produto_id')
+        ->orderBy('qtd','desc');
+    }
+
+    public function cat(){
+        return $this->hasOne('App\Categoria','id','categoria');
+    }
+
 }
