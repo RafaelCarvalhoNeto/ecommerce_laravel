@@ -31,9 +31,7 @@ class CarrinhoController extends Controller
         // ALTERNATIVA DE VISUALIZAR CARRINHO ATRAVÉS DE INFOS NA SESSÃO
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        // echo '<pre>';
-        // print_r($cart);
-        // echo '</pre>';
+
         return view('carrinho')->with([
             'produtos'=>$cart->produtos, 'totalPrice'=>$cart->totalPrice
         ]);
@@ -102,7 +100,8 @@ class CarrinhoController extends Controller
         return redirect()->route('carrinho');
     }
 
-    public function removerss(){
+    // REMOVER ATRAVÉS DE SESSÃO
+    public function removerItemSession(){
         $this->middleware('VerifyCsrfToker');
 
         $req = Request();
@@ -111,10 +110,11 @@ class CarrinhoController extends Controller
         if(Auth::check()===false){
 
             $produto = Produto::find($idproduto);
+            $item = (boolean)$req->input('item');
 
             $oldCart = Session::has('cart') ? Session::get('cart') : null;
             $cart = new Cart($oldCart);
-            $cart->remove($produto, $produto->id);
+            $cart->remove($produto, $produto->id, $item);
 
             $req->session()->put('cart', $cart);
 
@@ -190,15 +190,22 @@ class CarrinhoController extends Controller
     public function converterPedido(){
 
 
+
+
+        if(Auth::check()===false){
+            return redirect()->route('login.direct');
+
+        }
+
         $cart = Session::get('cart');
+        // echo '<pre>';
+        // echo print_r($cart);
+        // echo '</pre>';
+        // die;
 
-        // if(Auth::check()===false){
-        //     return redirect()->route('login.direct')->with('cart', $cart);
-
-        // }
 
 
-        $idusuario = 22;
+        $idusuario = Auth::id();
 
         $idpedido = Pedido::consultaId([
             'user_id'=>$idusuario,
@@ -238,10 +245,6 @@ class CarrinhoController extends Controller
         }
 
         return redirect()->route('pagina.finalizar');
-
-
-
-
 
     }
 

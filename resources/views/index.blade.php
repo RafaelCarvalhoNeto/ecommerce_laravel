@@ -62,8 +62,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $maisVendido->produto->nome }}</h3>
-                            <p class="card-text preco m-0">R$ {{number_format(($maisVendido->produto->preco),2)}}</p>
-                            <small class="text-left">{{$maisVendido->produto->parcelamento}}x de R$ {{number_format(($maisVendido->produto->preco)/($maisVendido->produto->parcelamento),2)}} s/ juros</small>
+                            <p class="card-text preco m-0">R$ {{number_format(($maisVendido->produto->preco),2,',','.')}}</p>
+                            <small class="text-left">{{$maisVendido->produto->parcelamento}}x de R$ {{number_format(($maisVendido->produto->preco)/($maisVendido->produto->parcelamento),2,',','.')}} s/ juros</small>
                         </div>
                     </div>
                 </a>
@@ -178,8 +178,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $produtoBottom->nome }}</h3>
-                            <p class="card-text preco m-0">R$ {{number_format(($produtoBottom->preco),2)}}</p>
-                            <small class="text-left">{{$produtoBottom->parcelamento}}x de R$ {{number_format(($produtoBottom->preco)/($produtoBottom->parcelamento),2)}} s/ juros</small>
+                            <p class="card-text preco m-0">R$ {{number_format(($produtoBottom->preco),2,',','.')}}</p>
+                            <small class="text-left">{{$produtoBottom->parcelamento}}x de R$ {{number_format(($produtoBottom->preco)/($produtoBottom->parcelamento),2,',','.')}} s/ juros</small>
                         </div>
                     </div>
                 </a>

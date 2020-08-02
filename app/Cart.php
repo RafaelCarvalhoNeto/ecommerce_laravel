@@ -31,19 +31,27 @@ class Cart
         $this->totalPrice += $produto->preco;
     }
 
-    public function remove($produto, $id){
+    public function remove($produto, $id, $item){
         if($this->produtos){
             if(array_key_exists($id, $this->produtos)){
                 $storedProduto = $this->produtos[$id];
             }
         }
-        $storedProduto['qtd']--;
-        $storedProduto['price'] = $produto->preco * $storedProduto['qtd'];
-        $this->produtos[$id] = $storedProduto;
-        $this->totalQtd--;
-        $this->totalPrice -= $produto->preco;
-        if($storedProduto['qtd']==0){
+        if($item == false){
+            $this->produtos[$id] = $storedProduto;
+            $this->totalQtd -= $storedProduto['qtd'];
+            $this->totalPrice -= $produto->preco * $storedProduto['qtd'];
             unset($this->produtos[$id]);
+        } else {
+
+            $storedProduto['qtd']--;
+            $storedProduto['price'] = $produto->preco * $storedProduto['qtd'];
+            $this->produtos[$id] = $storedProduto;
+            $this->totalQtd--;
+            $this->totalPrice -= $produto->preco;
+            if($storedProduto['qtd']==0){
+                unset($this->produtos[$id]);
+            }
         }
         
     }

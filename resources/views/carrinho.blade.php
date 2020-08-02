@@ -60,24 +60,24 @@
                                     <td class="center-align">
                                         <div class="center-align setas-add-cart">
                                             <a href="#" class="">
-                                                <li><i class="fas fa-minus" onclick="carrinhoRemoverProdutoSs({{$produto['produto']['id']}})"></i></li>
+                                                <li><i class="fas fa-minus" onclick="carrinhoRemoverProdutoSession({{$produto['produto']['id']}},1)"></i></li>
                                             </a>
                                             <span>{{$produto['qtd']}}</span>
                                             <a href="#" class="">
                                                 <li><i class="fas fa-plus" onclick="carrinhoAdicionarProduto({{$produto['produto']['id']}})"></i></li>
                                             </a>
                                         </div>
-                                        <a href="#" class="retirar-pedido" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho">Retirar produto</a>
+                                        <a href="#" class="retirar-pedido" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho" onclick="carrinhoRemoverProdutoSession({{$produto['produto']['id']}},0)">Retirar produto</a>
                                         
                                     </td>
-                                    <td class="align-middle">R$ {{$produto['produto']['preco']}}</td>
-                                    <td class='align-middle  font-weight-bold'>R$ {{$produto['price']}}</td>
+                                    <td class="align-middle">R$ {{number_format($produto['produto']['preco'],2,',','.')}}</td>
+                                    <td class='align-middle  font-weight-bold'>R$ {{number_format($produto['price'],2,',','.')}}</td>
                                 </tr>
                                 @endforeach
                                 <tr>
                                     <td colspan="3"></td>
                                     <td class="align-middle font-weight-bold">Total</td>
-                                    <td class="align-middle font-weight-bold">R$ {{$totalPrice}}</td>
+                                    <td class="align-middle font-weight-bold">R$ {{number_format($totalPrice,2,',','.')}}</td>
                                 </tr>
                                 
                             </tbody>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="form-group col-md-2 offset-4">
-                            <form action="{{route('converter.pedido')}}" method='post'>
+                            <form action="{{route('converter.pedido')}}" method='get'>
                                 @csrf
                                 <button type='submit' class="btn btn-primary">Finalizar Compra</button>
                             </form>
@@ -214,7 +214,7 @@
         <form id="form-remover-produto-session" method='post' action="{{ route('carrinho.remover.ss')}}">
             @csrf
             <input type="hidden" name="id">
-
+            <input type="hidden" name="item">
         </form>
 
     @else

@@ -19,7 +19,7 @@
                         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Preço</h2>
                         <div class="slidecontainer text-center">
                             <small class='inputRange'>R$ 1 -</small>
-                            <small id="final-range" class='inputRange'>R$ {{$precoBuscado != null?$precoBuscado:$maxPrice}}</small>
+                            <small id="final-range" class='inputRange'>R$ {{$precoBuscado != null ?$precoBuscado:$maxPrice}}</small>
                             <input type="range" id="myRange" min='1' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
                         </div>
                         {{-- <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Marca</h2>
@@ -39,8 +39,6 @@
                      <div class="col-md-12 p-0 my-4">
                         <button type="submit" class="btn btn-primary btn-sm btn-block">Pesquisar</button>
                     </div>
-
-
                     
                 </form>
 
@@ -58,8 +56,8 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-title produto">{{ $produto->nome }}</h3>
-                                    <p class="card-text preco m-0">R$ {{number_format(($produto->preco),2)}}</p>
-                                    <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
+                                    <p class="card-text preco m-0">R$ {{number_format(($produto->preco),2,',','.')}}</p>
+                                    <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2,',','.')}} s/ juros</small>
                                 </div>
                             </div>
                         </a>
@@ -82,10 +80,6 @@
                 ])->links() }}
         </div>
 
-
-        
-
-  
         
 
     </div>
