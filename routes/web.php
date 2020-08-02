@@ -38,9 +38,11 @@ Route::get('/carrinho/adicionar', function(){
 Route::post('/carrinho/adicionar', 'CarrinhoController@adicionar')->name('carrinho.adicionar');
 
 Route::delete('/carrinho/remover','CarrinhoController@remover')->name('carrinho.remover');
+Route::post('/carrinho/removerItemSession','CarrinhoController@removerItemSession')->name('carrinho.remover.ss');
 Route::post('compraFinalizada', 'CarrinhoController@concluir')->name('pedido.concluido');
 Route::get('finalizarCompra', 'CarrinhoController@compras')->name('pagina.finalizar');
 
+Route::get('converterPedido', 'CarrinhoController@converterPedido')->name('converter.pedido');
 
 
 Route::get('/usuarios/historicoPedidos', 'CarrinhoController@showHistorico')->name('show.historico');

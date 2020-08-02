@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Categoria;
 use App\Pedido;
 use Illuminate\Support\Facades\View;
+use App\Cart;
+use Session;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -41,8 +43,12 @@ class AppServiceProvider extends ServiceProvider
                 $itensCarro = 0;
             } else {
                 $itensCarro = 0;
-
+                $oldCart = Session::get('cart');
+                $cart = new Cart($oldCart);
+                $itensCarro = $cart->totalQtd;
             }
+
+
             $view->with([
                 'categoriasNav' => $categoriasNav,
                 'todasAsCategorias' => $todasAsCategorias,

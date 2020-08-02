@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\PedidoProduto;
+use Session;
 
 class NavigateController extends Controller
 {
@@ -45,9 +46,6 @@ class NavigateController extends Controller
         $categoria = Categoria::where('id', '=', $produto->categoria)
         ->first();
 
-        // print_r($produto->categoria);
-
-
         if($produto){
             $arrayinfos = $produto->informacoes;
             $informacoes = json_decode($arrayinfos, true);
@@ -69,10 +67,7 @@ class NavigateController extends Controller
         ->paginate(16);
 
         $categoria = Categoria::where('slug', '=', $url)
-        ->first();
-
-        // print_r($categoria);
-        
+        ->first();      
 
         if($produtos){
             return view('categoria')->with([
@@ -119,6 +114,9 @@ class NavigateController extends Controller
     }
     
     public function loginDirect(){
+        if(Auth::check()===true){
+            return redirect()->route('index');
+        }
         return view('loginDirect');
     }
 
@@ -129,9 +127,12 @@ class NavigateController extends Controller
             'password'=> $request->password
         ];
 
+        $cart = Session::get('cart');
+
+
         if (Auth::attempt($credentials)){
-            return redirect()->route('carrinho');
-            // return redirect()->route('finaliza.compra');
+            return redirect()->route('converter.pedido');
+            // return redirect()->back();
 
         }
         return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);
