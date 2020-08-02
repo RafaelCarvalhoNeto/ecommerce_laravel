@@ -7,23 +7,37 @@ use Illuminate\Support\Facades\Auth;
 use App\Pedido;
 use App\Produto;
 use App\PedidoProduto;
+use App\Cart;
+use Session;
 
 class CarrinhoController extends Controller
 {
-    function __contruct(){
-        $this->middleware('auth');
-    }
+    // function __contruct(){
+    //     $this->middleware('auth');
+    // }
 
     public function index(){
-        $pedidos = Pedido::where([
-            'status'=>'RE',
-            'user_id'=>Auth::id()
-        ])->get();
 
-        // return $pedidos[0]->pedido_produtos[0];
-        // die;
+        if(Auth::check()===true){
+            $pedidos = Pedido::where([
+                'status'=>'RE',
+                'user_id'=>Auth::id()
+            ])->get();
+        
+            return view('carrinho', compact('pedidos'));
+            
+        }
 
-        return view('carrinho', compact('pedidos'));
+        // ALTERNATIVA DE VISUALIZAR CARRINHO ATRAVÉS DE INFOS NA SESSÃO
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        // echo '<pre>';
+        // print_r($cart);
+        // echo '</pre>';
+        return view('carrinho')->with([
+            'produtos'=>$cart->produtos, 'totalPrice'=>$cart->totalPrice
+        ]);
+
     }
 
     public function adicionar(){
@@ -38,10 +52,24 @@ class CarrinhoController extends Controller
             return redirect()->route('carrinho');
         }
 
+        // ADICIONAR ATRAVÉS DE SESSÃO
         if(Auth::check()===false){
-            return redirect()->route('login.direct');
+
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->add($produto, $produto->id);
+
+            $req->session()->put('cart', $cart);
+
+            if($req->input('back')){
+                return redirect()->back();
+            }
+            
+            $req->session()->flash('mensagem-sucesso', 'Produto adicionado ao carrinho com sucesso!');
+            return redirect()->route('carrinho');
             
         }
+
         $idusuario = Auth::id();
 
         $idpedido = Pedido::consultaId([
@@ -72,6 +100,35 @@ class CarrinhoController extends Controller
         $req->session()->flash('mensagem-sucesso', 'Produto adicionado ao carrinho com sucesso!');
 
         return redirect()->route('carrinho');
+    }
+
+    public function removerss(){
+        $this->middleware('VerifyCsrfToker');
+
+        $req = Request();
+        $idproduto = $req->input('id');
+
+        if(Auth::check()===false){
+
+            $produto = Produto::find($idproduto);
+
+            $oldCart = Session::has('cart') ? Session::get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->remove($produto, $produto->id);
+
+            $req->session()->put('cart', $cart);
+
+            if(!empty($cart->produtos)){
+                $req->session()->flash('mensagem-sucesso', 'Produto removido com sucesso!');
+            } else{
+                $req->session()->forget('cart');
+
+            }
+            
+            return redirect()->route('carrinho');
+            
+        }
+
     }
 
     public function remover(){
@@ -129,6 +186,65 @@ class CarrinhoController extends Controller
 
     }
 
+    // >>> CONVERTER OS PRODUTOS NA SESSION EM ITENS DA BASE DE DADOS
+    public function converterPedido(){
+
+
+        $cart = Session::get('cart');
+
+        // if(Auth::check()===false){
+        //     return redirect()->route('login.direct')->with('cart', $cart);
+
+        // }
+
+
+        $idusuario = 22;
+
+        $idpedido = Pedido::consultaId([
+            'user_id'=>$idusuario,
+            'status'=> 'RE'
+        ]);
+
+        $check_items = PedidoProduto::where(['pedido_id'=>$idpedido])->exists();
+
+        if($idpedido){
+            if($check_items){
+                PedidoProduto::where(['pedido_id'=>$idpedido])->delete();
+            }
+            Pedido::where([
+                'id'=>$idpedido
+            ])->delete();
+        }
+
+        $pedido_novo = Pedido::create([
+            'user_id'=>$idusuario,
+            'status'=>'RE'
+        ]);
+
+        $idpedido = $pedido_novo->id;
+
+        $produtos = $cart->produtos;
+
+        foreach ($produtos as $produto) {
+            for ($i=0;$i<$produto['qtd'];$i++){
+                PedidoProduto::create([
+                    'pedido_id'=>$idpedido,
+                    'produto_id'=>$produto['produto']['id'],
+                    'valor'=>$produto['produto']['preco'],
+                    'status'=>'RE'
+                ]);
+
+            }
+        }
+
+        return redirect()->route('pagina.finalizar');
+
+
+
+
+
+    }
+
     public function concluir(){
         $this->middleware('VerifyCsrfToker');
 
@@ -179,15 +295,16 @@ class CarrinhoController extends Controller
 
     public function compras(Request $request){
         
-        $pedidos = Pedido::where([
-            'status'=>'RE',
-            'user_id'=>Auth::id()
-        ])->get();
-
-        // return $pedidos[0]->pedido_produtos[0]->qtd;
-        // die;
-
-        return view('usuarios.finalizarCompra', compact('pedidos'));
+        if(Auth::check()===true){
+            $pedidos = Pedido::where([
+                'status'=>'RE',
+                'user_id'=>Auth::id()
+            ])->get();
+        
+            return view('usuarios.finalizarCompra', compact('pedidos'));
+            
+        }
+        
     }
 
     // HISTÓRICO DE PEDIDOS
@@ -197,13 +314,6 @@ class CarrinhoController extends Controller
             'user_id'=> Auth::id()
         ])->orderBy('updated_at', 'desc')->get();
 
-    //     $canceladas = Pedido::where([
-    //         'status'=>'CA',
-    //         'user_id'=> Auth::id()
-    //     ])->orderBy('created_at', 'desc')->get();
-
-        // return $pedidos[0]->pedido_produtos;
-        // die;
         return view('usuarios.historicoPedidos', compact('pedidos'));
     }
 }

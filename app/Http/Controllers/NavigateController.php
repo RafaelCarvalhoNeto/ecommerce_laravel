@@ -129,9 +129,10 @@ class NavigateController extends Controller
             'password'=> $request->password
         ];
 
+
         if (Auth::attempt($credentials)){
-            return redirect()->route('carrinho');
-            // return redirect()->route('finaliza.compra');
+            return redirect()->route('converter.pedido');
+            // return redirect()->back();
 
         }
         return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);

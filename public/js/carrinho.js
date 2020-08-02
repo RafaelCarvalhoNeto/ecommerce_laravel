@@ -9,3 +9,8 @@ function carrinhoAdicionarProduto(idproduto){
     document.querySelector('#form-adicionar-produto input[name="id"]').value = idproduto;
     document.querySelector('#form-adicionar-produto').submit();
 }
+
+function carrinhoRemoverProdutoSs(idproduto){
+    document.querySelector('#form-remover-produto-session input[name="id"]').value = idproduto;
+    document.querySelector('#form-remover-produto-session').submit();
+}
