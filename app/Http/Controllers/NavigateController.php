@@ -16,7 +16,7 @@ class NavigateController extends Controller
         $produtos = Produto::paginate(8);
         $descontos = Produto::where('empromo',1)
         ->orderBy('updated_at', 'desc')
-        ->take(4)
+        ->take(8)
         ->get();
         
         $produtosBottom = DB::table('produtos')->latest()->take(4)->get();

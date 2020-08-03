@@ -50,7 +50,7 @@
                             @endphp
                             @foreach ($produtos as $produto)
                             <tr>
-                                <td scope="row">{{ $produto->id }}</td>
+                                <th scope="row">{{ $produto->id }}</td>
                                 <td scope="row"><img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="" width="50" height="50"></td>
                                 <td scope="row">{{ $produto->nome }}</td>
                                 <td scope="row">{{ $produto->tipo }}</td>        

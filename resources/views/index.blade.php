@@ -104,7 +104,7 @@
 
 
                 <div class="col-md-3 pb-1 col-sm-6 mb-3">
-                    <a href="/detalheProduto">
+                    <a href="/detalheProduto/{{$desconto->slug}}">
                         <div class="card avancar">
                             <div class="card-header {{$desconto->promo>20?'bg-danger':'bg-success'}} text-white text-center">
                                 <p class="faixa-promo">{{$desconto->promo}}% de desconto</p>
@@ -113,7 +113,7 @@
                                 <img src="{{ $desconto->imagem != null ? asset($desconto->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
                             </div>
                             <div class="card-body">
-                                <h3 class="card-title produto">Livro O Livros dos Títulos - Kniha Nazvu</h3>
+                                <h3 class="card-title produto">{{ $desconto->nome }}</h3>
                                 <small class="promo">de R$ {{number_format(($desconto->preco),2,',','.')}} por</small>
                                 <p class="card-text preco m-0">R$ {{number_format(($desconto->valorDescontado),2,',','.')}}</p>
                                 <small class="text-left">{{$desconto->parcelamento}}x de R$ {{number_format(($desconto->valorDescontado)/($desconto->parcelamento),2,',','.')}} s/ juros</small>
@@ -122,8 +122,9 @@
                     </a>
                 </div>
             @endforeach
+        </div>
 
-
+        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Novidades</h2>
         <div class="row mt-4">
             @foreach ($produtosBottom as $produtoBottom)
             <div class="col-md-3 pb-1 col-sm-6 mb-3">
