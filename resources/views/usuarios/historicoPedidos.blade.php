@@ -17,7 +17,7 @@
     <div class="col-md-4 d-flex justify-content-center">
       <a href="#" data-toggle="modal" data-target="#modal-foto">
         <div class="rounded-foto text-center">
-          <img class="foto-perfil-historico" src="{{ Auth::user()->foto != null ? asset(Auth::user()->foto) : asset('https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg') }}" width="150" alt="Imagem de Perfil">
+          <img class="foto-perfil-historico" src="{{ Auth::user()->foto != null ? asset(Auth::user()->foto) : asset('https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg') }}" width="150" gitalt="Imagem de Perfil">
           <div class="overlay">
             <div class="text">Editar Perfil</div>
           </div>
