@@ -14,7 +14,11 @@ class NavigateController extends Controller
 {
     public function index(){
         $produtos = Produto::paginate(8);
-        $descontos = Produto::where('categoria',1)->take(4)->get();
+        $descontos = Produto::where('empromo',1)
+        ->orderBy('updated_at', 'desc')
+        ->take(4)
+        ->get();
+        
         $produtosBottom = DB::table('produtos')->latest()->take(4)->get();
 
         $maisVendidos = PedidoProduto::select(\DB::raw('produto_id, sum(desconto) as descontos, sum(valor) as valores, count(1) as qtd'))

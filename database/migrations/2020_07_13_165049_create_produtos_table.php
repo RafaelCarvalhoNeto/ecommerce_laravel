@@ -24,6 +24,9 @@ class CreateProdutosTable extends Migration
             $table->string('preco');
             $table->text("informacoes")->nullable();
             $table->string("parcelamento")->nullable();
+            $table->string("emPromo")->nullable();
+            $table->string("promo")->nullable();
+            $table->string("valorDescontado")->nullable();
             $table->timestamps();
 
             $table->foreign('categoria')->references('id')->on('categorias')->onDelete('CASCADE');

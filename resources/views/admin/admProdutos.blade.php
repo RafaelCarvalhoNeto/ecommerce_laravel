@@ -188,43 +188,40 @@
                                                                 {{ method_field('PUT') }}
 
                                                                 <div class="modal-body">
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-3">
-                                                                            <p>#ID <strong id="identidade">{{$produto->id}}</strong></p>
-                                                                        <div class="form-group col-md-9">
-                                                                            <p>{{$produto->nome}}</p>
-                                                                        </div>
-                                                                            
-                                                                        </div>
+                                                                    <div class="form-row text-left">
+                                                                        <div class="form-group col-md-12">
+                                                                            <p>#ID {{$produto->id}} - {{$produto->nome}}</p>
+                                                                        </div>                                                                          
+                                                                        
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="emPromo">Em promoção?</label>
-                                                                            <select class="form-control" name="emPromo" id="emPromo">
+                                                                            <select class="form-control inputs-promo" name="emPromo" id="emPromo">
                                                                                 <option value="0">Não</option>
                                                                                 <option value="1">Sim</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
                                                                             <label for="emPromo">Qual o valor do desconto?</label>
-                                                                            <input type="text" class="form-control promoDesc" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
+                                                                            <input type="text" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="emPromo">Total desconto</label>
-                                                                            <p class="" id="valorOriginal">R$ {{ number_format($produto->preco,2,',','.') }}</p>
+                                                                            <p class="dados-promo" id="valorOriginal">R$ {{ number_format($produto->preco,2,',','.') }}</p>
                                                                             <p class="d-none valorOriginalHid">{{ $produto->preco }}</p>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
                                                                             <label for="">Total desconto</label>
-                                                                            <p class="totalDesconto">R$ 0,00</p>
+                                                                            <p class="dados-promo totalDesconto">R$ 0,00</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-12">
                                                                             <label for="valorDesc">Valor final</label>
-                                                                            <p class="valorDesc" id="valorDesc">R$ {{ number_format($produto->preco,2,',','.') }}</p>
+                                                                            <p class="valorDesc dados-promo" id="valorDesc">R$ {{ number_format($produto->preco,2,',','.') }}</p>
                                                                             <input type="hidden" class="form-control inputDesconto" name="inputDesconto">
                                                                         </div>
                                                                     </div>
