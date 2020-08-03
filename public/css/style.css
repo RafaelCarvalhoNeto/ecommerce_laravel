@@ -372,6 +372,7 @@ img#thumbProduto{
 }
 
 
+
 @keyframes bounce {
     0%, 20%, 60%, 100% {
         -webkit-transform: translateY(0);
@@ -462,6 +463,47 @@ form input.form-control, form textarea.form-control, form select.form-control{
     font-size: 0.8em;
 }
 
+/* HISTÓRICO DE PEDIDOS */
+.rounded-foto{
+    display: inline-block;
+    height: 150px;
+}
+.rounded-foto img{
+    position: relative;
+    border-radius: 50%;
+}
+
+.overlay {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+
+}
+  
+.rounded-foto:hover .overlay {
+    opacity: 1;
+}
+  
+.text {
+    color: white;
+    font-size: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
 @media only screen and (min-width: 769px) {
 

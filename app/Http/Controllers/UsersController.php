@@ -80,6 +80,30 @@ class UsersController extends Controller
 
     }
 
+    public function editFoto(Request $request, $id){
+        $foto = $request->file('foto');
+
+        if(empty($foto)){
+            $pathRelative = $request->fotoName;
+        } else{
+            $foto->storePublicly('uploads');
+            $absolutePath = public_path()."/storage/uploads";
+            $name = $foto->getClientOriginalName();
+            $foto->move($absolutePath, $name);
+            $pathRelative = "storage/uploads/$name";
+        }
+
+        $user = user::find($id);
+        $user->foto = $pathRelative;
+
+        $user->update();
+
+        if($user){    
+
+            return redirect()->route('show.historico');
+        }
+    }
+
     // GERAR PÁGINA DE CADASTRO DE USUÁRIOS
     public function createPage(){
         return view('cadastro');

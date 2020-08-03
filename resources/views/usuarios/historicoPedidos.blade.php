@@ -14,17 +14,54 @@
       <a href='/usuarios/editUsuarios/{{ Auth::user()->id }}'>Editar perfil</a>
     </div>
 
-    <div class="col-md-4">
-      <div class="rounded-circle text-center">
-        <img src="https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg" width="150" alt="Imagem de Perfil">
+    <div class="col-md-4 d-flex justify-content-center">
+      <a href="#" data-toggle="modal" data-target="#modal-foto">
+        <div class="rounded-foto text-center">
+          <img class="foto-perfil-historico" src="{{ Auth::user()->foto != null ? asset(Auth::user()->foto) : asset('https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg') }}" width="150" heigth="150" alt="Imagem de Perfil">
+          <div class="overlay">
+            <div class="text">Editar Perfil</div>
+          </div>
+        </div>
+        
+      </a>
+      <div class="modal fade" id="modal-foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content  text-left">
+            <div class="modal-header">
+              <h5 class="modal-title">Editar o foto</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form method="post" action="/usuarios/editarFoto/{{Auth::user()->id}}" enctype="multipart/form-data">
+              @csrf
+              {{ method_field('PUT') }}
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="inputImagem">Foto</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="foto" lang="pt" name="foto">
+                      <label class="custom-file-label" for="foto">Escolha a imagem</label>
+                    </div>
+                    <input type="hidden" name="fotoName" value={{Auth::user()->foto}}>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-block">Editar</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
+    
 
   </div>
   
-  <!-- Quando Comercarmos a editar esta pagina no backend porfavor substituir os codigos abaixo por variaveis -->
-
-
+  
   <main class="row" id="barraPedidos">
 
     <h2 class="col-12 p-3 mt-3 mb-3 border-bottom" id="caixaPedidos">Todos os Pedidos</h2>

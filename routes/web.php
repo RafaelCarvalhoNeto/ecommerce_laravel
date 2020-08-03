@@ -46,6 +46,7 @@ Route::get('converterPedido', 'CarrinhoController@converterPedido')->name('conve
 
 
 Route::get('/usuarios/historicoPedidos', 'CarrinhoController@showHistorico')->name('show.historico');
+Route::put('usuarios/editarFoto/{id}', 'UsersController@editFoto');
 
 
 
@@ -90,7 +91,6 @@ Route::post('/login/do', 'NavigateController@login')->name('login.do');
 
 Auth::routes();
 
-// Route::get('/finalizarCompra', 'NavigateController@finalizarPedido')->name('finaliza.compra');
 
 // ACESSO ADMIN
 

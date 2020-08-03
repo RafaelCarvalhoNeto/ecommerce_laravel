@@ -59,7 +59,11 @@
 
                   <div id="acesso"class="dropdown ola-nav text-white px-2 py-1">
                     <div class="foto-perfil-nav">
-                      <img src="{{ Auth::user()->imagem != null ? asset(Auth::user()) : asset('https://cdn2.vectorstock.com/i/thumb-large/23/81/default-avatar-profile-icon-vector-18942381.jpg') }}" width="32" height="32" alt="Imagem de Perfil">
+                      @if (Auth::user()->foto != null)
+                      <img src="{{ asset(Auth::user()->foto)}}" width="32" height="32" alt="Imagem de Perfil">
+                      @else
+                      <i class="far fa-user-circle"></i>
+                      @endif
   
                     </div>
                     <div class="text-ola-nav">
