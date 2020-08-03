@@ -18,7 +18,7 @@ class ProdutosController extends Controller
                 $produtos = DB::table('produtos')
                 ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
                 ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
-                'produtos.descricao', 'produtos.parcelamento');
+                'produtos.descricao', 'produtos.parcelamento','produtos.promo', 'produtos.empromo','produtos.valorDescontado');
                 $categorias = Categoria::All();
                 $found = $produtos->count();
                 $produtos = $produtos->paginate(10);
@@ -76,7 +76,6 @@ class ProdutosController extends Controller
         if($produto){
             return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso!');
         }
-        return redirect()->route('admin.admProdutos')->with('success', 'Produto criado com sucesso!');
     } 
 
     public function update(Request $request, $id){
@@ -118,14 +117,27 @@ class ProdutosController extends Controller
         $produto->update();
         
         if($produto){
-        $produtos = DB::table('produtos')
-        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.descricao', 'produtos.parcelamento')
-        ->paginate(10);
-        $categorias = Categoria::All();
+            return redirect()->route('admin.admProdutos')->with('success','Produto alterado com sucesso!');
 
-            return redirect()->route('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
-                'success'=> 'Produto alterado com sucesso!' ]);
+        }
+    }
+
+    public function promoUpdate(Request $request, $id){
+        $produto = Produto::find($id);
+        
+        if($request->emPromo==1){
+            $produto->empromo = $request->emPromo;
+            $produto->promo = $request->promoDesc;
+            $produto->valorDescontado = $request->inputDesconto;
+        } else {
+            $produto->empromo = 0;
+            $produto->promo = null;
+            $produto->valorDescontado = null;
+        }
+        $produto->update();
+        
+        if($produto){
+            return redirect()->route('admin.admProdutos')->with('success','Produto alterado com sucesso!');
 
         }
     }
@@ -136,13 +148,9 @@ class ProdutosController extends Controller
 
         if($produto->delete()){
 
-            $produtos = Produto::paginate(10);
-            $categorias = Categoria::All();
-
-            if($produtos){
-            return redirect()->route('admin.admProdutos')->with(['produtos' => $produtos, 'categorias'=> $categorias,
-                'success' => 'Produto excluído com sucesso']);
-
+            if($produto){
+                return redirect()->route('admin.admProdutos')->with('success','Produto excluído com sucesso!');
+    
             }
             
         }
@@ -154,7 +162,7 @@ class ProdutosController extends Controller
 
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao','produtos.promo', 'produtos.empromo','produtos.valorDescontado')
         ->where('produtos.nome', 'like' , '%'. $search . '%')
         ->orWhere('categorias.tipo', 'like' , '%'. $search . '%');
         $categorias = Categoria::All();
