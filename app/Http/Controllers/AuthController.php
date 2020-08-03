@@ -25,16 +25,32 @@ class AuthController extends Controller
 
     public function login(Request $request){
         
+        if(!filter_var($request->email, FILTER_VALIDATE_EMAIL)){
+            //return redirect()->back()->withInput()->withErrors(['email'=>'O e-mail informado não é válido']);
+            $login['success'] = false;
+            $login['message'] = 'O e-mail informado não é válido';
+            echo json_encode($login);
+            return;            
+        }
+        
         $credentials = [
             'email'=> $request->email,
             'password'=> $request->password,
         ];
 
         if (Auth::attempt($credentials)){
-            return redirect()->route('admin');
-
+            //return redirect()->route('admin');
+            $login['success'] = true;
+            //$login['message'] = 'O e-mail informado não é válido';
+            echo json_encode($login);
+            return;
         }
-        return redirect()->back()->withInput()->withErrors(['email'=>'As informações não foram encontradas no sistema.']);
+
+        //return redirect()->back()->withInput()->withErrors(['email'=>'As informações não foram encontradas no sistema.']);
+        $login['success'] = false;
+        $login['message'] = 'As informações não foram encontradas no sistema.';
+        echo json_encode($login);
+
     }
 
     public function logout(){

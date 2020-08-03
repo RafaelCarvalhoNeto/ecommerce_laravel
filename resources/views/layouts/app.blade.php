@@ -159,31 +159,31 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="{{ route('login') }}" method="POST">
+          <form name="formLogin">
             <div class="modal-body">
               @csrf
+              <div class="alert alert-danger d-none messageBox" role="alert"></div>
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="meuemail@meuprovedor.com" name="email">
-                @error('email')
+                <input type="email" id="email" class="form-control" id="email" placeholder="meuemail@meuprovedor.com" name="email">
+                {{-- @error('email')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
-                @enderror
+                @enderror --}}
               </div>
               <div class="form-group">
                 <label for="password">Senha</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" placeholder="insira sua senha" name="password">
+                <input type="password" class="form-control" id="password" placeholder="insira sua senha" name="password">
 
-                @error('password')
+                {{-- @error('password')
                   <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                   </span>
-                @enderror
+                @enderror --}}
               </div>
             </div>
             <div class="modal-footer">
-              {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button> --}}
               <button type="submit" class="btn btn-primary btn-block">Logar</button>
             </div>
           </form>
@@ -194,7 +194,34 @@
     </div>
 
   </div>
+  {{-- Scripts --}}
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+  <script>
+    $(function(){
+      $('form[name="formLogin"]').submit(function(){
+        event.preventDefault();
 
+
+        $.ajax({
+          url: "{{ route('login') }}",
+          type: "POST",
+          data: $(this).serialize(),
+          dataType: 'json',
+          success: function (response) {
+
+          if(response.success === true){
+            window.location.href ="{{ route('admin') }}";
+          } else {
+            $('.messageBox').removeClass('d-none').html(response.message);
+          }
+          console.log(response);
+          }
+        });
+      });
+    });
+  </script>
   <script src="/js/fade-menu-categorias.js"></script>
   <script src="/js/bolinha.js"></script>
   @guest
