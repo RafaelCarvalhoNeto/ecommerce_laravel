@@ -214,7 +214,14 @@
     </div>
 
   </div>
-
+  {{-- Scripts --}}
+  @error('email')
+  <script>
+    setTimeout( () => {
+      document.querySelector('[data-target="#modalLogin"]').click();
+    }, 700);
+  </script>
+  @enderror
   <script src="/js/fade-menu-categorias.js"></script>
   <script src="/js/bolinha.js"></script>
   @guest
