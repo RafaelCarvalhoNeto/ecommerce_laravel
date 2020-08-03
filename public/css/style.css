@@ -466,13 +466,27 @@ form input.form-control, form textarea.form-control, form select.form-control{
 /* HISTÓRICO DE PEDIDOS */
 .rounded-foto{
     display: inline-block;
-    height: 150px;
+    /* border-radius: 50%; */
+    height: 100%;
 }
 .rounded-foto img{
     position: relative;
     border-radius: 50%;
+    height: 100%;
 }
 
+/* .rounded-foto::after{
+    content:'Editar perfil';
+    width: 100px;
+    font-size: 1em;
+    position: absolute;
+    color: black;
+    left: 37%;
+    top: 40%;
+    visibility: hidden;
+    transition: all 400ms ease-in-out;
+    opacity: 0;
+} */
 .overlay {
     position: absolute;
     margin: auto;
@@ -481,7 +495,6 @@ form input.form-control, form textarea.form-control, form select.form-control{
     left: 0;
     right: 0;
     width: 150px;
-    height: 150px;
     opacity: 0;
     transition: .5s ease;
     background-color: var(--primary-color);
