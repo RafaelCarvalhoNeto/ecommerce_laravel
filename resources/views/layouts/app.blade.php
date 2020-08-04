@@ -216,18 +216,10 @@
   </div>
   {{-- Scripts --}}
   @error('email')
-  <script>
-    setTimeout( () => {
-      document.querySelector('[data-target="#modalLogin"]').click();
-    }, 700);
-  </script>
+  <script src="/js/modal-reload.js"></script>
   @enderror
   @error('password')
-  <script>
-    setTimeout( () => {
-      document.querySelector('[data-target="#modalLogin"]').click();
-    }, 700);
-  </script>
+  <script src="/js/modal-reload.js"></script>
   @enderror
   <script src="/js/fade-menu-categorias.js"></script>
   <script src="/js/bolinha.js"></script>
