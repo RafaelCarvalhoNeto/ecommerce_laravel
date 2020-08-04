@@ -63,7 +63,7 @@ class NavigateController extends Controller
     }
 
     public function pagCategorias($url){
-        
+       
         $produtos = DB::table('produtos')
         ->join('categorias', 'produtos.categoria','=', 'categorias.id')
         ->where('categorias.slug', $url)
@@ -133,10 +133,8 @@ class NavigateController extends Controller
 
         $cart = Session::get('cart');
 
-
         if (Auth::attempt($credentials)){
             return redirect()->route('converter.pedido');
-            // return redirect()->back();
 
         }
         return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);

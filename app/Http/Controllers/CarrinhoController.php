@@ -190,8 +190,6 @@ class CarrinhoController extends Controller
     public function converterPedido(){
 
 
-
-
         if(Auth::check()===false){
             return redirect()->route('login.direct');
 
