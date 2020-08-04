@@ -181,7 +181,6 @@
                     <h2 class="col-12 p-3 mb-3 border-bottom">Dados de pagamento</h2>
                     <div class="col-md-12">
 
-                        <p class="ml-0">Preencha os dados de pagamento a seguir</p>
                         <div class="form-row">
                             <div class="form-group col-12">
                                 <label for="nomeTitular">Nome do Titular do Cartão</label>
@@ -190,17 +189,20 @@
                             </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group col-12">
+                                <label for="numTitular">Número do Cartão</label>
+                                <input type="text" class="form-control bg-white" name="numTitular" id="numTitular" placeholder="4242 4242 4242 4242" aria-describedby="#numTitularHelp">
+                                <small id="numTitularHelp" class="form-text text-muted">Digite o nome exatamente como está no cartão</small>
+                            </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="numeroCartao">Número do Cartão</label>
-                                <input type="text" class="form-control bg-white" name="numeroCartao" id="numeroCartao" placeholder="1234 5678 9012 3456" >
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="cvcCartao">Cód.</label>
-                                <input type="text" class="form-control bg-white" name="cvcCartao" id="cvcCartao" placeholder="123">
-                            </div>
-                            <div class="form-group col-md-4">
                                 <label for="vencimentoCartao">Vencimento</label>
-                                <input type="month" class="form-control bg-white" name="vencimentoCartao" id="vencimentoCartao" placeholder="123">
+                                <input type="text" class="form-control bg-white" name="vencimentoCartao" id="vencimentoCartao" placeholder="MM/AA">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cvcCartao">Cód.</label>
+                                <input type="text" class="form-control bg-white" name="cvcCartao" id="cvcCartao" placeholder="CVC">
                             </div>
                         </div>
                         <div class="form-group clearfix">

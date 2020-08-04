@@ -54,7 +54,7 @@
                                 <td scope="row"><img src="{{ $produto->imagem != null ? asset($produto->imagem) : asset('img/null.png') }}" alt="" width="50" height="50"></td>
                                 <td scope="row">{{ $produto->nome }}</td>
                                 <td scope="row">{{ $produto->tipo }}</td>        
-                                <td scope="row">R$ {{ number_format($produto->preco,2,',','.') }}</td>
+                                <td scope="row">R$ {{ number_format($produto->precoFinal,2,',','.') }}</td>
                                 <td scope="row">
                                     @if ($produto->empromo ==1)
                                         <p class='btn btn-success btn-sm'>Sim</p>
@@ -125,18 +125,18 @@
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-4 text-center">
-                                                                            <label for="inputPreco">Preço</label>
-                                                                            <input type="number" class="form-control" placeholder="Preço R$"
-                                                                            aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"required value="{{$produto->preco}}">
+                                                                            <label for="inputPreco">Preço Original(R$)</label>
+                                                                            <input type="text" class="form-control" placeholder="Preço R$"
+                                                                            aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco" value="{{$produto->precoOriginal}}">
                                                                         </div>
                                                                         <div class="form-group col-md-2 text-center">
                                                                             <label for="inputParcelamento">Parcelas</label>
-                                                                            <input type="number" class="form-control" placeholder="N°"
+                                                                            <input type="text" class="form-control" placeholder="N°"
                                                                             aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento" value="{{$produto->parcelamento}}">
                                                                         </div>
                                                                         <div class="form-group col-md-2 text-center">
                                                                             <label for="titulo1">Garantia</label>
-                                                                            <input type="number" class="form-control" placeholder="Ano"
+                                                                            <input type="text" class="form-control" placeholder="Ano"
                                                                             aria-describedby="adicionarTitulo1Help" id="inputTecnica1" name="inputTecnica1">
                                                                         </div>
                                                                     </div>
@@ -163,7 +163,7 @@
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     @if ($produto->empromo == 1)
-                                                                    <a href="#carouselModal{{$produto->id}}" role="button" class="btn btn-danger btn-block" data-slide="next">Retirar da promoção</a>
+                                                                    <a href="#carouselModal{{$produto->id}}" role="button" class="btn btn-danger btn-block" data-slide="next">Alterar promoção</a>
                                                                     @else
                                                                     <a href="#carouselModal{{$produto->id}}" role="button" class="btn btn-success btn-block" data-slide="next">Colocar em promoção</a>
                                                                     @endif
@@ -203,15 +203,15 @@
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <label for="emPromo">Qual o valor do desconto?</label>
+                                                                            <label for="emPromo">Qual o % do desconto?</label>
                                                                             <input type="text" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="emPromo">Total desconto</label>
-                                                                            <p class="dados-promo" id="valorOriginal">R$ {{ number_format($produto->preco,2,',','.') }}</p>
-                                                                            <p class="d-none valorOriginalHid">{{ $produto->preco }}</p>
+                                                                            <p class="dados-promo" id="valorOriginal">R$ {{ number_format($produto->precoOriginal,2,',','.') }}</p>
+                                                                            <p class="d-none valorOriginalHid">{{ $produto->precoOriginal }}</p>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
                                                                             <label for="">Total desconto</label>
@@ -221,7 +221,7 @@
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-12">
                                                                             <label for="valorDesc">Valor final</label>
-                                                                            <p class="valorDesc dados-promo" id="valorDesc">R$ {{ number_format($produto->preco,2,',','.') }}</p>
+                                                                            <p class="valorDesc dados-promo" id="valorDesc">R$ {{ number_format($produto->precoFinal,2,',','.') }}</p>
                                                                             <input type="hidden" class="form-control inputDesconto" name="inputDesconto">
                                                                         </div>
                                                                     </div>

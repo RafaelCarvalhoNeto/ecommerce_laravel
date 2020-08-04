@@ -70,7 +70,7 @@
                                         <a href="#" class="retirar-pedido" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho" onclick="carrinhoRemoverProdutoSession({{$produto['produto']['id']}},0)">Retirar produto</a>
                                         
                                     </td>
-                                    <td class="align-middle">R$ {{number_format($produto['produto']['preco'],2,',','.')}}</td>
+                                    <td class="align-middle">R$ {{number_format($produto['produto']['precoFinal'],2,',','.')}}</td>
                                     <td class='align-middle  font-weight-bold'>R$ {{number_format($produto['price'],2,',','.')}}</td>
                                 </tr>
                                 @endforeach
@@ -156,7 +156,7 @@
                                             <a href="#" class="retirar-pedido" data-position="right" data-delay="50" data-tooltip="Retirar produto do carrinho" onclick="carrinhoRemoverProduto({{$pedido->id}}, {{$pedido_produto->produto_id}},0)">Retirar produto</a>
                                             
                                         </td>
-                                        <td class="align-middle">R$ {{number_format($pedido_produto->produto->preco, 2, ',','.')}}</td>
+                                        <td class="align-middle">R$ {{number_format($pedido_produto->produto->precoFinal, 2, ',','.')}}</td>
                                         @php
                                             $total_produto = $pedido_produto->valores - $pedido_produto->descontos;
                                             $total_pedido += $total_produto;

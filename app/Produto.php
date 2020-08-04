@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class Produto extends Model
 {
     protected $table = "produtos";
-    protected $fillable = ['nome', 'imagem', 'descricao', 'preco', 'categoria', 'informacoes', 'parcelamento', 'emPromo', 'promo', 'valorDescontado'];
+    protected $fillable = ['nome', 'imagem', 'descricao', 'precoOriginal', 'categoria', 'informacoes', 'parcelamento', 'emPromo', 'promo', 'precoFinal'];
 
     public function setNomeAttribute($value){
         $this->attributes['nome'] = $value;

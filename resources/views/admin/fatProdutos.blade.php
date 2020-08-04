@@ -54,7 +54,7 @@
                                 <tr>
                                     <td scope="row">{{$maisVendido->id}}</td>
                                     <td scope="row">{{$maisVendido->nome}}</td>
-                                    <td scope="row">R$ {{number_format($maisVendido->preco,2,',','.')}}</td>
+                                    <td scope="row">R$ {{number_format($maisVendido->precoFinal,2,',','.')}}</td>
                                     <td scope="row">{{$maisVendido->cat->tipo}}</td>
                                     <td scope="row">{{!empty($maisVendido->pedido_produtos[0]->qtd) ? ($maisVendido->pedido_produtos[0]->qtd) : 0}}</td>                   
                                     <td scope="row">R$ {{!empty($maisVendido->pedido_produtos[0]->valores)

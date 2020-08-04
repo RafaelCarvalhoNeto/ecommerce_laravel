@@ -15,7 +15,7 @@ class NavigateController extends Controller
     public function index(){
         $produtos = Produto::paginate(8);
         $descontos = Produto::where('empromo',1)
-        ->orderBy('updated_at', 'desc')
+        ->orderBy('created_at', 'desc')
         ->take(8)
         ->get();
         
@@ -44,7 +44,7 @@ class NavigateController extends Controller
         $recomendacoes = DB::table('produtos')
         ->join('categorias', 'produtos.categoria','=', 'categorias.id')
         ->where('categorias.id', $produto->categoria)
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','produtos.parcelamento', 'produtos.slug')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.precoFinal', 'produtos.id','produtos.parcelamento', 'produtos.slug')
         ->paginate(4);
 
         $categoria = Categoria::where('id', '=', $produto->categoria)
@@ -67,7 +67,7 @@ class NavigateController extends Controller
         $produtos = DB::table('produtos')
         ->join('categorias', 'produtos.categoria','=', 'categorias.id')
         ->where('categorias.slug', $url)
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','produtos.parcelamento', 'produtos.slug')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.precoFinal', 'produtos.id','produtos.parcelamento', 'produtos.slug')
         ->paginate(16);
 
         $categoria = Categoria::where('slug', '=', $url)
@@ -87,10 +87,10 @@ class NavigateController extends Controller
         $search = $request->input('search');
         $precoBuscado = intval($request->input('preco'));
         $produtos = Produto::where('nome', 'like', '%'.$search.'%');
-        $maxPrice = $produtos->get()->max('preco');
+        $maxPrice = $produtos->get()->max('precoFinal');
         
         if($precoBuscado){
-            $produtos = $produtos->where('preco', '<', $precoBuscado);
+            $produtos = $produtos->where('precoFinal', '<', $precoBuscado);
 
         } else{
             $produtos = Produto::where('nome', 'like', '%'.$search.'%');
