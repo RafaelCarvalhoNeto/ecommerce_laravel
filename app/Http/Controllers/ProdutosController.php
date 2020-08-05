@@ -18,11 +18,11 @@ class ProdutosController extends Controller
                 $produtos = DB::table('produtos')
                 ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
                 ->select('produtos.nome', 'produtos.imagem', 'produtos.precoOriginal', 'produtos.id','categorias.tipo',
-                'produtos.descricao', 'produtos.parcelamento','produtos.promo', 'produtos.empromo','produtos.precoFinal');
+                'produtos.descricao', 'produtos.parcelamento','produtos.promo', 'produtos.empromo','produtos.precoFinal', 'produtos.informacoes');
                 $categorias = Categoria::All();
                 $found = $produtos->count();
                 $produtos = $produtos->paginate(10);
-                    
+                   
                 if($produtos){
                     return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
                 }
@@ -33,7 +33,7 @@ class ProdutosController extends Controller
     }
     
     public function create(Request $request) {
-         
+        
         $imagem = $request->file('imagem');
         
         if(empty($imagem)){
@@ -60,12 +60,14 @@ class ProdutosController extends Controller
         $produto->descricao = $request->inputDescricao;
         $produto->parcelamento = $request->inputParcelamento;
 
-        $informacoes  = [
-            $request->titulo1 => $request->inputTecnica1,
-            $request->titulo2 => $request->inputTecnica2,
-            $request->titulo3 => $request->inputTecnica3,
-            $request->titulo4 => $request->inputTecnica4
-        ];
+        $qtd = $request->infosQtd;
+
+        $req = Request();
+
+        $informacoes = [];
+        for($i=1;$i<=$qtd;$i++){
+            $informacoes[$req->input('inputTitulo'.$i)] = $req->input('inputConteudo'.$i);
+        }
 
         $arrayinfos = json_encode($informacoes);
 
@@ -109,12 +111,14 @@ class ProdutosController extends Controller
         $produto->descricao = $request->inputDescricao;
         $produto->parcelamento = $request->inputParcelamento;
 
-        $informacoes  = [
-            $request->titulo1 => $request->inputTecnica1,
-            $request->titulo2 => $request->inputTecnica2,
-            $request->titulo3 => $request->inputTecnica3,
-            $request->titulo4 => $request->inputTecnica4
-        ];
+        $qtd = $request->qtdEdit;
+
+        $req = Request();
+
+        $informacoes = [];
+        for($i=1;$i<=$qtd;$i++){
+            $informacoes[$req->input('inputTituloEdit'.$i)] = $req->input('inputConteudoEdit'.$i);
+        }
 
         $arrayinfos = json_encode($informacoes);
 
@@ -131,8 +135,8 @@ class ProdutosController extends Controller
     public function promoUpdate(Request $request, $id){
         $produto = Produto::find($id);
         
-        if($request->emPromo==1){
-            $produto->empromo = $request->emPromo;
+        if($request->empromo==1){
+            $produto->empromo = $request->empromo;
             $produto->promo = $request->promoDesc;
             $produto->precoFinal = $request->inputDesconto;
         } else {
@@ -168,7 +172,7 @@ class ProdutosController extends Controller
 
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.precoOriginal', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao','produtos.promo', 'produtos.empromo','produtos.precoFinal')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.precoOriginal', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao','produtos.promo', 'produtos.empromo','produtos.precoFinal', 'produtos.informacoes')
         ->where('produtos.nome', 'like' , '%'. $search . '%')
         ->orWhere('categorias.tipo', 'like' , '%'. $search . '%');
         $categorias = Categoria::All();

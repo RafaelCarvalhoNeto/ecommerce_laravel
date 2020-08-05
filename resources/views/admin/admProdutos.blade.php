@@ -116,7 +116,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
-                                                                        <div class="form-group col-md-4 text-center">
+                                                                        <div class="form-group col-md-5 text-center">
                                                                             <label for="inputCategoria">Categoria</label>
                                                                             <select class="custom-select" name= "inputCategoria">
                                                                                 @foreach ($categorias as $categoria)
@@ -124,7 +124,7 @@
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group col-md-4 text-center">
+                                                                        <div class="form-group col-md-5 text-center">
                                                                             <label for="inputPreco">Preço Original(R$)</label>
                                                                             <input type="text" class="form-control" placeholder="Preço R$"
                                                                             aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco" value="{{$produto->precoOriginal}}">
@@ -134,31 +134,32 @@
                                                                             <input type="text" class="form-control" placeholder="N°"
                                                                             aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento" value="{{$produto->parcelamento}}">
                                                                         </div>
-                                                                        <div class="form-group col-md-2 text-center">
-                                                                            <label for="titulo1">Garantia</label>
-                                                                            <input type="text" class="form-control" placeholder="Ano"
-                                                                            aria-describedby="adicionarTitulo1Help" id="inputTecnica1" name="inputTecnica1">
-                                                                        </div>
                                                                     </div>
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-6 text-center">
-                                                                            <label for="Titulo2">Marca</label>
-                                                                            <input type="text" class="form-control" placeholder="Insira a marca"
-                                                                            id="inputTecnica2" name="inputTecnica2">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6 text-center">
-                                                                            <label for="titulo3">Modelo</label>
-                                                                            <input type="text" class="form-control" placeholder="Insira o modelo"
-                                                                            id="inputTecnica3" name="inputTecnica3">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-row">
-                                                                        <div class="form-group col-md-12 text-center">
-                                                                            <label for="Titulo4">Especificações Técnicas</label>
-                                                                            <input type="text" class="form-control" placeholder="Especificações..."
-                                                                            id="inputTecnica4" name="inputTecnica4">
-                                                                        </div>
-                                                                    </div>
+                                                                    <div>
+                                                                        <p class="font-weight-bold">Especificações técnicas</p>
+                                                                        @php
+                                                                            $arrayinfos = $produto->informacoes;
+                                                                            $informacoes = json_decode($arrayinfos, true);
+                                                                            $i=1;
+                                                                        @endphp
+
+                                                                        @foreach ($informacoes as $titulo => $conteudo)
+                                                                            <div class="form-row border my-2">
+                                                                                <p class="d-block col-md-12 text-center p-2 p-1 m-0 border-bottom bg-info text-white">Info {{$i}}</p>
+                                                                                <div class="form-group col-md-12 text-center my-2">
+                                                                                    <input class="form-control" type="text" name="inputTituloEdit{{$i}}" value="{{$titulo}}">
+                                                                                </div>
+                                                                                <div class="form-group col-md-12 text-center">
+                                                                                    <input class="form-control" type="text" name="inputConteudoEdit{{$i}}" value="{{$conteudo}}">
+                                                                                </div>
+                                                                                <input type="hidden" name="qtdEdit" value="{{$i}}">
+                                                                            </div>
+                                                                            @php
+                                                                            $i++;    
+                                                                            @endphp
+
+                                                                        @endforeach
+                                                                    </div> 
                                                                     
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -196,20 +197,20 @@
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
-                                                                            <label for="emPromo">Em promoção?</label>
-                                                                            <select class="form-control inputs-promo" name="emPromo" id="emPromo">
+                                                                            <label for="empromo">Em promoção?</label>
+                                                                            <select class="form-control inputs-promo" name="empromo" id="empromo">
                                                                                 <option value="0">Não</option>
                                                                                 <option value="1">Sim</option>
                                                                             </select>
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <label for="emPromo">Qual o % do desconto?</label>
+                                                                            <label for="empromo">Qual o % do desconto?</label>
                                                                             <input type="text" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
-                                                                            <label for="emPromo">Total desconto</label>
+                                                                            <label for="empromo">Total desconto</label>
                                                                             <p class="dados-promo" id="valorOriginal">R$ {{ number_format($produto->precoOriginal,2,',','.') }}</p>
                                                                             <p class="d-none valorOriginalHid">{{ $produto->precoOriginal }}</p>
                                                                         </div>
@@ -330,61 +331,37 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-4 text-center">
+                                <div class="form-group col-md-5 text-center">
                                     
                                     <label for="inputCategoria">Categoria</label>
                                     <select class="custom-select" name= "inputCategoria">
                                         @foreach ($categorias as $categoria)
                                             <option value="{{$categoria->id}}">{{$categoria->tipo}}</option>
-                                        
                                         @endforeach
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-4 text-center">
-
+                                <div class="form-group col-md-5 text-center">
                                     <label for="inputPreco">Preço</label>
                                     <input type="number" class="form-control" placeholder="Preço R$"
                                     aria-describedby="adicionarPrecoHelp" id="inputPreco" name="inputPreco"required>
                                 </div>
                                 <div class="form-group col-md-2 text-center">
-                                    
                                     <label for="inputParcelamento">Parcelas</label>
                                     <input type="number" class="form-control" placeholder="N°"
                                     aria-describedby="adicionarParcelamentoHelp" id="inputParcelamento" name="inputParcelamento"required>
                                 </div>
-                                <div class="form-group col-md-2 text-center">
-                                    <label for="titulo1">Garantia</label>
-                                    <input type="number" class="form-control" placeholder="Ano"
-                                    id="inputTecnica1" name="inputTecnica1">
-                                </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6 text-center">
-                                
-                                    <label for="Titulo2">Marca</label>
-                                    <input type="text" class="form-control" placeholder="Insira a marca do produto"
-                                    id="inputTecnica2" name="inputTecnica2">
-                                </div>
-                                <div class="form-group col-md-6 text-center">
-                                    <label for="titulo3">Modelo</label>
-                                    <input type="text" class="form-control" placeholder="Insira o modelo do produto"
-                                    id="inputTecnica3" name="inputTecnica3">
-                                </div>
+                            <div id="infos-tecnica">
+                                <p class='font-weight-bold'>Especificações técnicas</p>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12 text-center">
-
-                                    <label for="inputTecnica4">Especificações Técnicas</label>
-                                    <input type="text" class="form-control" placeholder="Especificações..."
-                                    id="inputTecnica4" name="inputTecnica4">
-                                </div>
-                            </div>
+                            <input type="hidden" name="infosQtd" id="infosQtd">
+                            <p class="font-weight-bold m-0 mt-3" id="add-espec">Adicionar item
+                                <i class="far fa-plus-square"></i>
+                            </p>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Adicionar</button>
-
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary btn-block">Adicionar</button>
                         </div>    
                     </form>
                 </div>
@@ -411,6 +388,8 @@
         }
 
 
+
     </script>
+    <script src="/js/add-especificacoes.js"></script>
 
 @endsection

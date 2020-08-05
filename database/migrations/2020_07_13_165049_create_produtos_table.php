@@ -24,7 +24,7 @@ class CreateProdutosTable extends Migration
             $table->string('precoOriginal');
             $table->text("informacoes")->nullable();
             $table->string("parcelamento")->nullable();
-            $table->string("emPromo")->nullable();
+            $table->boolean("empromo")->nullable();
             $table->string("promo")->nullable();
             $table->string("precoFinal");
             $table->timestamps();
