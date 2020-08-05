@@ -140,22 +140,22 @@
                                                                         @php
                                                                             $arrayinfos = $produto->informacoes;
                                                                             $informacoes = json_decode($arrayinfos, true);
-                                                                            $i=1;
+                                                                            $b=1;
                                                                         @endphp
 
                                                                         @foreach ($informacoes as $titulo => $conteudo)
                                                                             <div class="form-row border my-2">
-                                                                                <p class="d-block col-md-12 text-center p-2 p-1 m-0 border-bottom bg-info text-white">Info {{$i}}</p>
+                                                                                <p class="d-block col-md-12 text-center p-2 p-1 m-0 border-bottom bg-info text-white">Info {{$b}}</p>
                                                                                 <div class="form-group col-md-12 text-center my-2">
-                                                                                    <input class="form-control" type="text" name="inputTituloEdit{{$i}}" value="{{$titulo}}">
+                                                                                    <input class="form-control" type="text" name="inputTituloEdit{{$b}}" value="{{$titulo}}">
                                                                                 </div>
                                                                                 <div class="form-group col-md-12 text-center">
-                                                                                    <input class="form-control" type="text" name="inputConteudoEdit{{$i}}" value="{{$conteudo}}">
+                                                                                    <input class="form-control" type="text" name="inputConteudoEdit{{$b}}" value="{{$conteudo}}">
                                                                                 </div>
-                                                                                <input type="hidden" name="qtdEdit" value="{{$i}}">
+                                                                                <input type="hidden" name="qtdEdit" value="{{$b}}">
                                                                             </div>
                                                                             @php
-                                                                            $i++;    
+                                                                            $b++;    
                                                                             @endphp
 
                                                                         @endforeach
