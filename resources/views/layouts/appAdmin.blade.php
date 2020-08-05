@@ -57,7 +57,7 @@
 
           </div>
         </nav>
-      <div class="subnav">
+      <div class="subnav subnav-admin">
           <div class="container">
               <div class="d-flex">
                   <ul class="d-flex flex-row">
