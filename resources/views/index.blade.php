@@ -62,8 +62,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $maisVendido->produto->nome }}</h3>
-                            <p class="card-text preco m-0">R$ {{number_format(($maisVendido->produto->preco),2,',','.')}}</p>
-                            <small class="text-left">{{$maisVendido->produto->parcelamento}}x de R$ {{number_format(($maisVendido->produto->preco)/($maisVendido->produto->parcelamento),2,',','.')}} s/ juros</small>
+                            <p class="card-text preco m-0">R$ {{number_format(($maisVendido->produto->precoFinal),2,',','.')}}</p>
+                            <small class="text-left">{{$maisVendido->produto->parcelamento}}x de R$ {{number_format(($maisVendido->produto->precoFinal)/($maisVendido->produto->parcelamento),2,',','.')}} s/ juros</small>
                         </div>
                     </div>
                 </a>
@@ -75,7 +75,7 @@
 
     <!-- cards redondos -->
     <section class="container">
-        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Navegue pela loja</h2>
+        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Categorias em destaque</h2>
         <div class="row mt-4">
             <div class="col-sm-6 col-md-3 d-flex justify-content-center pb-3">
                 <a href="ofertas"><img src="img\bola1.png" class="icones"></a>
@@ -99,75 +99,32 @@
     <section class="container">
     <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Ofertas</h2>
 
-        <div class="row text-center mt-4">
-            <div class="col-md-3 pb-1 col-sm-6 mb-3">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-header bg-success text-white text-center">
-                            <p class="faixa-promo">Promoção</p>
-                        </div>
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-10.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro O Livros dos Títulos - Kniha Nazvu</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+        <div class="row mt-4">
+            @foreach ($descontos as $desconto)
 
-            <div class="col-md-3 pb-1 col-sm-6  mb-3">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-header bg-success text-white text-center">
-                            <p class="faixa-promo">Promoção</p>
-                        </div>
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-05.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro Glossário da capa colorida</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
 
-            <div class="col-md-3 pb-1 col-sm-6">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-header bg-danger text-white text-center">
-                            <p class="faixa-promo">10% de desconto</p>
+                <div class="col-md-3 pb-1 col-sm-6 mb-3">
+                    <a href="/detalheProduto/{{$desconto->slug}}">
+                        <div class="card avancar">
+                            <div class="card-header {{$desconto->promo>20?'bg-danger':'bg-success'}} text-white text-center">
+                                <p class="faixa-promo">{{$desconto->promo}}% de desconto</p>
+                            </div>
+                            <div class="card-img-top d-flex align-items-center justify-content-center p-4">
+                                <img src="{{ $desconto->imagem != null ? asset($desconto->imagem) : asset('img/null.png') }}" alt="Card image cap" width="140px" height="140px">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title produto">{{ $desconto->nome }}</h3>
+                                <small class="promo">de R$ {{number_format(($desconto->precoOriginal),2,',','.')}} por</small>
+                                <p class="card-text preco m-0">R$ {{number_format(($desconto->precoFinal),2,',','.')}}</p>
+                                <small class="text-left">{{$desconto->parcelamento}}x de R$ {{number_format(($desconto->precoFinal)/($desconto->parcelamento),2,',','.')}} s/ juros</small>
+                            </div>
                         </div>
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\livro-06.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Livro O Cirurgião - Tess Gerritsen</h3>
-                            <p class="card-text preco">R$ 50,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>   
-            <div class="col-md-3 pb-1 col-sm-6">
-                <a href="/detalheProduto">
-                    <div class="card avancar">
-                        <div class="card-header bg-danger text-white text-center">
-                            <p class="faixa-promo">10% de desconto</p>
-                        </div>
-                        <div class="card-img-top d-flex align-items-center justify-content-center p-4">
-                            <img src="img\eletronico-06.png" alt="Card image cap" width="140px" height="140px">
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title produto">Notebook Positivo 20GB 350RAM</h3>
-                            <p class="card-text preco">R$ 2.000,00</p>
-                        </div>
-                    </div>
-                </a>
-            </div>     
+                    </a>
+                </div>
+            @endforeach
         </div>
 
+        <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Novidades na loja</h2>
         <div class="row mt-4">
             @foreach ($produtosBottom as $produtoBottom)
             <div class="col-md-3 pb-1 col-sm-6 mb-3">
@@ -178,8 +135,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $produtoBottom->nome }}</h3>
-                            <p class="card-text preco m-0">R$ {{number_format(($produtoBottom->preco),2,',','.')}}</p>
-                            <small class="text-left">{{$produtoBottom->parcelamento}}x de R$ {{number_format(($produtoBottom->preco)/($produtoBottom->parcelamento),2,',','.')}} s/ juros</small>
+                            <p class="card-text preco m-0">R$ {{number_format(($produtoBottom->precoFinal),2,',','.')}}</p>
+                            <small class="text-left">{{$produtoBottom->parcelamento}}x de R$ {{number_format(($produtoBottom->precoFinal)/($produtoBottom->parcelamento),2,',','.')}} s/ juros</small>
                         </div>
                     </div>
                 </a>

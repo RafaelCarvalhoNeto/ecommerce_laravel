@@ -17,12 +17,12 @@ class ProdutosController extends Controller
 
                 $produtos = DB::table('produtos')
                 ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-                ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo',
-                'produtos.descricao', 'produtos.parcelamento');
+                ->select('produtos.nome', 'produtos.imagem', 'produtos.precoOriginal', 'produtos.id','categorias.tipo',
+                'produtos.descricao', 'produtos.parcelamento','produtos.promo', 'produtos.empromo','produtos.precoFinal', 'produtos.informacoes');
                 $categorias = Categoria::All();
                 $found = $produtos->count();
                 $produtos = $produtos->paginate(10);
-                    
+                   
                 if($produtos){
                     return view('admin.admProdutos')->with(['produtos'=> $produtos,'found'=> $found, 'categorias'=> $categorias]);
                 }
@@ -33,7 +33,7 @@ class ProdutosController extends Controller
     }
     
     public function create(Request $request) {
-         
+        
         $imagem = $request->file('imagem');
         
         if(empty($imagem)){
@@ -55,16 +55,19 @@ class ProdutosController extends Controller
         $produto->nome = $request->inputProduto;
         $produto->imagem = $pathRelative;
         $produto->categoria = $request->inputCategoria;
-        $produto->preco  = $request->inputPreco;
+        $produto->precoOriginal  = $request->inputPreco;
+        $produto->precoFinal  = $request->inputPreco;
         $produto->descricao = $request->inputDescricao;
         $produto->parcelamento = $request->inputParcelamento;
 
-        $informacoes  = [
-            $request->titulo1 => $request->inputTecnica1,
-            $request->titulo2 => $request->inputTecnica2,
-            $request->titulo3 => $request->inputTecnica3,
-            $request->titulo4 => $request->inputTecnica4
-        ];
+        $qtd = $request->infosQtd;
+
+        $req = Request();
+
+        $informacoes = [];
+        for($i=1;$i<=$qtd;$i++){
+            $informacoes[$req->input('inputTitulo'.$i)] = $req->input('inputConteudo'.$i);
+        }
 
         $arrayinfos = json_encode($informacoes);
 
@@ -76,7 +79,6 @@ class ProdutosController extends Controller
         if($produto){
             return redirect()->route('admin.admProdutos')->with('success','Produto criado com sucesso!');
         }
-        return redirect()->route('admin.admProdutos')->with('success', 'Produto criado com sucesso!');
     } 
 
     public function update(Request $request, $id){
@@ -100,16 +102,23 @@ class ProdutosController extends Controller
         $produto->nome = $request->inputProduto;
         $produto->imagem = $pathRelative;
         $produto->categoria = $request->inputCategoria;
-        $produto->preco  = $request->inputPreco;
+        $produto->precoOriginal  = $request->inputPreco;
+        if ($produto->empromo ==1){
+            $produto->precoFinal  = ($request->inputPreco)*(1-$produto->promo/100);
+        } else {
+            $produto->precoFinal  = $request->inputPreco;
+        }
         $produto->descricao = $request->inputDescricao;
         $produto->parcelamento = $request->inputParcelamento;
 
-        $informacoes  = [
-            $request->titulo1 => $request->inputTecnica1,
-            $request->titulo2 => $request->inputTecnica2,
-            $request->titulo3 => $request->inputTecnica3,
-            $request->titulo4 => $request->inputTecnica4
-        ];
+        $qtd = $request->qtdEdit;
+
+        $req = Request();
+
+        $informacoes = [];
+        for($i=1;$i<=$qtd;$i++){
+            $informacoes[$req->input('inputTituloEdit'.$i)] = $req->input('inputConteudoEdit'.$i);
+        }
 
         $arrayinfos = json_encode($informacoes);
 
@@ -118,14 +127,27 @@ class ProdutosController extends Controller
         $produto->update();
         
         if($produto){
-        $produtos = DB::table('produtos')
-        ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.descricao', 'produtos.parcelamento')
-        ->paginate(10);
-        $categorias = Categoria::All();
+            return redirect()->back()->with('success','Produto alterado com sucesso!');
 
-            return redirect()->route('admin.admProdutos')->with(['produtos'=> $produtos,'categorias'=>$categorias,
-                'success'=> 'Produto alterado com sucesso!' ]);
+        }
+    }
+
+    public function promoUpdate(Request $request, $id){
+        $produto = Produto::find($id);
+        
+        if($request->empromo==1){
+            $produto->empromo = $request->empromo;
+            $produto->promo = $request->promoDesc;
+            $produto->precoFinal = $request->inputDesconto;
+        } else {
+            $produto->empromo = 0;
+            $produto->promo = null;
+            $produto->precoFinal = $produto->precoOriginal;
+        }
+        $produto->update();
+        
+        if($produto){
+            return redirect()->route('admin.admProdutos')->with('success','Produto alterado com sucesso!');
 
         }
     }
@@ -136,13 +158,9 @@ class ProdutosController extends Controller
 
         if($produto->delete()){
 
-            $produtos = Produto::paginate(10);
-            $categorias = Categoria::All();
-
-            if($produtos){
-            return redirect()->route('admin.admProdutos')->with(['produtos' => $produtos, 'categorias'=> $categorias,
-                'success' => 'Produto excluído com sucesso']);
-
+            if($produto){
+                return redirect()->route('admin.admProdutos')->with('success','Produto excluído com sucesso!');
+    
             }
             
         }
@@ -154,7 +172,7 @@ class ProdutosController extends Controller
 
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
-        ->select('produtos.nome', 'produtos.imagem', 'produtos.preco', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao')
+        ->select('produtos.nome', 'produtos.imagem', 'produtos.precoOriginal', 'produtos.id','categorias.tipo', 'produtos.parcelamento', 'produtos.descricao','produtos.promo', 'produtos.empromo','produtos.precoFinal', 'produtos.informacoes')
         ->where('produtos.nome', 'like' , '%'. $search . '%')
         ->orWhere('categorias.tipo', 'like' , '%'. $search . '%');
         $categorias = Categoria::All();

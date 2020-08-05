@@ -21,9 +21,12 @@ class CreateProdutosTable extends Migration
             $table->string('slug')->unique();
             $table->string('imagem');
             $table->string('descricao');
-            $table->string('preco');
+            $table->string('precoOriginal');
             $table->text("informacoes")->nullable();
             $table->string("parcelamento")->nullable();
+            $table->boolean("empromo")->nullable();
+            $table->string("promo")->nullable();
+            $table->string("precoFinal");
             $table->timestamps();
 
             $table->foreign('categoria')->references('id')->on('categorias')->onDelete('CASCADE');

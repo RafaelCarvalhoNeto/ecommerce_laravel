@@ -315,19 +315,22 @@ fieldset {
   min-width: 0;
   padding: 0;
   margin: 0;
-  border: 0;
+  border: 1px solid black;
 }
 
 legend {
   display: block;
-  width: 100%;
+  /* width: 100%; */
   max-width: 100%;
   padding: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
+  /* margin-bottom: 0.5rem; */
+  margin: auto;
+  /* font-size: 1.1rem; */
   line-height: inherit;
   color: inherit;
   white-space: normal;
+  padding: 0 10px;
+
 }
 
 progress {

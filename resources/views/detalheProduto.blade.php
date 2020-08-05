@@ -25,8 +25,11 @@
                     <div class="row">
                         <div class="col-md-12 d-flex flex-column justify-content-center bg-light ">
                             <div class="form-group mt-4 mb-2">
-                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->preco),2)}}</p>
-                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
+                                @if ($produto->empromo ==1)
+                                <small class="promo">de R$ {{number_format(($produto->precoOriginal),2,',','.')}} por</small>
+                                @endif
+                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->precoFinal),2)}}</p>
+                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->precoFinal)/($produto->parcelamento),2)}} s/ juros</small>
                             </div>
                             <div class="form-group m-0 mb-4">
                                 <form action="{{route('carrinho.adicionar')}}" method="POST" id="formComprar">
@@ -43,11 +46,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-
-
             </div>
         </div>
 
@@ -79,7 +78,7 @@
                         </div>
                     </div>
 
-                    <div>
+                    {{-- <div>
                         <button class="acordeao my-2" type="button" data-toggle="collapse" data-target="#titulo2" aria-expanded="false" aria-controls="titulo2"><p class='m-0'>Avaliações <i class="fas fa-chevron-down ml-3 font-weight-light"></i></p>
                         </button>
 
@@ -88,7 +87,7 @@
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, nobis delectus! Sequi, ipsum exercitationem neque blanditiis provident officia. Officia distinctio totam hic repellat! Delectus, reiciendis? Quae nobis optio provident minus?
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -108,8 +107,8 @@
                         </div>
                         <div class="card-body">
                             <h3 class="card-title produto">{{ $recomendacao->nome }}</h3>
-                            <p class="card-text preco m-0">R$ {{ number_format($recomendacao->preco,2)}}</p>
-                            <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->preco)/($produto->parcelamento),2)}} s/ juros</small>
+                            <p class="card-text preco m-0">R$ {{ number_format($recomendacao->precoFinal,2)}}</p>
+                            <small class="text-left">{{$produto->parcelamento}}x de R$ {{number_format(($produto->precoFinal)/($produto->parcelamento),2)}} s/ juros</small>
                         </div>
                     </div>
                 </a>

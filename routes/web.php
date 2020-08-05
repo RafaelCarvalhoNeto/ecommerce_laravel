@@ -106,7 +106,8 @@ Route::put('/admin/toggleAdmin/{id}', 'AuthController@toggleAdmin');
 // PRODUTOS
 Route::get('/admin/admProdutos', 'ProdutosController@index')->name('admin.admProdutos');
 Route::post('/admin/admProdutos/novo', 'ProdutosController@create');
-Route::post('/admin/admProdutos/update/{id}', 'ProdutosController@update');
+Route::put('/admin/admProdutos/update/{id}', 'ProdutosController@update');
+Route::put('/admin/admProdutos/promo/{id}', 'ProdutosController@promoUpdate');
 Route::delete('/admin/admProdutos/{id}', 'ProdutosController@delete');
 Route::get('/admin/admProdutos/search', 'ProdutosController@search');
 

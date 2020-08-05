@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class UsersController extends Controller
 {
@@ -106,6 +107,10 @@ class UsersController extends Controller
 
     // GERAR PÁGINA DE CADASTRO DE USUÁRIOS
     public function createPage(){
+        $previous = url()->previous();
+        Request()->session()->flash('previous', $previous);
+        // return session()->all();
+        // die;
         return view('cadastro');
     }
     public function createUser(Request $request){
@@ -132,6 +137,9 @@ class UsersController extends Controller
         $user->email = $request->inputEmail;
         $user->password = Hash::make($request->inputSenha);
 
+        $previous = Session::get('previous');
+        $cart = Session::get('cart');
+
         $user->save();
 
         if($user){
@@ -139,9 +147,15 @@ class UsersController extends Controller
                 'email'=> $user->email,
                 'password'=> $password
             ];
-
+          
             if (Auth::attempt($credentials)){
-                return redirect()->route('home');
+                if ($previous==route('login.direct')){
+                    return redirect()->route('converter.pedido');
+                    
+                } else {
+                    return redirect()->route('home');
+                }
+    
             }
             return view('cadastro');
         }

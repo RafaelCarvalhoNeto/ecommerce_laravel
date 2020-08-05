@@ -110,7 +110,7 @@
                                                                 <div class="row">
                                                                     <div class="col-md-12">
                                                                         <h5>Mensagem</h5>
-                                                                        <p class=>{{ $message->conteudo }}</p>
+                                                                        <p>{{ $message->conteudo }}</p>
                                                                     </div>
                                                                 </div>
                                                             </div>
