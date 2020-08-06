@@ -694,7 +694,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
         flex: 0;
     }
     .ola-nav{
-        width: 20vw;
+        width: 20%;
     }
     .btn-search-adm{
         width: 150px;
