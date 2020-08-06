@@ -99,7 +99,7 @@
     <div class="container">
         <div class="row mt-4">
             @foreach ($recomendacoes as $recomendacao)
-            <div class="col-md-3 pb-1 pb-md-0 mb-3">
+            <div class="col-lg-3 pb-1 pb-md-0 mb-3">
                 <a href="/detalheProduto/{{$recomendacao->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">

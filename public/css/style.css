@@ -59,6 +59,9 @@ header {
     width: 35px;
     border-radius: 8px ;
 }
+#busca {
+    flex: 1;
+}
 .search.btn i{
     font-size: 1.4em;
     color: var(--primary-color);
@@ -459,10 +462,14 @@ form input.form-control, form textarea.form-control, form select.form-control{
     border-radius: 8px;
 }
 .dados-promo{
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 5px;
     color: white;
     background: darkgrey;
+    height: 38px;
+    line-height: 25px;
+    text-align: center;
+
     
 }
 .inputs-promo{
@@ -601,9 +608,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
         max-width: 1140px;
         margin: auto;
     }
-    #busca{
-        width: 400px
-    }
+
     .seta{
         height: 100px;
         margin: auto 25px;
@@ -629,9 +634,13 @@ form input.form-control, form textarea.form-control, form select.form-control{
     .navbar .container form{
         order: 0;
         width: 100%;
-        justify-content: flex-end;
+        display: block;
     }
-
+    #busca{
+        /* flex:0; */
+        width: 400px;
+        margin-left: auto;
+    }
     .subnav li a {
         flex: 1;
         color: white;
@@ -685,7 +694,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
         flex: 0;
     }
     .ola-nav{
-        width: 20%;
+        width: 20vw;
     }
     .btn-search-adm{
         width: 150px;
