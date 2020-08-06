@@ -23,7 +23,7 @@ class CarrinhoController extends Controller
                 'status'=>'RE',
                 'user_id'=>Auth::id()
             ])->get();
-        
+            
             return view('carrinho', compact('pedidos'));
             
         }

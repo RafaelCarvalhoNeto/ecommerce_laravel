@@ -34,20 +34,27 @@ class AppServiceProvider extends ServiceProvider
             $todasAsCategorias = Categoria::all();
             
             if(Auth::check()===true){
-                $itensCarro = Pedido::where([
+                $pedidos = Pedido::where([
                     'status'=>'RE',
                     'user_id'=>Auth::id()
                 ])->get();
-                !empty($itensCarro[0]->id)?
-                $itensCarro = $itensCarro[0]->pedido_produtos->count():
+                
                 $itensCarro = 0;
+
+                if(!empty($pedidos[0]->id)){
+                    foreach($pedidos[0]->pedido_produtos as $pedido_produto){
+                        $itensCarro += $pedido_produto->qtd;
+                    }
+                } else {
+                    $itensCarro = 0;
+                }
+
             } else {
                 $itensCarro = 0;
                 $oldCart = Session::get('cart');
                 $cart = new Cart($oldCart);
                 $itensCarro = $cart->totalQtd;
             }
-
 
             $view->with([
                 'categoriasNav' => $categoriasNav,
