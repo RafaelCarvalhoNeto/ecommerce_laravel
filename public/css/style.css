@@ -153,6 +153,52 @@ header {
 .subnav .container{
     padding: 0;
 }
+
+/* ANALISAR NECESSIDADE DE ALGUMAS LINHAS DO CODIGO SUBNAV ADMIN */
+
+.subnav-admin ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-x:auto !important;
+    display: flex;
+    flex-direction: row;
+
+}
+.subnav-admin .container{
+    padding: 0;
+}
+
+.subnav-admin li a {
+    flex: 1;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.subnav-admin li a, .link-footer a {
+    border-color: #fff;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: color 150ms ease-in-out;
+    transition: color 150ms ease-in-out;
+}
+.link-footer a{
+    color: var(--primary-color);
+}
+
+.subnav-admin ul li, .subnav-admin ul{
+    flex: 1;
+}
+.subnav-admin .btn-group{
+    flex: 0;
+}
+/* TERMINA AQUI NECESSIDADE DE ANALISE DE LINHAS DE CODIGO SUBNAV-ADMIN */
+
+
 /* INDEX */
 body {
     background-color: #ffffff;
@@ -533,6 +579,15 @@ form input.form-control, form textarea.form-control, form select.form-control{
     text-align: center;
 }
 
+.bloco-infos{
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 10px;
+}
+.bloco-infos p{
+    border-radius: 10px 10px 0 0;
+    background-color: var(--secondary-color);
+}
+
 @media only screen and (min-width: 769px) {
 
     #carrosel {
@@ -550,9 +605,9 @@ form input.form-control, form textarea.form-control, form select.form-control{
         width: 400px
     }
     .seta{
-    height: 100px;
-    margin: auto 25px;
-    width: 30px;
+        height: 100px;
+        margin: auto 25px;
+        width: 30px;
     }
     .carousel-control-next-icon, .carousel-control-prev-icon{
         color: black
@@ -635,7 +690,5 @@ form input.form-control, form textarea.form-control, form select.form-control{
     .btn-search-adm{
         width: 150px;
     }
-
-
 
 }
