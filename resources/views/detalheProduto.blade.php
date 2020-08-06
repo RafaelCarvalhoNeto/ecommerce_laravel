@@ -17,7 +17,7 @@
                 <div>
 
                     <h2>{{$produto->nome}}</h2>
-                    <small>{{$produto->id}}</small>
+                    <small>Cód. {{$produto->id}}</small>
                     <p class="my-3">{{$produto->descricao}}
                     </p>
                 </div>

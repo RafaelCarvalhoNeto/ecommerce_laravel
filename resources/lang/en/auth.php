@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'As informações informadas não foram encontradas no nosso sistema.',
+    'failed' => 'Os dados informados não foram encontrados no nosso sistema.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

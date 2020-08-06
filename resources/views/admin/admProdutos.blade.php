@@ -198,7 +198,7 @@
                                                                         </div>
                                                                         <div class="form-group col-md-6">
                                                                             <label for="empromo">Qual o % do desconto?</label>
-                                                                            <input type="text" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
+                                                                            <input type="number" max="100" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">

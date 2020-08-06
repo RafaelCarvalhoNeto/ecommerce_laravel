@@ -137,7 +137,7 @@ class NavigateController extends Controller
             return redirect()->route('converter.pedido');
 
         }
-        return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);
+        return redirect()->back()->withInput()->withErrors(['failed'=>'Os dados informados não foram encontrados no nosso sistema.']);
     }
 
 
