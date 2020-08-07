@@ -13,7 +13,7 @@
 
     <div class="row mt-4">
         @foreach ($produtos as $produto)
-        <div class="col-md-3 pb-1 pb-md-0 mb-3">
+        <div class="col-lg-3 pb-1 pb-md-0 mb-3">
             <a href="/detalheProduto/{{$produto->slug}}">
                 <div class="card avancar">
                     <div class="card-img-top d-flex align-items-center justify-content-center p-4">

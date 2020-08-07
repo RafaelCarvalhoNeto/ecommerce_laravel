@@ -45,6 +45,7 @@
                         <tbody>
                             @php
                                 $i=0;
+                                $z=0;
                             @endphp
                             @foreach ($produtos as $produto)
                             <tr>
@@ -191,29 +192,29 @@
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="empromo">Em promoção?</label>
-                                                                            <select class="form-control inputs-promo" name="empromo" id="empromo">
-                                                                                <option value="0">Não</option>
-                                                                                <option value="1">Sim</option>
+                                                                            <select class="form-control inputs-promo select-promo" name="empromo" id="empromo" onchange="zerar({{$z}})">
+                                                                                <option value="0" {{$produto->empromo!=1 ? "selected" : ''}}>Não</option>
+                                                                                <option value="1" {{$produto->empromo==1 ? "selected" : ''}}>Sim</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group col-md-6">
+                                                                        <div class="form-group col-md-6 ">
                                                                             <label for="empromo">Qual o % do desconto?</label>
-                                                                            <input type="number" max="100" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
+                                                                            <input type="number" max="100" value="{{$produto->empromo ==1?$produto->promo:0}}" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})" {{$produto->empromo!=1 ? "disabled" : ''}} style={{$produto->empromo!=1 ? "background:darkgrey;color:white" : ''}}>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
-                                                                        <div class="form-group col-md-6">
+                                                                        <div class="form-group col-md-6 mb-0">
                                                                             <label for="empromo">Total desconto</label>
                                                                             <p class="dados-promo" id="valorOriginal">R$ {{ number_format($produto->precoOriginal,2,',','.') }}</p>
                                                                             <p class="d-none valorOriginalHid">{{ $produto->precoOriginal }}</p>
                                                                         </div>
-                                                                        <div class="form-group col-md-6">
+                                                                        <div class="form-group col-md-6 mb-0">
                                                                             <label for="">Total desconto</label>
                                                                             <p class="dados-promo totalDesconto">R$ 0,00</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
-                                                                        <div class="form-group col-md-12">
+                                                                        <div class="form-group col-md-12 mb-0">
                                                                             <label for="valorDesc">Valor final</label>
                                                                             <p class="valorDesc dados-promo" id="valorDesc">R$ {{ number_format($produto->precoFinal,2,',','.') }}</p>
                                                                             <input type="hidden" class="form-control inputDesconto" name="inputDesconto">
@@ -267,6 +268,7 @@
                             </tr>
                             @php
                                 $i++;
+                                $z++;
                             @endphp 
                             @endforeach
                         </tbody>

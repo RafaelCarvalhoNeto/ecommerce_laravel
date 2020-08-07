@@ -18,17 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/institucional', function () {
     return view('institucional');
-});
+})->name('institucional');
 Route::get('/404', function () {
     return view('404');
 });
 
 Route::get('/politicas', function () {
     return view('politicas');
-});
-
-
-
+})->name('politicas');
 
 Route::get('/carrinho','CarrinhoController@index')->name('carrinho');
 
@@ -47,30 +44,6 @@ Route::get('converterPedido', 'CarrinhoController@converterPedido')->name('conve
 
 Route::get('/usuarios/historicoPedidos', 'CarrinhoController@showHistorico')->name('show.historico');
 Route::put('usuarios/editarFoto/{id}', 'UsersController@editFoto');
-
-
-
-
-
-
-
-
-
-Route::get('/ofertas', function () {
-    return view('ofertas');
-});
-Route::get('/livros', function () {
-    return view('livros');
-});
-Route::get('/eletronicos', function () {
-    return view('eletronicos');
-});
-Route::get('/bolsas', function () {
-    return view('bolsas');
-});
-Route::get('/busca', function () {
-    return view('busca');
-});
 
 Route::get('/compraFinalizada', function () {
     return view('compraFinalizada');
@@ -148,7 +121,7 @@ Route::put('/admin/admCategorias/update/{id}', 'CategoriasController@update');
 Route::get('/admin/admMensagens', 'MessageController@listMessage')->name('messages.listAll');
 
 // ENVIAR DE MENSAGEM
-Route::get('/contato', 'MessageController@pagContato');
+Route::get('/contato', 'MessageController@pagContato')->name('contato');
 Route::post('/contato', 'MessageController@sendMessage');
 
 // DELETE MENSAGEM
