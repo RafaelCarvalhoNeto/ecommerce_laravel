@@ -25,20 +25,29 @@
                             </div>
                             <input type="range" id="myRange" min='1' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
                         </div>
-                        {{-- <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Marca</h2>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option3">
-                            <label class="form-check-label">Asus</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="option4">
-                            <label class="form-check-label">Sony</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="option5">
-                            <label class="form-check-label">Microsoft</label>
-                        </div> --}}
-                     </div>
+                        @php
+                            $c = 0;
+                            $w=0;
+                        @endphp
+                        @foreach ($lista as $titulo => $conteudo)
+                        <p class="col-12 p-1 mt-3 mb-1 border-bottom  font-weight-bold">{{$titulo}}</p>
+                            @foreach ($conteudo as $conteudo)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="informacoes" value="{{$conteudo}}" {{$req->informacoes == $conteudo ? 'checked':''}}>
+                                    <label class="form-check-label">{{$conteudo}}</label>
+                                </div> 
+                                @php
+                                    $w++;
+                                @endphp
+                            @endforeach
+                            @php
+                            $c++;
+                            if($c == 5){
+                                break;
+                            }
+                        @endphp
+                        @endforeach
+                    </div>
                      <div class="col-md-12 p-0 my-4">
                         <button type="submit" class="btn btn-primary btn-sm btn-block">Pesquisar</button>
                     </div>
