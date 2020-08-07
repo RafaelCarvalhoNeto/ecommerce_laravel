@@ -130,8 +130,6 @@ class NavigateController extends Controller
         $produtos = $produtos->paginate(16);
 
         $req = Request();
-        // return $req->informacoes;
-        // die;
 
         return view('busca')->with([
             'search'=>$search,
