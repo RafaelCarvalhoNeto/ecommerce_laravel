@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Editar usuário
+@endsection
 @section('content')
 
     <main class="container pt-3 ajuste">

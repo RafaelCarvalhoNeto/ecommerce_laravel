@@ -10,7 +10,7 @@
             </div>
             <div class="col-md-6 my-3">
                 <div>
-                    <img class="d-block w-100 .produto" src=" {{asset($produto->imagem)}} " alt="" >
+                    <img class="d-block w-100 produto-img-detalhe" src=" {{asset($produto->imagem)}} " alt="">
                 </div>
             </div>
             <div class="col-md-6 my-3 d-flex flex-column justify-content-between">

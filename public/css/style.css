@@ -196,6 +196,9 @@ header {
 }
 .link-footer a{
     color: var(--primary-color);
+    word-break: break-all;
+    font-size: 0.9em;
+
 }
 
 .subnav-admin ul li, .subnav-admin ul{
@@ -233,6 +236,10 @@ body {
     font-size: 1em;
     color: rgb(39, 39, 39);
     
+}
+.produto-img-detalhe{
+    max-height: 400px;
+    object-fit: cover;
 }
 .preco{
     text-align: left;
@@ -676,6 +683,12 @@ form input.form-control, form textarea.form-control, form select.form-control{
     }
     .link-footer a{
         color: var(--primary-color);
+        font-size: 1em;
+    }
+
+    .cat-footer {
+        word-break: break-all;
+        font-size: 0.9em;
     }
 
     .subnav li a:after, .link-footer a:after {

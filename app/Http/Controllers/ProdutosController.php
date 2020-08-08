@@ -147,7 +147,7 @@ class ProdutosController extends Controller
         $produto->update();
         
         if($produto){
-            return redirect()->route('admin.admProdutos')->with('success','Produto alterado com sucesso!');
+            return redirect()->back()->with('success','Produto alterado com sucesso!');
 
         }
     }
@@ -168,7 +168,7 @@ class ProdutosController extends Controller
     
     public function search(Request $request){
 
-        $search = $request->input('inputSearch');
+        $search = $request->input('search');
 
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')
