@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+    Busca
+@endsection
 @section('content')
     <div class="container pt-3 ajuste">
 
@@ -25,28 +28,33 @@
                             </div>
                             <input type="range" id="myRange" min='1' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
                         </div>
-                        @php
-                            $c = 0;
-                            $w=0;
-                        @endphp
-                        @foreach ($lista as $titulo => $conteudo)
-                        <p class="col-12 p-1 mt-3 mb-1 border-bottom  font-weight-bold">{{$titulo}}</p>
-                            @foreach ($conteudo as $conteudo)
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="informacoes" value="{{$conteudo}}" {{$req->informacoes == $conteudo &&  $req->informacoes != ''? 'checked':''}}>
-                                    <label class="form-check-label">{{$conteudo}}</label>
-                                </div> 
-                                @php
-                                    $w++;
-                                @endphp
-                            @endforeach
+                        <button class="navbar-toggler acordeao" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <small>Busca Avançada <i class="fas fa-chevron-down ml-3 font-weight-light"></i></small>
+                        </button>
+                        <div class="collapse" id="navbarSupportedContent">
                             @php
-                            $c++;
-                            if($c == 5){
-                                break;
-                            }
-                        @endphp
-                        @endforeach
+                                $c = 0;
+                                $w=0;
+                            @endphp
+                            @foreach ($lista as $titulo => $conteudo)
+                            <p class="col-12 p-1 mt-3 mb-1 border-bottom  font-weight-bold">{{$titulo}}</p>
+                                @foreach ($conteudo as $conteudo)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="informacoes" value="{{$conteudo}}" {{$req->informacoes == $conteudo &&  $req->informacoes != ''? 'checked':''}}>
+                                        <label class="form-check-label">{{$conteudo}}</label>
+                                    </div> 
+                                    @php
+                                        $w++;
+                                    @endphp
+                                @endforeach
+                                @php
+                                $c++;
+                                if($c == 5){
+                                    break;
+                                }
+                            @endphp
+                            @endforeach
+                        </div>
                     </div>
                      <div class="col-md-12 p-0 my-4">
                         <button type="submit" class="btn btn-primary btn-sm btn-block">Pesquisar</button>
