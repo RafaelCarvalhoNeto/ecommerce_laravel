@@ -603,7 +603,7 @@ form input.form-control, form textarea.form-control, form select.form-control{
     margin-top: 0.25rem;
     font-size: 80%;
     color: #e3342f;
-  
+}
 .bloco-infos{
     border: 1px solid rgb(211, 211, 211);
     border-radius: 10px;
