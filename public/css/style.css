@@ -572,7 +572,6 @@ form input.form-control, form textarea.form-control, form select.form-control{
     transition: .5s ease;
     background-color: var(--primary-color);
     border-radius: 50%;
-
 }
   
 .rounded-foto:hover .overlay {
@@ -591,10 +590,18 @@ form input.form-control, form textarea.form-control, form select.form-control{
     text-align: center;
 }
 
+.form-erro{
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #e3342f;
+  
 .bloco-infos{
     border: 1px solid rgb(211, 211, 211);
     border-radius: 10px;
 }
+
 .bloco-infos p{
     border-radius: 10px 10px 0 0;
     background-color: var(--secondary-color);

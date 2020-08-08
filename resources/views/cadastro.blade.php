@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
     <main class="container pt-3 ajuste">
         @if(isset($success) && $success != "")
             <section class="row">
@@ -12,7 +11,7 @@
             </section> 
         @endif
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Cadastro</h1>
-        <form action="cadastro" method="post" id="formCadastro">
+        <form action="cadastro" method="post" id="formCadastro" name="formCadastro" onsubmit="return validarForm();">
             @csrf
             {{ method_field('POST') }}                        
             <div class="form-row">
@@ -28,11 +27,13 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputCPF">CPF</label>
-                    <input type="number" class="form-control{{$errors->has('inputCPF') ? ' is-invalid':''}}" placeholder="Insira seu CPF" aria-describedby="CPFCadastroHelp" id="inputCPF" name="inputCPF" value="{{ old('inputCPF') }}" required>
+                    <input type="number" class="form-control{{$errors->has('inputCPF') ? ' is-invalid':''}}" placeholder="Insira seu CPF" aria-describedby="CPFCadastroHelp" id="inputCPF" name="inputCPF" value="{{ old('inputCPF') }}"  onblur="validarCpf()" required>
+                    <div class="form-erro" id="erroCpf">O campo CPF deve conter 11 numeros</div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputRG">RG</label>
-                    <input type="number" class="form-control{{$errors->has('inputRG') ? ' is-invalid':''}}" placeholder="Insira seu RG" aria-describedby="RGCadastroHelp" id="inputRG" name="inputRG" value="{{ old('inputRG') }}" required>
+                    <input type="number" class="form-control{{$errors->has('inputRG') ? ' is-invalid':''}}" placeholder="Insira seu RG" aria-describedby="RGCadastroHelp" id="inputRG" name="inputRG" value="{{ old('inputRG') }}" onblur="validarRg()" required>
+                    <div class="form-erro" id="erroRg">O campo RG deve conter 9 numeros</div>
                 </div>
             </div>
             <div class="form-group">
@@ -43,11 +44,11 @@
             <div class="form-row">
                 <div class="form-group col-md-3">
                     <label for="inputCep">CEP</label>
-                    <input type="text" class="form-control{{$errors->has('inputCep') ? ' is-invalid':''}}" placeholder="01234-567" name="inputCep" value="{{ old('inputCep') }}" required>
+                    <input type="text" class="form-control{{$errors->has('inputCep') ? ' is-invalid':''}}" placeholder="01234-567" id="inputCep" name="inputCep" value="{{ old('inputCep') }}" required>
                 </div>
                 <div class="form-group col-md-7">
                     <label for="inputCidade">Cidade</label>
-                    <input type="text" class="form-control{{$errors->has('inputCidade') ? ' is-invalid':''}}" placeholder="São Paulo" name="inputCidade" value="{{ old('inputCidade') }}" required>
+                    <input type="text" class="form-control{{$errors->has('inputCidade') ? ' is-invalid':''}}" placeholder="São Paulo" name="inputCidade" value="{{ old('inputCidade') }}" id="inputCidade" required>
                 </div>
                 <div class="form-group col-md-2">
                     <label for="inputUF">UF</label>
@@ -92,8 +93,9 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputSenha">Senha</label>
-                    <input type="password" name="inputSenha" class="form-control{{$errors->has('inputSenha') ? ' is-invalid':''}}" placeholder="Senha" aria-describedby="senhaHelp" id="inputSenha" required> 
+                    <input type="password" name="inputSenha" class="form-control{{$errors->has('inputSenha') ? ' is-invalid':''}}" placeholder="Senha" aria-describedby="senhaHelp" id="inputSenha" onblur="validarSenha()" required> 
                     <div class="invalid-feedback">{{ $errors->first('inputSenha') }}</div>
+                    <sub class="" id="senhaAlphaNum">A senha deve incluir no mínimo 6 caracteres, um número, uma maiúscula, uma minúscula e não conter espaço</sub>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputConfirma">Confirma Senha</label>
@@ -108,22 +110,15 @@
             </div>
 
             <div class="form-group col-auto px-0">
-                <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalTeste">Cadastrar</button>
-                {{-- <button type="reset" class="btn btn-secondary float-right">Limpar</button> --}}
+                <button type="submit" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modalTeste" id="btnEnviar" name="btnEnviar">Cadastrar</button>
+                <div class="form-erro" id="erroForm">Alguns campos foram indevidamente preenchidos</div>
             </div>
-
         </form>
 
 
     </main>
-
-
-
-
-
-
-
-
+    
+    <script src="/js/validar-cadastro.js"></script>
 
 
 @endsection
