@@ -3,7 +3,7 @@
     <div class="container pt-3 ajuste">
 
         <div class="row">
-            <div class="col-md-2 col-sm-12">
+            <div class="col-lg-2 col-sm-12">
                 <form action="{{ url('/search') }}" method="GET">
                     <input type="hidden" value='{{$search}}' name='search'>
                     {{-- <h2 class="col-12 p-3 mb-3 border-bottom">Ofertas</h2>
@@ -18,24 +18,36 @@
                     <div class="list-group">
                         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Preço</h2>
                         <div class="slidecontainer text-center">
-                            <small class='inputRange'>R$ 1 -</small>
-                            <small id="final-range" class='inputRange'>R$ {{$precoBuscado != null ?$precoBuscado:$maxPrice}}</small>
+                            <div>
+                                <small class='inputRange'>R$ 1 -</small>
+                                <small id="final-range" class='inputRange'>R$ {{$precoBuscado != null ?$precoBuscado:number_format($maxPrice,2,',','.')}}</small>
+
+                            </div>
                             <input type="range" id="myRange" min='1' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
                         </div>
-                        {{-- <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Marca</h2>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option3">
-                            <label class="form-check-label">Asus</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="option4">
-                            <label class="form-check-label">Sony</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" value="option5">
-                            <label class="form-check-label">Microsoft</label>
-                        </div> --}}
-                     </div>
+                        @php
+                            $c = 0;
+                            $w=0;
+                        @endphp
+                        @foreach ($lista as $titulo => $conteudo)
+                        <p class="col-12 p-1 mt-3 mb-1 border-bottom  font-weight-bold">{{$titulo}}</p>
+                            @foreach ($conteudo as $conteudo)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="informacoes" value="{{$conteudo}}" {{$req->informacoes == $conteudo &&  $req->informacoes != ''? 'checked':''}}>
+                                    <label class="form-check-label">{{$conteudo}}</label>
+                                </div> 
+                                @php
+                                    $w++;
+                                @endphp
+                            @endforeach
+                            @php
+                            $c++;
+                            if($c == 5){
+                                break;
+                            }
+                        @endphp
+                        @endforeach
+                    </div>
                      <div class="col-md-12 p-0 my-4">
                         <button type="submit" class="btn btn-primary btn-sm btn-block">Pesquisar</button>
                     </div>
@@ -43,12 +55,12 @@
                 </form>
 
             </div>
-            <div class="col-md-10 col-sm-12">
+            <div class="col-lg-10 col-sm-12">
                 <div class="row">
                     <h2 class="col-12 pt-3  ">Busca por: {{$search}}</h2>
                     <p class="col-12 border-bottom pb-3 mb-3">Total de resultados encontrados: <strong>{{$found}}</strong></p>
                     @foreach ($produtos as $produto)
-                    <div class="col-md-3 pb-1 pb-md-0 mb-3">
+                    <div class="col-lg-3 col-md-4 pb-1 pb-md-0 mb-3">
                         <a href="/detalheProduto/{{$produto->slug}}">
                             <div class="card avancar">
                                 <div class="card-img-top d-flex align-items-center justify-content-center p-4">

@@ -29,24 +29,23 @@
                 </form>
                 <p class="col-md-4 m-0 mt-3 p-0 ml-auto text-right">Total de resultados encontrados: <strong>{{$found ?? ''}}</strong></p>
 
-                <div id="table"  class="tableAdm">
+                <section id="table"  class="tableAdm">
                     <table class="table table-striped text-center mt-3">
                         <thead class="thead-dark">
                             <tr>
-                                <!-- Por alguma razao as paginas Adm nao estao puxando codigo CSS entao inclui style individual em cada imagem -->
                                 <th scope="col">ID</th>
                                 <th scope="col">Imagem</th>
                                 <th scope="col">Produto</th>
                                 <th scope="col">Categoria</th>
                                 <th scope="col">Preço (BRL)</th>
                                 <th scope="col">Desconto?</th>
-                                <th scope="col" colspan="2">Ações</th>
-                                
+                                <th scope="col" colspan="2">Ações</th>                                
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $i=0;
+                                $z=0;
                             @endphp
                             @foreach ($produtos as $produto)
                             <tr>
@@ -61,9 +60,7 @@
                                     @else
                                     <p class='btn btn-danger btn-sm'>Não</p>
                                     @endif
-
-                                </td>
-           
+                                </td> 
                                 <td>
                                     <a href="#" data-toggle="modal" data-target="#modalEditarProduto{{ $produto->id }}">
                                         <i class="fas fa-edit"></i>
@@ -78,7 +75,6 @@
                                                 <div class="carousel-inner">
 
                                                     <div class="carousel-item active" id="carrosselMessageItem">
-
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title">Editar o produto ?</h5>
@@ -87,7 +83,6 @@
                                                                 </button>
                                                             </div>
                                                             <form class="container" method="post" action="/admin/admProdutos/update/{{$produto->id}}" enctype="multipart/form-data">
-                                                                
                                                                 @csrf
                                                                 {{ method_field('PUT') }}
                                                                 <div class="modal-body">
@@ -144,12 +139,12 @@
                                                                         @endphp
 
                                                                         @foreach ($informacoes as $titulo => $conteudo)
-                                                                            <div class="form-row border my-2">
-                                                                                <p class="d-block col-md-12 text-center p-2 p-1 m-0 border-bottom bg-info text-white">Info {{$b}}</p>
+                                                                            <div class="form-row bloco-infos my-2">
+                                                                                <p class="d-block col-md-12 text-center p-2 p-1 m-0 text-white">Info {{$b}}</p>
                                                                                 <div class="form-group col-md-12 text-center my-2">
                                                                                     <input class="form-control" type="text" name="inputTituloEdit{{$b}}" value="{{$titulo}}">
                                                                                 </div>
-                                                                                <div class="form-group col-md-12 text-center">
+                                                                                <div class="form-group col-md-12 text-center mb-2">
                                                                                     <input class="form-control" type="text" name="inputConteudoEdit{{$b}}" value="{{$conteudo}}">
                                                                                 </div>
                                                                                 <input type="hidden" name="qtdEdit" value="{{$b}}">
@@ -157,8 +152,8 @@
                                                                             @php
                                                                             $b++;    
                                                                             @endphp
-
                                                                         @endforeach
+
                                                                     </div> 
                                                                     
                                                                 </div>
@@ -170,10 +165,11 @@
                                                                     @endif
                                                                     <button type="submit" class="btn btn-primary btn-block ">Editar</button>
                                                                 </div>
+
                                                             </form>
                                                         </div>
-                                                        
                                                     </div>
+
                                                     <div class="carousel-item" id="carroselPromoItem">
 
                                                         <div class="modal-content">
@@ -187,40 +183,38 @@
                                                             <form action="/admin/admProdutos/promo/{{$produto->id}}" method="post">
                                                                 @csrf
                                                                 {{ method_field('PUT') }}
-
                                                                 <div class="modal-body">
                                                                     <div class="form-row text-left">
                                                                         <div class="form-group col-md-12">
                                                                             <p>#ID {{$produto->id}} - {{$produto->nome}}</p>
                                                                         </div>                                                                          
-                                                                        
                                                                     </div>
                                                                     <div class="form-row">
                                                                         <div class="form-group col-md-6">
                                                                             <label for="empromo">Em promoção?</label>
-                                                                            <select class="form-control inputs-promo" name="empromo" id="empromo">
-                                                                                <option value="0">Não</option>
-                                                                                <option value="1">Sim</option>
+                                                                            <select class="form-control inputs-promo select-promo" name="empromo" id="empromo" onchange="zerar({{$z}})">
+                                                                                <option value="0" {{$produto->empromo!=1 ? "selected" : ''}}>Não</option>
+                                                                                <option value="1" {{$produto->empromo==1 ? "selected" : ''}}>Sim</option>
                                                                             </select>
                                                                         </div>
-                                                                        <div class="form-group col-md-6">
+                                                                        <div class="form-group col-md-6 ">
                                                                             <label for="empromo">Qual o % do desconto?</label>
-                                                                            <input type="text" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})">
+                                                                            <input type="number" max="100" value="{{$produto->empromo ==1?$produto->promo:0}}" class="form-control promoDesc inputs-promo" name="promoDesc" onkeyup="fazerCalculo({{$i}})" {{$produto->empromo!=1 ? "disabled" : ''}} style={{$produto->empromo!=1 ? "background:darkgrey;color:white" : ''}}>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
-                                                                        <div class="form-group col-md-6">
+                                                                        <div class="form-group col-md-6 mb-0">
                                                                             <label for="empromo">Total desconto</label>
                                                                             <p class="dados-promo" id="valorOriginal">R$ {{ number_format($produto->precoOriginal,2,',','.') }}</p>
                                                                             <p class="d-none valorOriginalHid">{{ $produto->precoOriginal }}</p>
                                                                         </div>
-                                                                        <div class="form-group col-md-6">
+                                                                        <div class="form-group col-md-6 mb-0">
                                                                             <label for="">Total desconto</label>
                                                                             <p class="dados-promo totalDesconto">R$ 0,00</p>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-row">
-                                                                        <div class="form-group col-md-12">
+                                                                        <div class="form-group col-md-12 mb-0">
                                                                             <label for="valorDesc">Valor final</label>
                                                                             <p class="valorDesc dados-promo" id="valorDesc">R$ {{ number_format($produto->precoFinal,2,',','.') }}</p>
                                                                             <input type="hidden" class="form-control inputDesconto" name="inputDesconto">
@@ -230,9 +224,8 @@
                                                                 <div class="modal-footer">
                                                                     <button type="submit" class="btn btn-primary btn-block">Lançar</button>
                                                                 </div>
-
-                                                                
                                                             </form>
+
                                                         </div>
 
                                                     </div>
@@ -275,21 +268,21 @@
                             </tr>
                             @php
                                 $i++;
+                                $z++;
                             @endphp 
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="d-flex justify-content-center mt-4">
-                        {{ $produtos->appends(['search' => isset($search) ? $search : ''])->links() }}
-                    </div>
+                </section>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $produtos->appends(['search' => isset($search) ? $search : ''])->links() }}
                 </div>
-
 
             </div>
         </div>
 
 
-        <p class="font-weight-bold">Adicionar Produto
+        <p class="font-weight-bold pb-4">Adicionar Produto
             <a href="#" data-toggle="modal" data-target="#modalAdd">
                 <i class="far fa-plus-square"></i>
             </a>
@@ -332,7 +325,6 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-5 text-center">
-                                    
                                     <label for="inputCategoria">Categoria</label>
                                     <select class="custom-select" name= "inputCategoria">
                                         @foreach ($categorias as $categoria)
@@ -369,27 +361,7 @@
         </div>
     </main>
 
-    <script>
-        
-        function fazerCalculo(i){
-           let qtdDesconto = document.querySelectorAll('.promoDesc')[i]
-           let valDesconto = document.querySelectorAll('.valorDesc')[i];
-           let totDesconto = document.querySelectorAll('.totalDesconto')[i];
-           let inpDesconto = document.querySelectorAll('.inputDesconto')[i];
-           let valOriginal = Number(document.querySelectorAll('.valorOriginalHid')[i].innerText);
-
-            let qtd = qtdDesconto.value
-            let desconto = (valOriginal*(1-qtd/100))
-            valDesconto.innerHTML = desconto.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-            totDesconto.innerHTML = (valOriginal - desconto).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-            
-            inpDesconto.value = desconto
-
-        }
-
-
-
-    </script>
+    <script src="/js/calculo-desconto.js"></script>
     <script src="/js/add-especificacoes.js"></script>
 
 @endsection

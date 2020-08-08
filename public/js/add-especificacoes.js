@@ -10,9 +10,9 @@ function adicionarCampo(){
     qtd = qtd+1
 
     let row = document.createElement('div');
-    row.setAttribute('class', 'form-row campos-info border my-2')
+    row.setAttribute('class', 'form-row campos-info bloco-infos border my-2')
     let text = document.createElement('p')
-    text.setAttribute('class','d-block col-md-12 text-center p-2 p-1 m-0 border-bottom bg-info text-white campo-info-text')
+    text.setAttribute('class','d-block col-md-12 text-center p-2 p-1 m-0 text-white campo-info-text')
     text.innerText = 'Info '+qtd
     let divTitulo = document.createElement('div');
     divTitulo.setAttribute('class','form-group col-md-12 text-center my-2')
@@ -22,7 +22,7 @@ function adicionarCampo(){
     titulo.setAttribute('name','inputTitulo'+qtd)
     titulo.setAttribute('placeholder','Titulo')
     let divConteudo = document.createElement('div');
-    divConteudo.setAttribute('class','form-group col-md-12 text-center')
+    divConteudo.setAttribute('class','form-group col-md-12 text-center mb-2')
     let conteudo = document.createElement('input');
     conteudo.setAttribute('class','form-control')
     conteudo.setAttribute('type','text')

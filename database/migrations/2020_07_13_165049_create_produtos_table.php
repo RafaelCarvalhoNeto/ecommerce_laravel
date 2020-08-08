@@ -20,7 +20,7 @@ class CreateProdutosTable extends Migration
             $table->foreignId("categoria");
             $table->string('slug')->unique();
             $table->string('imagem');
-            $table->string('descricao');
+            $table->text('descricao');
             $table->string('precoOriginal');
             $table->text("informacoes")->nullable();
             $table->string("parcelamento")->nullable();

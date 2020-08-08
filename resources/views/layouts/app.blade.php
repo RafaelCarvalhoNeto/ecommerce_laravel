@@ -161,7 +161,7 @@
                 <strong>Nossa Loja &copy; | CNPJ 01.012.012/0001-99 | </strong>Rua Alameda Santos 110, Sao Paulo, SP, 9110-999 | <abbr title="Telefone">Tel:</abbr> (123) 456-7890
               </address>
               <div class="d-flex flex-row flex-nowrap justify-content-center pb-3 text-center">
-                <a class="px-1" href="contato">Contato </a> | <a class="px-1" href="institucional">Institucional </a> | <a class="px-1" href="politicas">Termos de uso </a> | <a class="px-1" href="politicas"> Politicas de Privacidade</a>
+                <a class="px-1" href="{{route('contato')}}">Contato </a> | <a class="px-1" href="{{route('institucional')}}">Institucional </a> | <a class="px-1" href="politicas">Termos de uso </a> | <a class="px-1" href="{{route('politicas')}}"> Politicas de Privacidade</a>
               </div>
             </div>
           </div>

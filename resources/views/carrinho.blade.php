@@ -51,7 +51,7 @@
                                             <img src="{{$produto['produto']['imagem']}}" idth="72" height="72" alt="">
                                             <div class="text-left mx-0 mx-md-3">
                                                 <h5 class="my-0"> {{$produto['produto']['nome']}}</h5>
-                                                <small class="text-muted my-0">{{$produto['produto']['id']}}</small><br>
+                                                <small class="text-muted my-0">Cód. {{$produto['produto']['id']}}</small><br>
                                                 {{-- <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
                                                 <a href="#" class="ml-3 text-dark"><small>Excluir</small></a> --}}
                                             </div>
@@ -137,7 +137,7 @@
                                                 <img src="{{$pedido_produto->produto->imagem}}" idth="72" height="72" alt="">
                                                 <div class="text-left mx-0 mx-md-3">
                                                     <h5 class="my-0"> {{$pedido_produto->produto->nome}}</h5>
-                                                    <small class="text-muted my-0">{{$pedido_produto->produto->id}}</small><br>
+                                                    <small class="text-muted my-0">Cód. {{$pedido_produto->produto->id}}</small><br>
                                                     <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
                                                     <a href="#" class="ml-3 text-dark"><small>Excluir</small></a>
                                                 </div>

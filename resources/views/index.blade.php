@@ -54,7 +54,7 @@
 
         <div class="row mt-4">
             @foreach ($maisVendidos as $maisVendido)
-            <div class="col-md-3 col-sm-6 pb-1 mb-3">
+            <div class="col-lg-3 col-sm-6 pb-1 mb-3">
                 <a href="/detalheProduto/{{$maisVendido->produto->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
@@ -77,18 +77,18 @@
     <section class="container">
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Categorias em destaque</h2>
         <div class="row mt-4">
-            <div class="col-sm-6 col-md-3 d-flex justify-content-center pb-3">
+            <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
                 <a href="ofertas"><img src="img\bola1.png" class="icones"></a>
             </div>
-            <div class="col-sm-6 col-md-3 d-flex justify-content-center pb-3">
+            <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
                 <a href=""><img src="img\bola2.png" class="icones"></a>
 
             </div>
-            <div class="col-sm-6 col-md-3 d-flex justify-content-center pb-3">
+            <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
                 <a href=""><img src="img\bola3.png" class="icones"></a>
                 
             </div>
-            <div class="col-sm-6 col-md-3 d-flex justify-content-center pb-3">
+            <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
                 <a href=""><img src="img\bola4.png" class="icones"></a>
             </div>
 
@@ -103,7 +103,7 @@
             @foreach ($descontos as $desconto)
 
 
-                <div class="col-md-3 pb-1 col-sm-6 mb-3">
+                <div class="col-lg-3 pb-1 col-sm-6 mb-3">
                     <a href="/detalheProduto/{{$desconto->slug}}">
                         <div class="card avancar">
                             <div class="card-header {{$desconto->promo>20?'bg-danger':'bg-success'}} text-white text-center">
@@ -127,7 +127,7 @@
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Novidades na loja</h2>
         <div class="row mt-4">
             @foreach ($produtosBottom as $produtoBottom)
-            <div class="col-md-3 pb-1 col-sm-6 mb-3">
+            <div class="col-lg-3 pb-1 col-sm-6 mb-3">
                 <a href="/detalheProduto/{{$produtoBottom->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">

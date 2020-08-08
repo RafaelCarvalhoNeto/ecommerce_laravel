@@ -13,8 +13,8 @@
                       @csrf
                       <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="meuemail@meuprovedor.com" name="email">
-                        @error('email')
+                        <input type="email" class="form-control @error('failed') is-invalid @enderror" id="email" placeholder="meuemail@meuprovedor.com" name="email">
+                        @error('failed')
                           <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>
                           </span>

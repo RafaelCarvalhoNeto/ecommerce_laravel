@@ -54,10 +54,18 @@ header {
 .navbar-brand {
     color: white !important;
 }
+
+.d-categorias{
+    max-height: 60vh;
+    overflow-y: auto;
+}
 .search{
     background-color: #f0f0f5;
     width: 35px;
     border-radius: 8px ;
+}
+#busca {
+    flex: 1;
 }
 .search.btn i{
     font-size: 1.4em;
@@ -153,6 +161,52 @@ header {
 .subnav .container{
     padding: 0;
 }
+
+/* ANALISAR NECESSIDADE DE ALGUMAS LINHAS DO CODIGO SUBNAV ADMIN */
+
+.subnav-admin ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-x:auto !important;
+    display: flex;
+    flex-direction: row;
+
+}
+.subnav-admin .container{
+    padding: 0;
+}
+
+.subnav-admin li a {
+    flex: 1;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.subnav-admin li a, .link-footer a {
+    border-color: #fff;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: color 150ms ease-in-out;
+    transition: color 150ms ease-in-out;
+}
+.link-footer a{
+    color: var(--primary-color);
+}
+
+.subnav-admin ul li, .subnav-admin ul{
+    flex: 1;
+}
+.subnav-admin .btn-group{
+    flex: 0;
+}
+/* TERMINA AQUI NECESSIDADE DE ANALISE DE LINHAS DE CODIGO SUBNAV-ADMIN */
+
+
 /* INDEX */
 body {
     background-color: #ffffff;
@@ -413,10 +467,14 @@ form input.form-control, form textarea.form-control, form select.form-control{
     border-radius: 8px;
 }
 .dados-promo{
-    border-radius: 10px;
+    border-radius: 8px;
     padding: 5px;
     color: white;
     background: darkgrey;
+    height: 38px;
+    line-height: 25px;
+    text-align: center;
+
     
 }
 .inputs-promo{
@@ -514,7 +572,6 @@ form input.form-control, form textarea.form-control, form select.form-control{
     transition: .5s ease;
     background-color: var(--primary-color);
     border-radius: 50%;
-
 }
   
 .rounded-foto:hover .overlay {
@@ -539,6 +596,15 @@ form input.form-control, form textarea.form-control, form select.form-control{
     margin-top: 0.25rem;
     font-size: 80%;
     color: #e3342f;
+  
+.bloco-infos{
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 10px;
+}
+
+.bloco-infos p{
+    border-radius: 10px 10px 0 0;
+    background-color: var(--secondary-color);
 }
 
 @media only screen and (min-width: 769px) {
@@ -554,13 +620,11 @@ form input.form-control, form textarea.form-control, form select.form-control{
         max-width: 1140px;
         margin: auto;
     }
-    #busca{
-        width: 400px
-    }
+
     .seta{
-    height: 100px;
-    margin: auto 25px;
-    width: 30px;
+        height: 100px;
+        margin: auto 25px;
+        width: 30px;
     }
     .carousel-control-next-icon, .carousel-control-prev-icon{
         color: black
@@ -582,9 +646,13 @@ form input.form-control, form textarea.form-control, form select.form-control{
     .navbar .container form{
         order: 0;
         width: 100%;
-        justify-content: flex-end;
+        display: block;
     }
-
+    #busca{
+        /* flex:0; */
+        width: 400px;
+        margin-left: auto;
+    }
     .subnav li a {
         flex: 1;
         color: white;
@@ -643,7 +711,5 @@ form input.form-control, form textarea.form-control, form select.form-control{
     .btn-search-adm{
         width: 150px;
     }
-
-
 
 }

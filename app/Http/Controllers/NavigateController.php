@@ -44,6 +44,7 @@ class NavigateController extends Controller
         $recomendacoes = DB::table('produtos')
         ->join('categorias', 'produtos.categoria','=', 'categorias.id')
         ->where('categorias.id', $produto->categoria)
+        ->where('produtos.id','<>', $produto->id)
         ->select('produtos.nome', 'produtos.imagem', 'produtos.precoFinal', 'produtos.id','produtos.parcelamento', 'produtos.slug')
         ->paginate(4);
 
@@ -87,16 +88,48 @@ class NavigateController extends Controller
         $search = $request->input('search');
         $precoBuscado = intval($request->input('preco'));
         $produtos = Produto::where('nome', 'like', '%'.$search.'%');
+        $infos = $request->informacoes;
+        
+        $buscaInfos = $produtos->get();
+        $lista = [];
+        foreach ($buscaInfos as $buscaInfo){
+            $arrayinfos = $buscaInfo->informacoes;
+            $informacoes = json_decode($arrayinfos, true);
+            
+            foreach($informacoes as $titulo => $conteudo){
+
+                if(!array_key_exists($titulo, $lista)){
+                    $lista[$titulo][] = $conteudo;
+                    
+                } else {
+                    if (!in_array($conteudo, $lista[$titulo])){
+                        $lista[$titulo][] = $conteudo;
+
+                    }
+                }
+
+            }
+        }
+
         $maxPrice = $produtos->get()->max('precoFinal');
         
         if($precoBuscado){
-            $produtos = $produtos->where('precoFinal', '<', $precoBuscado);
+            $produtos = $produtos->where('precoFinal', '<=', $precoBuscado);
+
+            if($infos){
+                $produtos = $produtos->where('informacoes', 'like', '%'.$infos.'%');
+            }
 
         } else{
             $produtos = Produto::where('nome', 'like', '%'.$search.'%');
+            if($infos){
+                $produtos = $produtos->where('informacoes', 'like', '%'.$infos.'%');
+            }
         }
         $found = $produtos->count();
         $produtos = $produtos->paginate(16);
+
+        $req = Request();
 
         return view('busca')->with([
             'search'=>$search,
@@ -104,6 +137,8 @@ class NavigateController extends Controller
             'maxPrice'=>$maxPrice,
             'precoBuscado'=> $precoBuscado,
             'found'=>$found,
+            'lista'=>$lista,
+            'req' => $req,
         ]);
     }
 
@@ -137,7 +172,7 @@ class NavigateController extends Controller
             return redirect()->route('converter.pedido');
 
         }
-        return redirect()->back()->withInput()->withErros(['Os dados informados não conferem!']);
+        return redirect()->back()->withInput()->withErrors(['failed'=>'Os dados informados não foram encontrados no nosso sistema.']);
     }
 
 

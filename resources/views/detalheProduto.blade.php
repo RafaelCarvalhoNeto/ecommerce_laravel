@@ -17,7 +17,7 @@
                 <div>
 
                     <h2>{{$produto->nome}}</h2>
-                    <small>{{$produto->id}}</small>
+                    <small>Cód. {{$produto->id}}</small>
                     <p class="my-3">{{$produto->descricao}}
                     </p>
                 </div>
@@ -28,8 +28,8 @@
                                 @if ($produto->empromo ==1)
                                 <small class="promo">de R$ {{number_format(($produto->precoOriginal),2,',','.')}} por</small>
                                 @endif
-                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->precoFinal),2)}}</p>
-                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->precoFinal)/($produto->parcelamento),2)}} s/ juros</small>
+                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->precoFinal),2, ',','.')}}</p>
+                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->precoFinal)/($produto->parcelamento),2,',','.')}} s/ juros</small>
                             </div>
                             <div class="form-group m-0 mb-4">
                                 <form action="{{route('carrinho.adicionar')}}" method="POST" id="formComprar">
@@ -99,7 +99,7 @@
     <div class="container">
         <div class="row mt-4">
             @foreach ($recomendacoes as $recomendacao)
-            <div class="col-md-3 pb-1 pb-md-0 mb-3">
+            <div class="col-lg-3 pb-1 pb-md-0 mb-3">
                 <a href="/detalheProduto/{{$recomendacao->slug}}">
                     <div class="card avancar">
                         <div class="card-img-top d-flex align-items-center justify-content-center p-4">
