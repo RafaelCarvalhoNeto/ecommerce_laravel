@@ -130,7 +130,7 @@ senha.onblur = e => {
 
 // VALIDANDO O FORM
 function validarForm(){
-    if(rgLength == 9 && cpfLength == 11) {
+    if(rgLength == 9 && cpfLength == 11 && temMaiuscula.test(senha) && temMinuscula.test(senha) && naoTemEspaco.test(senha) ) {
         return true;
     } else {  
         seletor('#erroForm').style.cssText = 'display: block; text-align: center';
