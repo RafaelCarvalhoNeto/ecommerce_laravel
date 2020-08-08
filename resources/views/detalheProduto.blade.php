@@ -28,8 +28,8 @@
                                 @if ($produto->empromo ==1)
                                 <small class="promo">de R$ {{number_format(($produto->precoOriginal),2,',','.')}} por</small>
                                 @endif
-                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->precoFinal),2)}}</p>
-                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->precoFinal)/($produto->parcelamento),2)}} s/ juros</small>
+                                <p class="m-0"  id="precoDetalhe">R$ {{number_format(($produto->precoFinal),2, ',','.')}}</p>
+                                <small>{{$produto->parcelamento}}x de R$ {{number_format(($produto->precoFinal)/($produto->parcelamento),2,',','.')}} s/ juros</small>
                             </div>
                             <div class="form-group m-0 mb-4">
                                 <form action="{{route('carrinho.adicionar')}}" method="POST" id="formComprar">

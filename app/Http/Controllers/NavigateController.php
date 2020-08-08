@@ -114,7 +114,7 @@ class NavigateController extends Controller
         $maxPrice = $produtos->get()->max('precoFinal');
         
         if($precoBuscado){
-            $produtos = $produtos->where('precoFinal', '<', $precoBuscado);
+            $produtos = $produtos->where('precoFinal', '<=', $precoBuscado);
 
             if($infos){
                 $produtos = $produtos->where('informacoes', 'like', '%'.$infos.'%');

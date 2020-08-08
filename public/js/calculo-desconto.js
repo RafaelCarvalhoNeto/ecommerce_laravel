@@ -16,7 +16,7 @@ function fazerCalculo(i){
         qtdDesconto.value = 100
     }
     if(qtdDesconto.hasAttribute('disabled')==false){
-        if(qtdDesconto.value <= 0){
+        if(qtdDesconto.value < 0){
             qtdDesconto.value = 1
         }
     }
