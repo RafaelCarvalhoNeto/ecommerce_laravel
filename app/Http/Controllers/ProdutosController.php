@@ -168,7 +168,7 @@ class ProdutosController extends Controller
     
     public function search(Request $request){
 
-        $search = $request->input('inputSearch');
+        $search = $request->input('search');
 
         $produtos = DB::table('produtos')
         ->leftjoin('categorias', 'produtos.categoria','=', 'categorias.id')

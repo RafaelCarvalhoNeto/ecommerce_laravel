@@ -21,7 +21,7 @@
                 
                 <form action="{{ url('/admin/admProdutos/search') }}" method="GET">
                     <div class="input-group col-12 px-0">
-                        <input class="form-control border-0" id="inputSearch" type="search" arial-label="search" placeholder="Pesquisar..." name='inputSearch'>
+                        <input class="form-control border-0" id="inputSearch" type="search" arial-label="search" placeholder="Pesquisar..." name='search'>
                         <div class="input-group-append">
                             <button class="btn btn-primary btn-search-adm" type="submit">Pesquisar</button>
                         </div>
