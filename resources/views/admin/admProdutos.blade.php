@@ -115,7 +115,7 @@
                                                                             <label for="inputCategoria">Categoria</label>
                                                                             <select class="custom-select" name= "inputCategoria">
                                                                                 @foreach ($categorias as $categoria)
-                                                                                    <option value="{{$categoria->id}}">{{$categoria->tipo}}</option>
+                                                                                    <option value="{{$categoria->id}}" {{$categoria->tipo == $produto->tipo ? 'selected':''}}>{{$categoria->tipo}}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                         </div>

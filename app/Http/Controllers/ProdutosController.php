@@ -147,7 +147,7 @@ class ProdutosController extends Controller
         $produto->update();
         
         if($produto){
-            return redirect()->route('admin.admProdutos')->with('success','Produto alterado com sucesso!');
+            return redirect()->back()->with('success','Produto alterado com sucesso!');
 
         }
     }
