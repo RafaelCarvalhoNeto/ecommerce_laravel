@@ -28,12 +28,12 @@
                 <div class="form-group col-md-6">
                     <label for="inputCPF">CPF</label>
                     <input type="number" class="form-control{{$errors->has('inputCPF') ? ' is-invalid':''}}" placeholder="Insira seu CPF" aria-describedby="CPFCadastroHelp" id="inputCPF" name="inputCPF" value="{{ old('inputCPF') }}"  onblur="validarCpf()" required>
-                    <div class="form-erro" id="erroCpf">O campo CPF deve conter 11 numeros</div>
+                    <div class="form-erro" id="erroCpf">O campo CPF deve conter 11 números</div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputRG">RG</label>
                     <input type="number" class="form-control{{$errors->has('inputRG') ? ' is-invalid':''}}" placeholder="Insira seu RG" aria-describedby="RGCadastroHelp" id="inputRG" name="inputRG" value="{{ old('inputRG') }}" onblur="validarRg()" required>
-                    <div class="form-erro" id="erroRg">O campo RG deve conter 9 numeros</div>
+                    <div class="form-erro" id="erroRg">O campo RG deve conter entre 9 a 12 números</div>
                 </div>
             </div>
             <div class="form-group">
@@ -93,7 +93,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="inputSenha">Senha</label>
-                    <input type="password" name="inputSenha" class="form-control{{$errors->has('inputSenha') ? ' is-invalid':''}}" placeholder="Senha" aria-describedby="senhaHelp" id="inputSenha" onblur="validarSenha()" required> 
+                    <input type="password" name="inputSenha" class="form-control{{$errors->has('inputSenha') ? ' is-invalid':''}}" placeholder="Senha" aria-describedby="senhaHelp" id="inputSenha" required> 
                     <div class="invalid-feedback">{{ $errors->first('inputSenha') }}</div>
                     <sub class="" id="senhaAlphaNum">A senha deve incluir no mínimo 6 caracteres, um número, uma maiúscula, uma minúscula e não conter espaço</sub>
                 </div>

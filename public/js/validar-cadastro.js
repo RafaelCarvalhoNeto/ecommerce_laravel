@@ -34,10 +34,10 @@ function validarRg() {
     rg = rgInput.toString();
     rgLength = rg.length;
 
-    if(rgLength != 9){
-        seletor('#erroRg').style.display = 'block';
-    } else {
+    if(rgLength >= 9 && rgLength <= 12){
         seletor('#erroRg').style.display = 'none';
+    } else {
+        seletor('#erroRg').style.display = 'block';
     }
 
   }
@@ -105,15 +105,15 @@ function retorno_callback_viacep(resposta) {
 }
 
 // VALIDANDO A SENHA
-temMaiuscula = /[+A-Z]/
-temMinuscula = /[+a-z]/
-temNumero = /[+0-9]/
-naoTemEspaco = /\S{6,}/
+temMaiuscula = /[+A-Z]/;
+temMinuscula = /[+a-z]/;
+temNumero = /[+0-9]/;
+temEspaco = /\s/;
 
-senha.onblur = e => {
+senha.onkeyup = e => {
     let senha = e.target.value
     
-    if ( temMaiuscula.test(senha) && temMinuscula.test(senha) && temNumero.test(senha) && naoTemEspaco.test(senha) ) {
+    if ( temMaiuscula.test(senha) && temMinuscula.test(senha) && temNumero.test(senha) ) {
         e.target.classList.remove('text-danger')
     } else {
         e.target.classList.add('text-danger')
@@ -126,15 +126,22 @@ senha.onblur = e => {
         senhaAlphaNum.classList.add('text-danger')
         senhaAlphaNum.classList.remove('text-success')
     }
+
+    if ( temEspaco.test(senha) ) {
+        e.target.classList.add('text-danger')
+        senhaAlphaNum.classList.add('text-danger')
+    } else {
+        e.target.classList.remove('text-danger')
+        senhaAlphaNum.classList.add('text-success')
+    }
 }
 
 // VALIDANDO O FORM
 function validarForm(){
-    if(rgLength == 9 && cpfLength == 11 && temMaiuscula.test(senha) && temMinuscula.test(senha) && naoTemEspaco.test(senha) ) {
+    if(rgLength >= 9 && rgLength <= 12 && cpfLength == 11 && temMaiuscula.test(senha) ) {
         return true;
     } else {  
         seletor('#erroForm').style.cssText = 'display: block; text-align: center';
         return false;
     }
-
-  }
+}
