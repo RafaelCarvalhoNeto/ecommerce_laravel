@@ -49,11 +49,9 @@
                                     <td colspan="2">
                                         <div class="d-flex">
                                             <img src="{{$produto['produto']['imagem']}}" idth="72" height="72" alt="">
-                                            <div class="text-left mx-0 mx-md-3">
+                                            <div class="text-left mx-3">
                                                 <h5 class="my-0"> {{$produto['produto']['nome']}}</h5>
                                                 <small class="text-muted my-0">Cód. {{$produto['produto']['id']}}</small><br>
-                                                {{-- <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
-                                                <a href="#" class="ml-3 text-dark"><small>Excluir</small></a> --}}
                                             </div>
                                         </div>
                                     </td>
@@ -85,15 +83,15 @@
                     </div>
                     <div class="form-inline">
                         <div class="form-group col-md-6">
-                            <label for="cupomDesconto" class="col-auto pl-0">Cupom de Desconto</label>
+                            <label for="cupomDesconto" class="col-auto px-0">Cupom de Desconto</label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" name="cupomDesconto" id="cupomDesconto" placeholder="INSIRA SEU CUPOM">
                             </div>
                         </div>
-                        <div class="form-group col-md-2 offset-4">
-                            <form action="{{route('converter.pedido')}}" method='get'>
+                        <div class="form-group col-md-6 d-flex justify-content-end">
+                            <form action="{{route('converter.pedido')}}" method='get' class="btn-finalizar-compra">
                                 @csrf
-                                <button type='submit' class="btn btn-primary">Finalizar Compra</button>
+                                <button type='submit' class="btn btn-primary btn-block">Finalizar Compra</button>
                             </form>
                         </div>
                     </div>
@@ -135,11 +133,9 @@
                                         <td colspan="2">
                                             <div class="d-flex">
                                                 <img src="{{$pedido_produto->produto->imagem}}" idth="72" height="72" alt="">
-                                                <div class="text-left mx-0 mx-md-3">
+                                                <div class="text-left mx-3">
                                                     <h5 class="my-0"> {{$pedido_produto->produto->nome}}</h5>
                                                     <small class="text-muted my-0">Cód. {{$pedido_produto->produto->id}}</small><br>
-                                                    <a href="#" class="ml-3 text-dark"><small>Editar</small></a>
-                                                    <a href="#" class="ml-3 text-dark"><small>Excluir</small></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -175,14 +171,14 @@
                         </div>
                         <div class="form-inline">
                             <div class="form-group col-md-6">
-                                <label for="cupomDesconto" class="col-auto pl-0">Cupom de Desconto</label>
+                                <label for="cupomDesconto" class="col-auto px-0">Cupom de Desconto</label>
                                 <div class="col-md-7">
                                     <input type="text" class="form-control" name="cupomDesconto" id="cupomDesconto" placeholder="INSIRA SEU CUPOM">
                                 </div>
                             </div>
-                            <div class="form-group col-md-2 offset-4">
-                                <form action="{{route('pagina.finalizar')}}" method='get'>
-                                    <button type='submit' class="btn btn-primary">Finalizar Compra</button>
+                            <div class="form-group col-md-6 d-flex justify-content-end">
+                                <form action="{{route('pagina.finalizar')}}" method='get' class="btn-finalizar-compra">
+                                    <button type='submit' class="btn btn-primary btn-block">Finalizar Compra</button>
                                 </form>
                             </div>
                         </div>

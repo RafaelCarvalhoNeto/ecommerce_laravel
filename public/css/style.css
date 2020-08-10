@@ -614,7 +614,25 @@ form input.form-control, form textarea.form-control, form select.form-control{
     background-color: var(--secondary-color);
 }
 
+/* Carrinho */
+.tableCarrinho{
+    font-size: 0.9em;
+}
+.tableCarrinho h5{
+    font-size: 1.1em;
+}
+.btn-finalizar-compra{
+    flex: 1;
+}
+
 @media only screen and (min-width: 769px) {
+
+    .tableCarrinho{
+        font-size: 1em;
+    }
+    .tableCarrinho h5{
+        font-size: 1.125rem;
+    }
 
     #carrosel {
         display: inherit;
