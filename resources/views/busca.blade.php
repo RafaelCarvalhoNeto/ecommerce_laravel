@@ -22,16 +22,16 @@
                         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Preço</h2>
                         <div class="slidecontainer text-center">
                             <div>
-                                <small class='inputRange'>R$ 1 -</small>
+                                <small class='inputRange'>R$ {{$minPrice}} -</small>
                                 <small id="final-range" class='inputRange'>R$ {{$precoBuscado != null ?$precoBuscado:number_format($maxPrice,2,',','.')}}</small>
 
                             </div>
-                            <input type="range" id="myRange" min='1' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
+                            <input type="range" id="myRange" min='{{$minPrice}}' max='{{$maxPrice}}' value="{{$precoBuscado != null?$precoBuscado:$maxPrice}}" name='preco'>
                         </div>
                         <button class="navbar-toggler acordeao" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <small>Busca Avançada <i class="fas fa-chevron-down ml-3 font-weight-light"></i></small>
                         </button>
-                        <div class="collapse" id="navbarSupportedContent">
+                        <div class="collapse {{ isset($_GET['informacoes'])? 'show': ''}}" id="navbarSupportedContent">
                             @php
                                 $c = 0;
                                 $w=0;

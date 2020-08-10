@@ -112,6 +112,7 @@ class NavigateController extends Controller
         }
 
         $maxPrice = $produtos->get()->max('precoFinal');
+        $minPrice = $produtos->get()->min('precoFinal');
         
         if($precoBuscado){
             $produtos = $produtos->where('precoFinal', '<=', $precoBuscado);
@@ -135,6 +136,7 @@ class NavigateController extends Controller
             'search'=>$search,
             'produtos'=>$produtos,
             'maxPrice'=>$maxPrice,
+            'minPrice'=>$minPrice,
             'precoBuscado'=> $precoBuscado,
             'found'=>$found,
             'lista'=>$lista,
