@@ -239,7 +239,7 @@ body {
 }
 .produto-img-detalhe{
     max-height: 400px;
-    object-fit: cover;
+    object-fit: contain;
 }
 .preco{
     text-align: left;

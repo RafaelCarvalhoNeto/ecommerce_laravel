@@ -17,14 +17,14 @@
                 <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img class="d-block w-100"
-                    src="/img/banner-06.png" alt="First slide">
+                    <a href="/categoria/celulares"><img class="d-block w-100"
+                    src="/img/banner-06.png" alt="First slide"></a>
 
                 </div>
 
                 <div class="carousel-item">
-                    <img class="d-block w-100"
-                    src="/img/banner-07.png" alt="Second slide">
+                    <a href="/categoria/cama-mesa-e-banho"><img class="d-block w-100"
+                    src="/img/banner-07.png" alt="Second slide"></a>
 
                 </div>
 
@@ -78,18 +78,18 @@
         <h2 class="col-12 p-3 mt-3 mb-3 border-bottom">Categorias em destaque</h2>
         <div class="row mt-4">
             <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
-                <a href="ofertas"><img src="img\bola1.png" class="icones"></a>
+                <a href="/categoria/ferramentas"><img src="img\bola1.png" class="icones" alt="Ferramentas" title="Ferramentas"></a>
             </div>
             <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
-                <a href=""><img src="img\bola2.png" class="icones"></a>
+                <a href="/categoria/celulares"><img src="img\bola2.png" class="icones" alt="Celulares" title="Celulares"></a>
 
             </div>
             <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
-                <a href=""><img src="img\bola3.png" class="icones"></a>
+                <a href="/categoria/livros"><img src="img\bola3.png" class="icones" title="Livros"></a>
                 
             </div>
             <div class="col-lg-3 col-md-3 d-flex justify-content-center pb-3">
-                <a href=""><img src="img\bola4.png" class="icones"></a>
+                <a href="/categoria/moda-masculina"><img src="img\bola4.png" class="icones" title="Moda Masculina"></a>
             </div>
 
         </div>
