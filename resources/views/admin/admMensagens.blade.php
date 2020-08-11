@@ -132,8 +132,8 @@
                                                                 </button>
                                                             </div>
                                                             <form method='post' action='/sendemail/send'>
+                                                                @csrf
                                                                 <div class="modal-body">
-                                                                    @csrf
                                                                     <input type="hidden" name="inputAssunto" id="" value="{{$message->assunto}}">
                                                                     <input type="hidden" name="id" id="" value="{{$message->id}}">
                                                                     <div class="form-group">
