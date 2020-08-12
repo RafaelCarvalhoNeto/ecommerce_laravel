@@ -1,4 +1,7 @@
-Inserir banner
+<h1 align="center">
+  <img height="100" src="https://github.com/RafaelCarvalhoNeto/ecommerce_laravel/blob/master/public/img/logoazul.png">
+</h1>
+<br>
 
 ## Nossa Loja | Template de E-commerce
 O nossa loja é um template de um e-commerce padrão. Com todas as funcionalidades disponíveis para todo o ciclo do cliente dentro de um processo de compra nesse tipo de plataforma.
