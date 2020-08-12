@@ -1,6 +1,5 @@
-<h1 align="center">
-  <img height="100" src="https://github.com/RafaelCarvalhoNeto/ecommerce_laravel/blob/master/public/img/logoazul.png">
-</h1>
+<img height="100" src="https://github.com/RafaelCarvalhoNeto/ecommerce_laravel/blob/master/public/img/logoazul.png">
+
 <br>
 
 ## Nossa Loja | Template de E-commerce
